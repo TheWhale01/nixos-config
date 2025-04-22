@@ -12,19 +12,19 @@
 
 			# Variables
 			"$mainMod" = "SUPER";
-			"$terminal" = "kitty";
+			"$terminal" = "ghostty";
 			"$fileManager" = "nautilus";
 			"$menu" = "rofi -show drun";
 			"$browser" = "flatpak run app.zen_browser.zen";
 			"$code-editor" = "zeditor";
 			"$screenshot" = "hyprshot";
 			"$&" = "override";
-			
+
 			# Monitor
 			monitor = ",preferred,auto,1";
 
 			# Window rules
-			windowrulev2 = "opacity 0.80 $& 0.80 $& 1,class:^(kitty)$";
+			windowrulev2 = "opacity 0.80 $& 0.80 $& 1,class:^(com.mitchellh.ghostty)$";
 			layerrule = [
 				"ignorezero,rofi"
 				"blur,notifications"
@@ -175,7 +175,7 @@
 				"hyprpaper"
 				"waybar"
 			];
-			
+
 		};
 	};
 }

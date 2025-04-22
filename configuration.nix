@@ -105,7 +105,7 @@
       neovim
       tmux
       fastfetch
-      kitty
+      ghostty
       git
       nautilus
       dunst
@@ -122,7 +122,7 @@
       hypridle
       xdg-desktop-portal-hyprland
       glib
-      nerdfonts
+      nerd-fonts.caskaydia-cove
     ];
     sessionVariables = rec {
       NIXOS_OZONE_WL = "1";
@@ -135,7 +135,7 @@
 
   # FONTS
   fonts.fontDir.enable = true;
-  fonts.packages = with pkgs; [nerdfonts];
+  fonts.packages = with pkgs; [nerd-fonts.caskaydia-cove];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -3,15 +3,7 @@
 {
 	programs.waybar = {
 		enable = true;
-		style = ''
-			* {
-				font-size: 14pt;
-				font-weight: bold;
-			}
-			window#waybar {
-				background: alpha(@base00, 0.7);
-			}
-		'';
+		# style = config.lib.readFile (./style.css);
 		settings = {
 			mainBar = {
 				layer = "top";

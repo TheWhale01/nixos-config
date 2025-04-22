@@ -2,15 +2,15 @@
 
 {
 	imports = [
-		./stylix.nix
 		./dunst.nix
+		./ghostty.nix
 		./git.nix
 		./hypr/hyprlock.nix
 		./hypr/hyprland.nix
 		./hypr/hyprpaper.nix
 		./hypr/hypridle.nix
-		./kitty.nix
 		./rofi.nix
+		./stylix.nix
 		./waybar/waybar.nix
 		./wlogout/wlogout.nix
 		./zsh.nix
