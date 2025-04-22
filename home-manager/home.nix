@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 	imports = [
@@ -13,6 +13,7 @@
 		./stylix.nix
 		./waybar/waybar.nix
 		./wlogout/wlogout.nix
+		./zed.nix
 		./zsh.nix
 	];
 

@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -121,13 +121,12 @@
       wlogout
       hypridle
       xdg-desktop-portal-hyprland
-      glib
       nerd-fonts.caskaydia-cove
     ];
-    sessionVariables = rec {
+    sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
-    variables = rec {
+    variables = {
       XDG_DOWNLOAD_DIR = "$HOME/downloads";
       XDG_CONFIG_DIR = "$HOME/.config";
     };
