@@ -24,7 +24,11 @@
 			monitor = ",preferred,auto,1";
 
 			# Window rules
-			windowrulev2 = "opacity 0.80 $& 0.80 $& 1,class:^(com.mitchellh.ghostty)$";
+			windowrulev2 = [
+				"opacity 0.90 $& 0.90 $& 1,class:^(com.mitchellh.ghostty)$"
+				"opacity 0.90 $& 0.90 $& 1,class:^(dev.zed.Zed)$"
+				"opacity 0.90 $& 0.90 $& 1,class:^(Spotify)$"
+			];
 			layerrule = [
 				"ignorezero,rofi"
 				"blur,notifications"

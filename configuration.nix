@@ -14,21 +14,12 @@
     "flakes"
   ];
 
-  # stylix = {
-  #   enable = true;
-  #   autoEnable = true;
-  #   polarity = "dark";
-  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-  #   image = ./home-manager/hypr/wallpapers/black_hole_by_kurzgesagt.png;
-  # };
-
   hardware.bluetooth.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
-
 
   networking.hostName = "nix-whale"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -52,9 +43,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -83,8 +71,8 @@
     ];
     shell = pkgs.zsh;
   };
-
   # programs.firefox.enable = true;
+
   programs.hyprland.enable = true;
   programs.zsh.enable = true;
 
@@ -101,7 +89,6 @@
       brightnessctl
       libnotify
       wget
-      sddm-sugar-dark
       neovim
       tmux
       fastfetch
@@ -122,6 +109,8 @@
       hypridle
       xdg-desktop-portal-hyprland
       nerd-fonts.caskaydia-cove
+      catppuccin-sddm-corners
+      bibata-cursors
     ];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -148,9 +137,11 @@
   services.power-profiles-daemon.enable = true;
   services.blueman.enable = true;
   services.flatpak.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "sugar_dark";
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    wayland.enable = true;
+    enable = true;
+    theme = "catppuccin-sddm-corners";
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
