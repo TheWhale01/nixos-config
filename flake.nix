@@ -2,6 +2,7 @@
 	description = "whale's NixOS";
 
 	inputs = {
+	  nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 		home-manager = {
 			url = "github:nix-community/home-manager";
@@ -25,7 +26,7 @@
 		};
 	};
 
-	outputs = { nixpkgs, home-manager, agenix, disko, stylix, ... }@inputs:
+	outputs = { nixpkgs, nixos-hardware, home-manager, agenix, disko, stylix, ... }@inputs:
 	let
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
@@ -67,6 +68,7 @@
 					}
 					stylix.nixosModules.stylix
 					disko.nixosModules.disko
+					nixos-hardware.nixosModules.framework-amd-ai-300-series
 				];
 			};
 			olympos = lib.nixosSystem {

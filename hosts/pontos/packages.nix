@@ -50,5 +50,6 @@
 		parsec-bin
 		stremio
 		tor-browser
+		nvtopPackages.full
   ];
 }

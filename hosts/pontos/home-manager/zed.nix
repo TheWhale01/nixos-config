@@ -24,12 +24,10 @@
     userSettings = {
       ssh_connections = [
         {
-          host = "abyss";
-          username = "blobfish";
+          host = "erebos";
+          username = "hades";
           projects = [
-            { paths = ["~/Codes/pappers/pappers"]; }
-	    { paths = ["~/apps/translaitor"]; }
-	    { paths = ["~/Codes/pappers/pappers-entreprises"]; }
+       	    { paths = ["~/nix"]; }
           ];
         }
       ];

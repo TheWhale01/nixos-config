@@ -69,6 +69,7 @@
 	services.pipewire.enable = true;
 	services.tailscale.enable = true;
 	services.fwupd.enable = true;
+	services.power-profiles-daemon.enable = false;
 
 	system.autoUpgrade.enable = true;
 	system.autoUpgrade.allowReboot = true;
