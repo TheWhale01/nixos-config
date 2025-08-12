@@ -62,6 +62,9 @@
 		isNormalUser = true;
 		extraGroups = [ "wheel" "libvirtd" ];
 		shell = pkgs.zsh;
+		openssh.authorizedKeys.keys = [
+			"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcOee301WJTTAQCgHuELLFoQ4mOzL2o6cx6DiQkOiJF poseidon@pontos"
+		];
 	};
 
 	users.groups.arr.members = [
