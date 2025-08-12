@@ -140,7 +140,7 @@
 	", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, 1920x1080, 0x0, 1\""
       ];
       # MONITORS
-      monitor = ",preferred,auto,1";
+      monitor = ",preferred,auto,1.5";
       windowrulev2 = [
         "opacity 0.80 $& 0.80 $& 1,class:^(com.mitchellh.ghostty)$"
         "opacity 0.80 $& 0.80 $& 1,class:^(vesktop)$"

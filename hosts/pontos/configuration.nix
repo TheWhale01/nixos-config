@@ -10,33 +10,12 @@
 		./hardware-configuration.nix
 		./stylix.nix
 		./packages.nix
+		./disko.nix
 	];
 
 	hardware.bluetooth.enable = true;
 	hardware.bluetooth.powerOnBoot = true;
 	hardware.bluetooth.package = pkgs.bluez5;
-
-	# Only for nvidia GPU
-	hardware.graphics = {
-		enable = true;
-		extraPackages = with pkgs; [
-			intel-media-driver
-		];
-	};
-	hardware.nvidia = {
-		modesetting.enable = true;
-		powerManagement.enable = false;
-		powerManagement.finegrained = false;
-		open = false;
-		nvidiaSettings = true;
-		package = config.boot.kernelPackages.nvidiaPackages.production;
-		prime = {
-			intelBusId = "PCI:0:0:2";
-			nvidiaBusId = "PCI:0:1:0";
-			sync.enable = true;
-		};
-	};
-	services.xserver.videoDrivers = [ "nvidia" ];
 
 	nix = {
 		gc = {
@@ -86,9 +65,10 @@
 		wayland.enable = true;
 		theme = "catppuccin-mocha";
 	};
-	services.power-profiles-daemon.enable = true;
+	services.tlp.enable = true;
 	services.pipewire.enable = true;
 	services.tailscale.enable = true;
+	services.fwupd.enable = true;
 
 	system.autoUpgrade.enable = true;
 	system.autoUpgrade.allowReboot = true;

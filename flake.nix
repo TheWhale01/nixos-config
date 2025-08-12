@@ -66,6 +66,7 @@
 						home-manager.backupFileExtension = "bkp";
 					}
 					stylix.nixosModules.stylix
+					disko.nixosModules.disko
 				];
 			};
 			olympos = lib.nixosSystem {
