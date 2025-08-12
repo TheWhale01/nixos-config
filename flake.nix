@@ -47,6 +47,7 @@
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						home-manager.users.hades = import ./hosts/erebos/home.nix;
+						home-manager.backupFileExtension = "bkp";
 					}
 					agenix.nixosModules.default
 					disko.nixosModules.disko

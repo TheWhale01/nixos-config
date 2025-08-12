@@ -8,13 +8,14 @@
 	imports =
 	[
 		./hardware-configuration.nix
-		./programs
 		./containers
 		./services
 		./secrets.nix
 		./disko.nix
 		./packages.nix
 	];
+
+	programs.zsh.enable = true;
 
 	nix = {
 		gc = {
@@ -84,6 +85,7 @@
 	];
 
 	virtualisation.oci-containers.backend = "podman";
+	virtualisation.podman.enableNvidia = true;
 	virtualisation.libvirtd = {
 		enable = true;
 		qemu = {
