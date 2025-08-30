@@ -10,9 +10,8 @@
 		./nginx.nix
 		./openssh.nix
 		./paperless.nix
-		# ./plex.nix
+		./plex.nix
 		./postgresql.nix
-		./prowlarr.nix
 		./radarr.nix
 		./sonarr.nix
 		./tailscale.nix

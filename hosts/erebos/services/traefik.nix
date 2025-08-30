@@ -65,7 +65,4 @@ in
   systemd.services.traefik.serviceConfig = {
     EnvironmentFile = ["${config.age.secrets.traefikCfDnsToken.path}"];
   };
-
-  # Open ports to the outside
-  networking.firewall.allowedTCPPorts = [80 443];
 }

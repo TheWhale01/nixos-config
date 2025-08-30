@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+	traefik-vars = (import ../vars.nix).traefik;
 in
 {
 	system.activationScripts.homepageEnv = {
@@ -13,7 +13,16 @@ in
 		deps = [];
 	};
 	systemd.services.homepage-dashboard.serviceConfig = {
-		EnvironmentFile = ["/etc/homepage.env"];
+		EnvironmentFile = [
+		  "/etc/homepage.env"
+			"${config.age.secrets.homepageJellyfin.path}"
+			"${config.age.secrets.homepageJellyseerr.path}"
+			"${config.age.secrets.homepageRadarr.path}"
+			"${config.age.secrets.homepageSonarr.path}"
+			"${config.age.secrets.homepageBazarr.path}"
+			"${config.age.secrets.homepageProwlarr.path}"
+			"${config.age.secrets.homepageTransmission.path}"
+		];
 	};
 	services.homepage-dashboard = {
 		enable = true;
@@ -48,7 +57,7 @@ in
 							widget = {
 							  type = "jellyfin";
 								url = "http://127.0.0.1:8096";
-								key = "";
+								key = "{{HOMEPAGE_VAR_JELLYFIN_KEY}}";
 								enableBlocks = true;
 								enableNowPlaying = true;
 								enableUser = true;
@@ -65,7 +74,7 @@ in
 							widget = {
 							  type = "jellyseerr";
 								url = "http://127.0.0.1:${toString config.services.jellyseerr.port}";
-								key = "";
+								key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
 							};
 						};
 					}
@@ -88,7 +97,7 @@ in
 							widget = {
 							  type = "radarr";
 								url = "http://127.0.0.1:${toString config.services.radarr.settings.server.port}";
-								key = "";
+								key = "{{HOMEPAGE_VAR_RADARR}}";
 								enableQueue = true;
 							};
 						};
@@ -101,7 +110,7 @@ in
 							widget = {
 							  type = "sonarr";
 								url = "http://127.0.0.1:${toString config.services.sonarr.settings.server.port}";
-								key = "";
+								key = "{{HOMEPAGE_VAR_SONARR}}";
 								enableQueue = true;
 							};
 						};
@@ -114,7 +123,7 @@ in
 							widget = {
 							  type = "bazarr";
 								url = "http://127.0.0.1:${toString config.services.bazarr.listenPort}";
-								key = "";
+								key = "{{HOMEPAGE_VAR_BAZARR}}";
 							};
 						};
 					}
@@ -126,7 +135,7 @@ in
 							widget = {
 							  type = "prowlarr";
 								url = "http://127.0.0.1:${toString config.services.prowlarr.settings.server.port}";
-								key = "";
+								key = "{{HOMEPAGE_VAR_PROWLARR}}";
 							};
 						};
 					}
@@ -138,8 +147,8 @@ in
 							widget = {
 							  type = "transmission";
 								url = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";
-								username = "";
-								password = "";
+								username = "{{HOMEPAGE_VAR_TRANSMISSION_USERNAME}}";
+								password = "{{HOMEPAGE_VAR_TRANSMISSION_PASSWORD}}";
 								rpcUrl = "/transmission/";
 							};
 						};
@@ -186,12 +195,6 @@ in
               icon = "traefik.png";
               href = "https://traefik.${traefik-vars.domain}";
               description = "The Cloud Native Application Proxy";
-              widget = {
-                type = "traefik";
-                url = "https://traefik.${traefik-vars.domain}";
-                username = "";
-                password = "";
-              };
             };
           }
 				];

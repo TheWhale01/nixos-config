@@ -47,8 +47,8 @@ in
   systemd.user.timers.get_xmltv = {
     enable = true;
     timerConfig = {
-      OnUnitActiveSec = "1day";
-      AccuracySec = "1min";
+      OnCalendar = "*-*-* 02:00:00";
+      Persistent = true;
     };
     wantedBy = [ "timers.target" ];
   };

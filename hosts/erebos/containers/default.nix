@@ -4,6 +4,7 @@
 	imports = [
 		./open-webui.nix
 		./litellm.nix
-		./plex.nix
+		./satiserver.nix
+		./prowlarr.nix
 	];
 }

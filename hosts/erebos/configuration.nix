@@ -34,6 +34,7 @@
 	services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
 
 	hardware.graphics.enable = true;
+	hardware.nvidia-container-toolkit.enable = true;
 	hardware.nvidia = {
 		modesetting.enable = true;
 		powerManagement.enable = false;
@@ -84,8 +85,7 @@
 		"d ${config.services.transmission.settings.download-dir}/tv-sonarr 0775 hades arr -"
 	];
 
-	virtualisation.oci-containers.backend = "podman";
-	virtualisation.podman.enableNvidia = true;
+	virtualisation.oci-containers.backend = "docker";
 	virtualisation.libvirtd = {
 		enable = true;
 		qemu = {

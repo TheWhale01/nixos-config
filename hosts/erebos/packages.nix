@@ -5,6 +5,7 @@
 		git
 		pyright
 		nixd
+		nil
 		typescript-language-server
 		tailscale
 		fastfetch
@@ -14,5 +15,7 @@
 		pciutils
 		unzip
 		tmux
+		nvidia-container-toolkit
+		jq
 	];
 }
