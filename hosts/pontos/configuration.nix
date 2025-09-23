@@ -1,0 +1,69 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+{ pkgs, ... }:
+
+{
+	imports =
+	[
+		./hardware-configuration.nix
+		./stylix.nix
+		./packages.nix
+		./disko.nix
+		./services
+		./programs
+		./../../modules/tailscale.nix
+	];
+
+	hardware.bluetooth.enable = true;
+	hardware.bluetooth.powerOnBoot = true;
+	hardware.bluetooth.package = pkgs.bluez5;
+	hardware.opentabletdriver.enable = true;
+
+	nix = {
+		gc = {
+			automatic = true;
+			dates = "daily";
+		};
+		settings = {
+			experimental-features = [
+				"nix-command"
+				"flakes"
+			];
+			download-buffer-size = 500000000; # 500 MB
+		};
+	};
+
+	boot.loader.systemd-boot.enable = true;
+	boot.loader.systemd-boot.configurationLimit = 10;
+	boot.kernelParams = [ "amdgpu.sg_display=0" ];
+	boot.loader.efi.canTouchEfiVariables = true;
+	boot.kernelPackages = pkgs.linuxPackages;
+
+	networking.hostName = "pontos";
+	networking.networkmanager.enable = true;
+
+	time.timeZone = "Europe/Paris";
+
+	users.users.poseidon = {
+		isNormalUser = true;
+		extraGroups = [ "wheel" "libvirtd" "docker" ];
+		shell = pkgs.zsh;
+	};
+
+	virtualisation.oci-containers.backend = "docker";
+	virtualisation.docker.enable = true;
+
+	environment = {
+		sessionVariables = rec {
+			TERM="xterm-256color";
+			EDITOR="vim";
+			NIXOS_OZONE_WL = "1";
+		};
+	};
+
+	system.autoUpgrade.enable = true;
+	system.autoUpgrade.allowReboot = true;
+	system.stateVersion = "25.05";
+}

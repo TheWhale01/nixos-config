@@ -1,0 +1,66 @@
+{ inputs, pkgs,... }:
+
+{
+  environment.systemPackages = with pkgs; [
+		vim
+    git
+    pyright
+    nixd
+    nil
+    typescript-language-server
+    fastfetch
+    ripgrep
+    nerd-fonts.caskaydia-cove
+    ghostty
+    pamixer
+    libnotify
+    pavucontrol
+    lm_sensors
+    networkmanagerapplet
+    blueman
+    hyprpaper
+    brightnessctl
+    hyprpolkitagent
+    nautilus
+		jq
+    wlogout
+    btop
+    hyprshot
+    envsubst
+    delfin
+    fastfetch
+    spotify
+    vesktop
+    inputs.zen-browser.packages."${system}".default
+    nextcloud-client
+    obsidian
+    hyprlock
+    catppuccin-sddm
+    calibre
+		filezilla
+    lshw
+    vlc
+		eog
+    unrar
+    tmux
+    unzip
+    tor-browser
+		nvtopPackages.full
+		protonvpn-gui
+    heroic
+    pulseaudio
+    irssi
+    usbutils
+		mangohud
+		deluge
+		asm-lsp
+		clang-tools
+		package-version-server
+		libwacom
+		wget
+		qemu
+		virt-manager
+     killall
+     vscode
+  ];
+}
