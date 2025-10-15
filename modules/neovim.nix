@@ -99,9 +99,10 @@
 
 			-- nvim-lspconfig
 			local cmp_nvim_lsp = require('cmp_nvim_lsp')
+			local lspconfig = require('lspconfig')
 			local keymap = vim.keymap
 			local opts = { noremap = true, silent = true }
-			local lsp_servers = {
+			local servers = {
 				'ts_ls',
 				'cssls',
 				'lua_ls',
@@ -110,8 +111,7 @@
 				'clangd',
 				'svelte',
 				'rust_analyzer',
-				'pyright',
-				'nixd'
+				'nixd',
 			}
 			local on_attach = function(client, bufnr)
 				opts.buffer = buffer
@@ -130,8 +130,8 @@
 				keymap.set('n', '<leader>rs', ':LspRestart<CR>', opts)
 			end
 			local capabilities = cmp_nvim_lsp.default_capabilities()
-			for _, lsp in ipairs(lsp_servers) do
-				vim.lsp.config[lsp].setup({
+			for _, server in ipairs(servers) do
+			  lspconfig[server].setup({
 					on_attach = on_attach,
 					capabilities = capabilities
 				})
