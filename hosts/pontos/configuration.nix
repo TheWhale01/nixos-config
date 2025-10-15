@@ -16,10 +16,14 @@
 		./../../modules/tailscale.nix
 	];
 
-	hardware.bluetooth.enable = true;
-	hardware.bluetooth.powerOnBoot = true;
-	hardware.bluetooth.package = pkgs.bluez5;
-	hardware.opentabletdriver.enable = true;
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+		package = pkgs.bluez;
+		settings = {
+			Policy.AutoEnable = "true";
+		};
+	};
 
 	nix = {
 		gc = {
@@ -54,9 +58,10 @@
 
 	virtualisation.oci-containers.backend = "docker";
 	virtualisation.docker.enable = true;
+	virtualisation.libvirtd.enable = true;
 
 	environment = {
-		sessionVariables = rec {
+		sessionVariables = {
 			TERM="xterm-256color";
 			EDITOR="vim";
 			NIXOS_OZONE_WL = "1";

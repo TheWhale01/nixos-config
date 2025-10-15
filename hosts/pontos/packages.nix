@@ -2,12 +2,10 @@
 
 {
   environment.systemPackages = with pkgs; [
-		vim
+    vim
     git
-    pyright
     nixd
     nil
-    typescript-language-server
     fastfetch
     ripgrep
     nerd-fonts.caskaydia-cove
@@ -17,12 +15,11 @@
     pavucontrol
     lm_sensors
     networkmanagerapplet
-    blueman
     hyprpaper
     brightnessctl
     hyprpolkitagent
     nautilus
-		jq
+    jq
     wlogout
     btop
     hyprshot
@@ -35,32 +32,30 @@
     nextcloud-client
     obsidian
     hyprlock
-    catppuccin-sddm
-    calibre
-		filezilla
+    filezilla
     lshw
     vlc
-		eog
+    eog
     unrar
     tmux
     unzip
     tor-browser
-		nvtopPackages.full
-		protonvpn-gui
-    heroic
+    nvtopPackages.full
+    protonvpn-gui
     pulseaudio
     irssi
     usbutils
-		mangohud
-		deluge
-		asm-lsp
-		clang-tools
-		package-version-server
-		libwacom
-		wget
-		qemu
-		virt-manager
-     killall
-     vscode
+    mangohud
+    deluge
+    asm-lsp
+    clang-tools
+    package-version-server
+    wget
+    qemu
+    virt-manager
+    killall
+    vscode
+    gparted
+    popsicle
   ];
 }

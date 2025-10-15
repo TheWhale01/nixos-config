@@ -36,6 +36,7 @@
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
+	exit_window_retains_fullscreen = true;
       };
       general = {
         gaps_in = 3;
@@ -51,9 +52,6 @@
         "col.border_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
         "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
         "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
-      };
-      gestures = {
-        workspace_swipe = true;
       };
       decoration = {
         rounding = 10;
@@ -149,6 +147,7 @@
         "opacity 0.80 $& 0.80 $& 1,class:^(com.mitchellh.ghostty)$"
         "opacity 0.80 $& 0.80 $& 1,class:^(vesktop)$"
         "fullscreen,class:com.moonlight_stream.Moonlight"
+	"fullscreen,title:Steam Big Picture Mode"
       ];
       layerrule = [
         "blur,waybar"
@@ -161,6 +160,9 @@
         "ignorezero,swaync-control-center"
         "blur,logout_dialog"
       ];
+      debug = {
+        full_cm_proto = true;
+      };
     };
   };
 }

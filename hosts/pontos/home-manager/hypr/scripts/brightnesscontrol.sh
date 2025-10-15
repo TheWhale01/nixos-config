@@ -60,7 +60,7 @@ d | -d) # decrease the backlight
         step=1
     fi
 
-    if [[ $(get_brightness) -le 1 ]]; then
+    if [[ $(get_brightness) -le 0 ]]; then
         brightnessctl set "${step}"%
         $use_swayosd && exit 0
     else

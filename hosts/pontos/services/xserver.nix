@@ -2,7 +2,8 @@
 
 {
   services.xserver = {
-    displayManager.gdm.enable = true;
-    wacom.enable = true;
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
   };
+  services.displayManager.gdm.enable = true;
 }

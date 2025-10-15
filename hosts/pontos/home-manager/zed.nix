@@ -17,6 +17,7 @@
         bindings = {
           "space f f" = "file_finder::Toggle";
           "space f g" = "pane::DeploySearch";
+          "space e" = "project_panel::ToggleFocus";
         };
       }
     ];
@@ -29,6 +30,13 @@
        	    { paths = ["~/nix"]; }
           ];
         }
+	{
+	  host = "192.168.122.174";
+	  username = "whale";
+	  projects = [
+	    { paths = [ "~/code/Inception-of-Things" ]; }
+	  ];
+	}
       ];
       ui_font_size = lib.mkForce 18;
       buffer_font_size = lib.mkForce 18;
@@ -70,6 +78,7 @@
       "zed-asm"
       "zed-make"
       "git_firefly"
+      "ruby"
     ];
   };
 }

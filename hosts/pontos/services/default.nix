@@ -4,8 +4,8 @@
   imports = [
     ./pipewire.nix
     ./xserver.nix
-    ./tlp.nix
+    ./ollama.nix
     ./fwupd.nix
-    ./power-profiles.nix
+    ./blueman.nix
   ];
 }

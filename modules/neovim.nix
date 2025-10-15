@@ -98,7 +98,6 @@
 			})
 
 			-- nvim-lspconfig
-			local lspconfig = require('lspconfig')
 			local cmp_nvim_lsp = require('cmp_nvim_lsp')
 			local keymap = vim.keymap
 			local opts = { noremap = true, silent = true }
@@ -132,7 +131,7 @@
 			end
 			local capabilities = cmp_nvim_lsp.default_capabilities()
 			for _, lsp in ipairs(lsp_servers) do
-				lspconfig[lsp].setup({
+				vim.lsp.config[lsp].setup({
 					on_attach = on_attach,
 					capabilities = capabilities
 				})
