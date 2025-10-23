@@ -28,15 +28,9 @@
           username = "hades";
           projects = [
        	    { paths = ["~/nix"]; }
+	    { paths = ["~/code/blog-builder"]; }
           ];
         }
-	{
-	  host = "192.168.122.174";
-	  username = "whale";
-	  projects = [
-	    { paths = [ "~/code/Inception-of-Things" ]; }
-	  ];
-	}
       ];
       ui_font_size = lib.mkForce 18;
       buffer_font_size = lib.mkForce 18;

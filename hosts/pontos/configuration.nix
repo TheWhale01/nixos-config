@@ -16,6 +16,8 @@
 		./../../modules/tailscale.nix
 	];
 
+	hardware.enableAllFirmware = true;
+
 	hardware.bluetooth = {
 		enable = true;
 		powerOnBoot = true;
@@ -23,6 +25,10 @@
 		settings = {
 			Policy.AutoEnable = "true";
 		};
+	};
+	hardware.graphics = {
+  	enable = true;
+    enable32Bit = true;
 	};
 
 	nix = {
@@ -47,6 +53,11 @@
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
+	networking.extraHosts = ''
+		192.168.122.42 argocd.iot.com
+		192.168.122.42 app.iot.com
+		192.168.122.42 gitlab.iot.com
+	'';
 
 	time.timeZone = "Europe/Paris";
 

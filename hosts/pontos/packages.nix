@@ -6,6 +6,8 @@
     git
     nixd
     nil
+    ruff
+    basedpyright
     fastfetch
     ripgrep
     nerd-fonts.caskaydia-cove
@@ -57,5 +59,9 @@
     vscode
     gparted
     popsicle
+    heroic
+    bitwarden
+    nsz
+    prismlauncher
   ];
 }

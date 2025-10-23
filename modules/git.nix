@@ -3,11 +3,13 @@
 {
 	programs.git = {
 		enable = true;
-		userName  = "TheWhale01";
-		userEmail = "ard.rasp01@gmail.com";
-		extraConfig = {
+		settings = {
 			init.defaultBranch = "main";
 			pull.rebase = false;
+			user = {
+				name = "TheWhale01";
+				email = "ard.rasp01@gmail.com";
+			};
 		};
 	};
 }

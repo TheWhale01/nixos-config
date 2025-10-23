@@ -7,5 +7,6 @@
     ./waybar.nix
     ./steam.nix
     ./gamescope.nix
+    ./gamemode.nix
   ];
 }
