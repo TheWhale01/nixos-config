@@ -27,8 +27,8 @@
 		};
 	};
 	hardware.graphics = {
-  	enable = true;
-    enable32Bit = true;
+		enable = true;
+		enable32Bit = true;
 	};
 
 	nix = {
@@ -47,23 +47,20 @@
 
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.systemd-boot.configurationLimit = 10;
-	boot.kernelParams = [ "amdgpu.sg_display=0" ];
+	boot.kernelParams = [ "amdgpu.sg_display=0" "usbcore.autosuspend=-1" ];
 	boot.loader.efi.canTouchEfiVariables = true;
-	boot.kernelPackages = pkgs.linuxPackages;
+	boot.kernelPackages = pkgs.linuxPackages_latest;
+	boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
-	networking.extraHosts = ''
-		192.168.122.42 argocd.iot.com
-		192.168.122.42 app.iot.com
-		192.168.122.42 gitlab.iot.com
-	'';
+	networking.networkmanager.wifi.powersave = true;
 
 	time.timeZone = "Europe/Paris";
 
 	users.users.poseidon = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "libvirtd" "docker" ];
+		extraGroups = [ "wheel" "libvirtd" "docker" "networkmanager" ];
 		shell = pkgs.zsh;
 	};
 
@@ -78,6 +75,10 @@
 			NIXOS_OZONE_WL = "1";
 		};
 	};
+
+	services.flatpak.enable = true;
+	services.openssh.enable = true;
+
 
 	system.autoUpgrade.enable = true;
 	system.autoUpgrade.allowReboot = true;

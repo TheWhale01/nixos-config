@@ -28,7 +28,14 @@
           username = "hades";
           projects = [
        	    { paths = ["~/nix"]; }
-	    { paths = ["~/code/blog-builder"]; }
+	          { paths = ["~/code/blog-builder"]; }
+          ];
+        }
+        {
+          host = "192.168.122.254";
+          username = "whale";
+          projects = [
+	          { paths = ["~/code/badass"]; }
           ];
         }
       ];

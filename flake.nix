@@ -33,6 +33,7 @@
 		pkgs = import nixpkgs {
 			system = "${system}";
 			config.allowUnfree = true;
+			config.allowBroken = true;
 		};
 	in {
 		nixosConfigurations = {
@@ -78,6 +79,21 @@
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
 						home-manager.users.zeus = import ./hosts/olympos/home.nix;
+						home-manager.backupFileExtension = "bkp";
+					}
+					stylix.nixosModules.stylix
+				];
+			};
+			strategos = lib.nixosSystem {
+				inherit system;
+				inherit pkgs;
+				specialArgs = { inherit inputs; };
+				modules = [
+					./hosts/strategos/configuration.nix
+					home-manager.nixosModules.home-manager {
+						home-manager.useGlobalPkgs = true;
+						home-manager.useUserPackages = true;
+						home-manager.users.athena = import ./hosts/strategos/home.nix;
 						home-manager.backupFileExtension = "bkp";
 					}
 					stylix.nixosModules.stylix

@@ -29,7 +29,6 @@
     delfin
     fastfetch
     spotify
-    vesktop
     inputs.zen-browser.packages."${system}".default
     nextcloud-client
     obsidian
@@ -60,8 +59,23 @@
     gparted
     popsicle
     heroic
-    bitwarden
+    bitwarden-desktop
     nsz
     prismlauncher
+    tor-browser
+    fw-ectool
+    fw-fanctrl
+    discord
+    openjdk
+    wineWowPackages.stableFull
+    mesa-demos
+    radeontop
+    pciutils
+    rocmPackages.clr
+    rocmPackages.clr.icd
+    rocmPackages.rocminfo
+    rocmPackages.rocm-core
+    usbutils
+    exfat
   ];
 }
