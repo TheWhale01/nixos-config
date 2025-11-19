@@ -16,6 +16,8 @@
 		./../../modules/tailscale.nix
 	];
 
+	nixpkgs.crossSystem = { config = "aarch64-linux"; };
+
 	hardware.enableAllFirmware = true;
 
 	hardware.bluetooth = {

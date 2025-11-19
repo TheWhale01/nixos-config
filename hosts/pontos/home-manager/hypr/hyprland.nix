@@ -141,6 +141,8 @@
       # MONITORS
       monitor = [
         "eDP-1,preferred,auto,1.5"
+        "DP-10,1920x1080@144,auto,1"
+        "DP-11,1920x1080@144,auto,1"
         ",preferred,auto,1"
       ];
       windowrulev2 = [

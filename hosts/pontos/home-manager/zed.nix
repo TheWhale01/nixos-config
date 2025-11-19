@@ -38,6 +38,13 @@
 	          { paths = ["~/code/badass"]; }
           ];
         }
+        {
+	  host = "100.82.29.37";
+	  username = "athena";
+	  projects = [
+	    { paths = [ "~/nix" ]; }
+	  ];
+	}
       ];
       ui_font_size = lib.mkForce 18;
       buffer_font_size = lib.mkForce 18;

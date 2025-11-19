@@ -77,5 +77,6 @@
     rocmPackages.rocm-core
     usbutils
     exfat
+    nwg-displays
   ];
 }
