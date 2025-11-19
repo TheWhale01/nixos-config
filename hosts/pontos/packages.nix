@@ -63,5 +63,6 @@
     bitwarden
     nsz
     prismlauncher
+    nwg-displays
   ];
 }
