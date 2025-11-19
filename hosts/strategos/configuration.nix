@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.crossSystem = { config = "aarch64-linux"; };
+
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
@@ -46,7 +48,7 @@
     }
   ];
 
-  nix.settings.trusted-users = [ "athena" ];
+  nix.settings.trusted-users = [ "athena" "root" "poseidon" ];
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

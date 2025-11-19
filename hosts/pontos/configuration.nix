@@ -41,6 +41,7 @@
 				"nix-command"
 				"flakes"
 			];
+			extra-platforms = [ "aarch64-linux" ];
 			download-buffer-size = 500000000; # 500 MB
 		};
 	};
