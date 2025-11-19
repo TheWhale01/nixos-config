@@ -76,13 +76,16 @@
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [];
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcOee301WJTTAQCgHuELLFoQ4mOzL2o6cx6DiQkOiJF poseidon@pontos"
+  ];
 
   # programs.firefox.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     libraspberrypi
     wget
     git
@@ -102,6 +105,15 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.tailscale.enable = true;
+  services.create_ap = {
+    enable = true;
+    settings = {
+      INTERNET_IFACE = "enu1u1u1";
+      WIFI_IFACE = "wlu1u2";
+      SSID = "Chambre Hugo";
+      PASSPHRASE = "12345678";
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

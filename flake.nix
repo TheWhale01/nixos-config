@@ -3,9 +3,9 @@
 
 	inputs = {
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:nixos/nixpkgs/release-25.05";
 		home-manager = {
-			url = "github:nix-community/home-manager";
+			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		agenix = {
@@ -18,28 +18,28 @@
 		};
 		stylix = {
 			url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		zen-browser = {
 			url = "github:0xc000022070/zen-browser-flake";
-		  inputs.nixpkgs.follows = "nixpkgs";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
 
 	outputs = { nixpkgs, nixos-hardware, home-manager, agenix, disko, stylix, ... }@inputs:
 	let
-		system = "x86_64-linux";
+		defaultSystem = "x86_64-linux";
 		lib = nixpkgs.lib;
-		pkgs = import nixpkgs {
-			system = "${system}";
+		pkgsFor = system: import nixpkgs {
+			inherit system;
 			config.allowUnfree = true;
 			config.allowBroken = true;
 		};
 	in {
 		nixosConfigurations = {
 			erebos = lib.nixosSystem {
-				inherit system;
-				inherit pkgs;
+				system = defaultSystem;
+				pkgs = pkgsFor defaultSystem;
 				modules = [
 					./hosts/erebos/configuration.nix
 					home-manager.nixosModules.home-manager {
@@ -53,8 +53,8 @@
 				];
 			};
 			pontos = lib.nixosSystem {
-				inherit system;
-				inherit pkgs;
+				system = defaultSystem;
+				pkgs = pkgsFor defaultSystem;
 				specialArgs = { inherit inputs; };
 				modules = [
 					./hosts/pontos/configuration.nix
@@ -70,8 +70,8 @@
 				];
 			};
 			olympos = lib.nixosSystem {
-				inherit system;
-				inherit pkgs;
+				system = defaultSystem;
+				pkgs = pkgsFor defaultSystem;
 				specialArgs = { inherit inputs; };
 				modules = [
 					./hosts/olympos/configuration.nix
@@ -85,9 +85,8 @@
 				];
 			};
 			strategos = lib.nixosSystem {
-				inherit pkgs;
 				system = "aarch64-linux";
-				specialArgs = { inherit inputs; };
+				pkgs = pkgsFor "aarch64-linux";
 				modules = [
 					./hosts/strategos/configuration.nix
 					home-manager.nixosModules.home-manager {
@@ -96,7 +95,7 @@
 						home-manager.users.athena = import ./hosts/strategos/home.nix;
 						home-manager.backupFileExtension = "bkp";
 					}
-					stylix.nixosModules.stylix
+					agenix.nixosModules.default
 				];
 			};
 		};
