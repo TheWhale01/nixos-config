@@ -85,8 +85,8 @@
 				];
 			};
 			strategos = lib.nixosSystem {
-				inherit system;
 				inherit pkgs;
+				system = "aarch64-linux";
 				specialArgs = { inherit inputs; };
 				modules = [
 					./hosts/strategos/configuration.nix
