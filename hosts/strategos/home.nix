@@ -1,9 +1,9 @@
 { ... }:
 
 {
-    imports = [
-        ./home-manager
-    ];
+  imports = [
+    ./home-manager
+  ];
 
 	home.username = "athena";
 	home.homeDirectory = "/home/athena";
