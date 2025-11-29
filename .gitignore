@@ -4,7 +4,6 @@
 !.gitignore
 !modules/
 !modules/**
-!readme.md
 !secrets/
 !secrets/**
 !sys/
