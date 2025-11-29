@@ -7,5 +7,7 @@
     wget
     git
     btop
+    wakeonlan
+    fastfetch
   ];
 }
