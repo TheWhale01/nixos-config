@@ -26,7 +26,10 @@ or if you are on the NixOS installer:
 # Clone the repo
 # Go into the repo
 git checkout <erebos|pontos|olympos|strategos>
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./hosts/<erebos|pontos|olympos|strategos>/disko.nix
+
+# if disko.nix file present
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./sys/disko.nix
+
 sudo nixos-install --flake .#<erebos|pontos|olympos|strategos>
 ```
 
