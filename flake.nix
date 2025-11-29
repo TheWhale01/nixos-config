@@ -2,10 +2,9 @@
 	description = "whale's NixOS";
 
 	inputs = {
-	  nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-		nixpkgs.url = "github:nixos/nixpkgs/release-25.05";
+		nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
 		home-manager = {
-			url = "github:nix-community/home-manager/release-25.05";
+			url = "github:nix-community/home-manager/release-25.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		agenix = {
@@ -16,24 +15,16 @@
 			url = "github:nix-community/disko";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		stylix = {
-			url = "github:danth/stylix/release-25.05";
-  		inputs.nixpkgs.follows = "nixpkgs";
-		};
-		zen-browser = {
-			url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-		};
 		# blog-builder = {
-		#   url = "github:TheWhale01/blog-builder";
+		# 	url = "github:TheWhale01/blog-builder";
 		# 	inputs.nixpkgs.follows = "nixpkgs";
 		# };
-		blog-builder = {
-			url = "/home/hades/code/blog-builder";
-		};
+		# blog-builder = {
+		# 	url = "/home/hades/code/blog-builder";
+		# };
 	};
 
-	outputs = { nixpkgs, nixos-hardware, home-manager, agenix, disko, stylix, blog-builder, ... }@inputs:
+	outputs = { nixpkgs, home-manager, agenix, disko, ... }@inputs:
 	let
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
@@ -42,56 +33,21 @@
 			config.allowUnfree = true;
 		};
 	in {
-		devShells.${system} = {
-				node = (import ./shells/node.nix { inherit pkgs; });
-		};
 		nixosConfigurations = {
 			erebos = lib.nixosSystem {
 				inherit system;
 				inherit pkgs;
 				modules = [
-					./hosts/erebos/configuration.nix
+					./sys/configuration.nix
 					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						home-manager.users.hades = import ./hosts/erebos/home.nix;
+						home-manager.users.hades = import ./sys/home.nix;
 						home-manager.backupFileExtension = "bkp";
 					}
 					agenix.nixosModules.default
 					disko.nixosModules.disko
-					blog-builder.nixosModules.blog-builder
-				];
-			};
-			pontos = lib.nixosSystem {
-				inherit system;
-				inherit pkgs;
-				specialArgs = { inherit inputs; };
-				modules = [
-					./hosts/pontos/configuration.nix
-					home-manager.nixosModules.home-manager {
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.users.poseidon = import ./hosts/pontos/home.nix;
-						home-manager.backupFileExtension = "bkp";
-					}
-					stylix.nixosModules.stylix
-					disko.nixosModules.disko
-					nixos-hardware.nixosModules.framework-amd-ai-300-series
-				];
-			};
-			olympos = lib.nixosSystem {
-				inherit system;
-				inherit pkgs;
-				specialArgs = { inherit inputs; };
-				modules = [
-					./hosts/olympos/configuration.nix
-					home-manager.nixosModules.home-manager {
-						home-manager.useGlobalPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.users.zeus = import ./hosts/olympos/home.nix;
-						home-manager.backupFileExtension = "bkp";
-					}
-					stylix.nixosModules.stylix
+					# blog-builder.nixosModules.blog-builder
 				];
 			};
 		};

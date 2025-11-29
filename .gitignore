@@ -1,0 +1,8 @@
+*
+!flake.lock
+!flake.nix
+!.gitignore
+!modules
+!readme.md
+!secrets
+!sys
