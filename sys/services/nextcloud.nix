@@ -40,11 +40,6 @@ in
         port = 8881;
       }
     ];
-		# extraConfig = ''
-    		#   client_max_body_size 16G;
-    		#   proxy_read_timeout 3600s;
-    		#   proxy_send_timeout 3600s;
-    		# '';
   };
   services.traefik.dynamicConfigOptions.http = {
     services.nextcloud.loadBalancer.servers = [{
@@ -55,10 +50,6 @@ in
       tls = true;
       service = "nextcloud";
       entrypoints = "websecure";
-      middlewares = [ "large-upload" ];
-    };
-    middlewares.large-upload.buffering = {
-      maxRequestBodyBytes = 17179869184;
     };
   };
 }
