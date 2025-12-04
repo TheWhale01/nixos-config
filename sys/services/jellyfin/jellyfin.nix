@@ -9,9 +9,11 @@ in
     enable = true;
   };
   services.traefik.dynamicConfigOptions.http = {
-   services.jellyfin.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
-    }];
+    services.jellyfin.loadBalancer.servers = [
+      {
+        url = "http://127.0.0.1:${toString port}";
+      }
+    ];
     routers.jellyfin = {
       rule = "Host(`jellyfin.${traefik-vars.domain}`)";
       tls = true;
@@ -42,11 +44,14 @@ in
         "M3U_URL=http://mafreebox.freebox.fr/freeboxtv/playlist.m3u"
       ];
     };
-    path = with pkgs; [ python3 python3Packages.requests ];
+    path = with pkgs; [
+      python3
+      python3Packages.requests
+    ];
     script = ''
       #!${pkgs.bash}/bin/bash
 
-      ${pkgs.python3.withPackages(ps: with ps; [ requests])}/bin/python3 ${./get_m3u.py}
+      ${pkgs.python3.withPackages (ps: with ps; [ requests ])}/bin/python3 ${./get_m3u.py}
     '';
   };
 }

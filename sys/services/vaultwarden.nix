@@ -1,8 +1,8 @@
 { config, ... }:
 
 let
-	db_url = "DATABASE_URL=postgresql://vaultwarden:@127.0.0.1:${toString config.services.postgresql.settings.port}/vaultwarden";
-	traefik-vars = (import ../vars.nix).traefik;
+  db_url = "DATABASE_URL=postgresql://vaultwarden:@127.0.0.1:${toString config.services.postgresql.settings.port}/vaultwarden";
+  traefik-vars = (import ../vars.nix).traefik;
 in
 {
   environment.etc."vaultwarden.env" = {
@@ -19,9 +19,11 @@ in
     environmentFile = "/etc/vaultwarden.env";
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.vaultwarden.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-    }];
+    services.vaultwarden.loadBalancer.servers = [
+      {
+        url = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
+      }
+    ];
     routers.vaultwarden = {
       rule = "Host(`vaultwarden.${traefik-vars.domain}`)";
       tls = true;

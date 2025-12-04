@@ -1,5 +1,5 @@
 # { ... }:
-# 
+#
 # let
 #   traefik-vars = (import ../vars.nix).traefik;
 # in

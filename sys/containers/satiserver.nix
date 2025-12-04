@@ -13,6 +13,11 @@
       PUID = "1000";
       STEAMBETA = "false";
     };
-    extraOptions = [ "--memory-reservation=4G" "--memory" "8G" "--network=host" ];
+    extraOptions = [
+      "--memory-reservation=4G"
+      "--memory"
+      "8G"
+      "--network=host"
+    ];
   };
 }

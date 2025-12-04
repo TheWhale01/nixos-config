@@ -32,14 +32,16 @@ in
     openPeerPorts = true;
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.transmission.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";
-    }];
+    services.transmission.loadBalancer.servers = [
+      {
+        url = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";
+      }
+    ];
     routers.transmission = {
       rule = "Host(`transmission.${traefik-vars.domain}`)";
       tls = true;
       service = "transmission";
       entrypoints = "websecure";
-   };
+    };
   };
 }

@@ -4,7 +4,7 @@ let
   traefik-vars = (import ../vars.nix).traefik;
 in
 {
-    services.nextcloud = {
+  services.nextcloud = {
     enable = true;
     https = true;
     hostName = "nextcloud.${traefik-vars.domain}";
@@ -13,7 +13,7 @@ in
     configureRedis = true;
     # change where the nextcloud files are stored
     # datadir = "/data/nextcloud";
-    maxUploadSize = "16G";	
+    maxUploadSize = "16G";
     autoUpdateApps.enable = true;
     config = {
       adminuser = "whale";
@@ -22,7 +22,10 @@ in
     };
     settings = {
       trusted_domains = [ "erebos" ];
-      trusted_proxies = [ "127.0.0.1"  "::1" ];
+      trusted_proxies = [
+        "127.0.0.1"
+        "::1"
+      ];
       overwriteprotocol = "https";
       overwritehost = "nextcloud.${traefik-vars.domain}";
       overwrite.cli.url = "https://nextcloud.${traefik-vars.domain}";
@@ -42,9 +45,11 @@ in
     ];
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.nextcloud.loadBalancer.servers = [{
-      url = "http://127.0.0.1:8881";
-    }];
+    services.nextcloud.loadBalancer.servers = [
+      {
+        url = "http://127.0.0.1:8881";
+      }
+    ];
     routers.nextcloud = {
       rule = "Host(`nextcloud.${traefik-vars.domain}`)";
       tls = true;

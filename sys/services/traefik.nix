@@ -10,7 +10,7 @@ in
       log = {
         level = "DEBUG";
       };
-      api = {};
+      api = { };
       entryPoints = {
         web = {
           address = ":80";
@@ -31,7 +31,10 @@ in
             caserver = "https://acme-v02.api.letsencrypt.org/directory";
             dnsChallenge = {
               provider = "${traefik-vars.dns_provider}";
-              resolvers = ["1.1.1.1:53" "8.8.8.8:53"];
+              resolvers = [
+                "1.1.1.1:53"
+                "8.8.8.8:53"
+              ];
             };
           };
         };
@@ -42,7 +45,7 @@ in
         middlewares = {
           traefik-auth = {
             basicAuth = {
-              users = ["whale:$apr1$TROUcwCk$tXXXbRj7rp6g.yRQiE7gR0"];
+              users = [ "whale:$apr1$TROUcwCk$tXXXbRj7rp6g.yRQiE7gR0" ];
             };
           };
         };
@@ -50,11 +53,16 @@ in
           traefik = {
             rule = "Host(`traefik.${traefik-vars.domain}`)";
             service = "api@internal";
-            entrypoints = ["websecure"];
-            middlewares = ["traefik-auth"];
+            entrypoints = [ "websecure" ];
+            middlewares = [ "traefik-auth" ];
             tls = {
               certResolver = "${traefik-vars.dns_provider}";
-              domains = [{ main = "${traefik-vars.domain}"; sans = "*.${traefik-vars.domain}"; }];
+              domains = [
+                {
+                  main = "${traefik-vars.domain}";
+                  sans = "*.${traefik-vars.domain}";
+                }
+              ];
             };
           };
         };
@@ -63,6 +71,6 @@ in
   };
   # Passing env variables to service
   systemd.services.traefik.serviceConfig = {
-    EnvironmentFile = ["${config.age.secrets.traefikCfDnsToken.path}"];
+    EnvironmentFile = [ "${config.age.secrets.traefikCfDnsToken.path}" ];
   };
 }

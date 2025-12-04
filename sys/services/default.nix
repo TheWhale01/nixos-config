@@ -11,6 +11,7 @@
 		./openssh.nix
 		./paperless.nix
 		./postgresql.nix
+		./prowlarr.nix
 		./radarr.nix
 		./sonarr.nix
 		./tailscale.nix

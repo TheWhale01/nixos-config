@@ -8,7 +8,12 @@ in
   services.nginx = {
     enable = true;
     virtualHosts."anaisbuche.thewhale.fr" = {
-      listen = [{ addr = "127.0.0.1"; port = 8002; }];
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8002;
+        }
+      ];
       root = "/var/www/pdf";
       locations."/" = {
         tryFiles = "/${filename} =404";
@@ -19,9 +24,11 @@ in
     };
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.anaisbuche.loadBalancer.servers = [{
-      url = "http://127.0.0.1:8002";
-    }];
+    services.anaisbuche.loadBalancer.servers = [
+      {
+        url = "http://127.0.0.1:8002";
+      }
+    ];
     routers.anaisbuche = {
       rule = "Host(`anaisbuche.${traefik-vars.domain}`)";
       tls = true;
