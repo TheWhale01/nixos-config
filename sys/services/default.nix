@@ -18,6 +18,6 @@
     ./traefik.nix
     ./transmission.nix
     ./vaultwarden.nix
-		# ./blog.nix
+    ./blog.nix
   ];
 }

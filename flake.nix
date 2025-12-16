@@ -15,9 +15,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-		# blog-builder = {
-    		#   url = "path:/home/hades/code/blog-builder";
-    		# };
+    blog-builder = {
+      url = "path:/home/hades/code/blog-builder";
+    };
   };
 
   outputs =
@@ -26,7 +26,7 @@
       home-manager,
       agenix,
       disko,
-		# blog-builder,
+      blog-builder,
       ...
     }@inputs:
     let
@@ -53,7 +53,7 @@
             }
             agenix.nixosModules.default
             disko.nixosModules.disko
-						# blog-builder.nixosModules.default
+            blog-builder.nixosModules.default
           ];
         };
       };
