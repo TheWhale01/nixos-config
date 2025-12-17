@@ -10,6 +10,7 @@
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
+  boot.kernelModules = [ "r8712u" ];
 
   networking.hostName = "strategos";
   networking.networkmanager.enable = true;

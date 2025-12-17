@@ -2,13 +2,15 @@
 
 let
   eth = "enu1u1u1";
+	# wifi = "wlu1u3";
+  wifi = "wlan0";
 in
 {
   services.create_ap = {
     enable = true;
     settings = {
       INTERNET_IFACE = "${eth}";
-      WIFI_IFACE = "wlan0";
+      WIFI_IFACE = "${wifi}";
       SSID = "Chambre Hugo";
       PASSPHRASE = "12345678";
     };
