@@ -16,9 +16,9 @@
     pciutils
     unzip
     tmux
-    nvidia-container-toolkit
     jq
     mailutils
     dig
+    wget
   ];
 }

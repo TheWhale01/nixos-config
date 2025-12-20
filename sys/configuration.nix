@@ -38,7 +38,6 @@
   services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
 
   hardware.graphics.enable = true;
-  hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -98,7 +97,7 @@
       		'';
   };
 
-  virtualisation.oci-containers.backend = "docker";
+  virtualisation.oci-containers.backend = "podman";
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
