@@ -9,5 +9,6 @@
     btop
     wakeonlan
     fastfetch
+    usbutils
   ];
 }
