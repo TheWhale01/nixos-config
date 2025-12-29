@@ -35,7 +35,15 @@
     };
   };
 
-  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
+  services.xserver = {
+    enable = true;
+    videoDrivers = lib.mkDefault [ "nvidia" ];
+    windowManager.openbox.enable = true;
+    displayManager.autoLogin = {
+      enable = true;
+      user = "hades";
+    };
+  };
 
   hardware.graphics.enable = true;
   hardware.nvidia = {
@@ -72,11 +80,14 @@
     extraGroups = [
       "wheel"
       "libvirtd"
+      "video"
+      "input"
+      "uinput"
+      "render"
+      "audio"
     ];
     shell = pkgs.zsh;
   };
-  # users.users.blogbuilder.group = "blogbuilder";
-  # users.groups.blogbuilder = {};
 
   system.activationScripts.setPerms = {
     text = ''

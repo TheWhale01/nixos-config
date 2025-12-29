@@ -19,5 +19,6 @@
     ./transmission.nix
     ./vaultwarden.nix
     ./blog.nix
+    ./sunshine.nix
   ];
 }
