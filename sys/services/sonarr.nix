@@ -6,6 +6,7 @@ in
 {
   services.sonarr = {
     enable = true;
+    group = "media";
   };
   services.traefik.dynamicConfigOptions.http = {
     services.sonarr.loadBalancer.servers = [

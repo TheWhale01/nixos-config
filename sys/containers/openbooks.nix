@@ -7,7 +7,7 @@ in
 {
   virtualisation.oci-containers.containers."openbooks" = {
     image = "evanbuss/openbooks";
-    volumes = [ "/data/Books:/books" ];
+    volumes = [ "/data/Books/Books:/books" ];
     ports = [ "${toString port}:80" ];
     cmd = [
       "--persist"

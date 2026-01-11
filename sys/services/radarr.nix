@@ -6,6 +6,7 @@ in
 {
   services.radarr = {
     enable = true;
+    group = "media";
   };
   services.traefik.dynamicConfigOptions.http = {
     services.radarr.loadBalancer.servers = [

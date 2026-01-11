@@ -75,6 +75,7 @@
 
   time.timeZone = "Europe/Paris";
 
+  users.groups.media = {};
   users.users.hades = {
     isNormalUser = true;
     extraGroups = [
@@ -85,27 +86,9 @@
       "uinput"
       "render"
       "audio"
+      "media"
     ];
     shell = pkgs.zsh;
-  };
-
-  system.activationScripts.setPerms = {
-    text = ''
-      			echo Setting up /data/Movies permissions
-      			chown -R hades:${config.services.radarr.user} /data/Movies
-      			chmod -R 0775 /data/Movies
-      			find /data/Movies -type f -exec chmod 664 {} \;
-
-      			echo Setting up /data/Animes permissions
-      			chown -R hades:${config.services.sonarr.user} /data/Animes
-      			chmod -R 0775 /data/Animes
-      			find /data/Animes -type f -exec chmod 664 {} \;
-
-      			echo Setting up /data/Series permissions
-      			chown -R hades:${config.services.sonarr.user} /data/Series
-      			chmod -R 0775 /data/Series
-      			find /data/Series -type f -exec chmod 664 {} \;
-      		'';
   };
 
   virtualisation.oci-containers.backend = "podman";
@@ -122,6 +105,13 @@
     TERM = "xterm-256color";
     EDITOR = "vim";
   };
+
+  systemd.tmpfiles.rules = [
+    "d /data/downloads	0775	${config.services.transmission.user}	${config.services.transmission.group} -"
+    "d /data/Series	0775	${config.services.sonarr.user}		${config.services.sonarr.group} -"
+    "d /data/Animes 	0775 	${config.services.sonarr.user} 		${config.services.sonarr.group} -"
+    "d /data/Movies 	0775 	${config.services.radarr.user} 		${config.services.radarr.group} -"
+  ];
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;

@@ -4,13 +4,9 @@ let
   traefik-vars = (import ../vars.nix).traefik;
 in
 {
-  users.users."${config.services.transmission.user}".extraGroups = [
-    config.services.radarr.user
-    config.services.sonarr.user
-  ];
-  # !! CHECK DNS FOR SHAREWOOD !!
   services.transmission = {
     enable = true;
+    group = "media";
     package = pkgs.transmission_4;
     webHome = pkgs.flood-for-transmission;
     settings = {
@@ -25,9 +21,10 @@ in
       peer-port-random-low = 49152;
       peer-port-random-high = 65535;
       download-dir = "/data/downloads";
+      umask = "002";
     };
     credentialsFile = "${config.age.secrets.transmission.path}";
-    # downloadDirPermissions = "775";
+    downloadDirPermissions = "775";
     openRPCPort = true;
     openPeerPorts = true;
   };
