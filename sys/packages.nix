@@ -20,5 +20,6 @@
     mailutils
     dig
     wget
+    podman-compose
   ];
 }

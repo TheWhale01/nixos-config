@@ -25,11 +25,13 @@
     },
     "blog-builder": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1766057642,
-        "narHash": "sha256-UfH0bCsb+YeqRhV28b9W5ZcYzOPReX7PkfHUPTlzVsg=",
+        "lastModified": 1768389966,
+        "narHash": "sha256-5Oy5eKyyOdmDgGxOPqU33UqNoJxGQlLYsDXx0NWean4=",
         "path": "/home/hades/code/blog-builder",
         "type": "path"
       },
@@ -80,6 +82,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -108,11 +128,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767619900,
-        "narHash": "sha256-KpoCBPvwHz3gAQtIUkohE2InRBFK3r0/FM6z5SPWfvM=",
+        "lastModified": 1767910483,
+        "narHash": "sha256-MOU5YdVu4DVwuT5ztXgQpPuRRBjSjUGIdUzOQr9iQOY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6bd04da47cfb48dfd15eabf08364b78ad894f5b2",
+        "rev": "82fb7dedaad83e5e279127a38ef410bcfac6d77c",
         "type": "github"
       },
       "original": {
@@ -122,29 +142,31 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "lumiere": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1765838191,
-        "narHash": "sha256-m5KWt1nOm76ILk/JSCxBM4MfK3rYY7Wq9/TZIIeGnT8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c6f52ebd45e5925c188d1a20119978aa4ffd5ef6",
-        "type": "github"
+        "lastModified": 1768395133,
+        "narHash": "sha256-iizkXTP4KLSvupE3vH91DCmx2odCrTDRn8JMoLF6gFo=",
+        "path": "/home/hades/code/JellyDiscover",
+        "type": "path"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-25.11",
-        "repo": "nixpkgs",
-        "type": "github"
+        "path": "/home/hades/code/JellyDiscover",
+        "type": "path"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs": {
       "locked": {
-        "lastModified": 1767713771,
-        "narHash": "sha256-liteMROvouc1jyaRMsrLxFyc/BUdSZg8Sc8/vWaIefI=",
+        "lastModified": 1768388646,
+        "narHash": "sha256-S52GMxGgirVRgJ29YbhKSOlyd1UPRHmVZblTjJAQi68=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c6b6e87dc8e97780e9011fd1eb5d52ca6b512959",
+        "rev": "37ee25ae67482832b647561018f3d7417b7a2860",
         "type": "github"
       },
       "original": {
@@ -160,10 +182,26 @@
         "blog-builder": "blog-builder",
         "disko": "disko",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_2"
+        "lumiere": "lumiere",
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

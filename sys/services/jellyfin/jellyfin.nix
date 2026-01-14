@@ -21,6 +21,12 @@ in
       entrypoints = "websecure";
     };
   };
+  services.lumiere = {
+    enable = true;
+    environmentFile = "${config.age.secrets.lumiere.path}";
+    user = "${config.services.jellyfin.user}";
+    group = "${config.services.jellyfin.group}";
+  };
   systemd.services.get_xmltv = {
     enable = true;
     startAt = "daily";

@@ -39,10 +39,11 @@
     enable = true;
     videoDrivers = lib.mkDefault [ "nvidia" ];
     windowManager.openbox.enable = true;
-    displayManager.autoLogin = {
-      enable = true;
-      user = "hades";
-    };
+  };
+
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "hades";
   };
 
   hardware.graphics.enable = true;
@@ -91,6 +92,11 @@
     shell = pkgs.zsh;
   };
 
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
   virtualisation.oci-containers.backend = "podman";
   virtualisation.libvirtd = {
     enable = true;
