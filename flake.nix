@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lumiere = {
-      url = "path:/home/hades/code/JellyDiscover";
+      url = "path:/home/hades/code/Lumiere";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

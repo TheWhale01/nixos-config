@@ -3,6 +3,11 @@
 {
   age = {
     secrets = {
+      soulseek = {
+        file = ../secrets/soulseek.age;
+        # owner = "${config.services.slskd.user}";
+        # group = "${config.services.slskd.group}";
+      };
       lumiere = {
         file = ../secrets/lumiere.age;
         owner = "${config.services.lumiere.user}";
@@ -28,6 +33,7 @@
       homepageProwlarr.file = ../secrets/homepage/prowlarr.age;
       homepageTransmission.file = ../secrets/homepage/transmission.age;
       homepageNextcloud.file = ../secrets/homepage/nextcloud.age;
+      aurral.file = ../secrets/aurral.age;
     };
   };
 }

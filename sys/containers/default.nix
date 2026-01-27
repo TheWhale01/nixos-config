@@ -9,5 +9,7 @@
     ./jam.nix
     ./minecraft.nix
     ./byparr.nix
+    ./aurral.nix
+    ./lidarr.nix
   ];
 }

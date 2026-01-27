@@ -5,6 +5,7 @@ let
   port = 8096;
 in
 {
+  users.users.jellyfin.extraGroups = [ "media" ];
   services.jellyfin = {
     enable = true;
   };

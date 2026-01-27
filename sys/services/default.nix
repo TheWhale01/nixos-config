@@ -20,5 +20,9 @@
     ./vaultwarden.nix
     ./blog.nix
     ./sunshine.nix
+    ./ollama.nix
+    ./translaitor.nix
+    # ./lidarr.nix
+    ./soulseek.nix
   ];
 }

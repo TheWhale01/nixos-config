@@ -76,7 +76,9 @@
 
   time.timeZone = "Europe/Paris";
 
-  users.groups.media = {};
+  users.groups.media = {
+    gid = 982;
+  };
   users.users.hades = {
     isNormalUser = true;
     extraGroups = [
@@ -114,9 +116,9 @@
 
   systemd.tmpfiles.rules = [
     "d /data/downloads	0775	${config.services.transmission.user}	${config.services.transmission.group} -"
-    "d /data/Series	0775	${config.services.sonarr.user}		${config.services.sonarr.group} -"
-    "d /data/Animes 	0775 	${config.services.sonarr.user} 		${config.services.sonarr.group} -"
-    "d /data/Movies 	0775 	${config.services.radarr.user} 		${config.services.radarr.group} -"
+    "d /data/Series     0775	${config.services.sonarr.user}		    ${config.services.sonarr.group}       -"
+    "d /data/Animes     0775 	${config.services.sonarr.user} 		    ${config.services.sonarr.group}       -"
+    "d /data/Movies     0775 	${config.services.radarr.user} 		    ${config.services.radarr.group}       -"
   ];
 
   system.autoUpgrade.enable = true;

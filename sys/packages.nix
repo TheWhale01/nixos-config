@@ -21,5 +21,6 @@
     dig
     wget
     podman-compose
+    nodejs
   ];
 }
