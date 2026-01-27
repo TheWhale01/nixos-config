@@ -19,5 +19,6 @@
 		./ghostty.nix
 		./gtk.nix
 		./zed.nix
+		./direnv.nix
 	];
 }

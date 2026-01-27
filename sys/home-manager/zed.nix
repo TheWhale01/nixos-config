@@ -24,12 +24,18 @@
       }
     ];
     userSettings = {
-      assistant = {
-        node = {
-          path = lib.getExe pkgs.nodejs;
-          npm_path = lib.getExe' pkgs.nodejs "npm";
+      loadDirenv = true;
+      shell = "system";
+      detect_env = {
+        on = {
+          directories = [ ".env" "env" ".venv" "venv" ];
+          activate_script = "default";
         };
       };
+      # node = {
+      #   path = lib.getExe pkgs.nodejs;
+      #   npm_path = lib.getExe' pkgs.nodejs "npm";
+      # };
       ssh_connections = [
         {
           host = "192.168.1.154";
@@ -40,6 +46,7 @@
             { paths = ["~/code/blog-builder"]; }
             { paths = ["~/code/Lumiere"]; }
             { paths = ["~/code/translaitor"]; }
+            { paths = ["~/code/jellyfin-plugin-spotify"]; }
           ];
         }
       ];
@@ -59,6 +66,19 @@
           soft_wrap = "preferred_line_length";
           preferred_line_length = 80;
         };
+        CSharp = {
+          language_servers = [ "omnisharp" ];
+        };
+      };
+      lsp = {
+        omnisharp = {
+          binary = {
+            path_lookup = true;
+          };
+        };
+      };
+      file_types = {
+        CSharp = [ "cs" "csproj" ];
       };
       theme = lib.mkForce {
         mode = "dark";

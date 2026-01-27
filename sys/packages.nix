@@ -74,5 +74,6 @@
     bc
     arduino-ide
     podman-compose
+    picard
   ];
 }
