@@ -16,7 +16,7 @@
     ./sonarr.nix
     ./tailscale.nix
     ./traefik.nix
-    ./transmission.nix
+    # ./transmission.nix
     ./vaultwarden.nix
     ./blog.nix
     ./sunshine.nix
@@ -24,5 +24,6 @@
     ./translaitor.nix
     # ./lidarr.nix
     ./soulseek.nix
+    ./immich.nix
   ];
 }

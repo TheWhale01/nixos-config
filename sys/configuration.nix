@@ -17,6 +17,7 @@
     ./secrets.nix
     ./disko.nix
     ./packages.nix
+    # ./protonvpn.nix
   ];
 
   programs.zsh.enable = true;
@@ -59,11 +60,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernel.sysctl = {
+      "net.ipv4.ip_forward" = 1;
+    };
 
   networking = {
     hostName = "erebos";
     networkmanager.enable = true;
     firewall.enable = false;
+    firewall.checkReversePath = "loose";
+    firewall.trustedInterfaces = [ "podman0" "podman1" "tun0" ];
     enableIPv6 = false;
     nameservers = [
       "9.9.9.9"

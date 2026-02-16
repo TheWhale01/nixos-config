@@ -13,6 +13,10 @@ in
       "--persist"
       "--name=openbooks"
     ];
+    environment = {
+      PGID="982";
+      PUID="1000";
+    };
     extraOptions = [ "--name=openbooks" ];
   };
   services.traefik.dynamicConfigOptions.http = {

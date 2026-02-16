@@ -1,0 +1,20 @@
+{ ... }:
+
+{
+  virtualisation.oci-containers.containers."proton" = {
+    image = "qmcgaw/gluetun:latest";
+    extraOptions = [
+      "--cap-add=NET_ADMIN"
+      "--cap-add=NET_RAW"
+      "--device=/dev/net/tun:/dev/net/tun"
+    ];
+    ports = [
+      "9091:9091"
+    ];
+    environment = {};
+    volumes = [
+      "/tmp/proton:/shared"
+      "/var/lib/gluetun:/gluetun"
+    ];
+  };
+}

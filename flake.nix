@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
+    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +34,7 @@
       disko,
       blog-builder,
       lumiere,
+      vpn-confinement,
       ...
     }@inputs:
     let
@@ -48,6 +50,7 @@
         erebos = lib.nixosSystem {
           inherit system;
           inherit pkgs;
+          specialArgs = { inherit inputs; };
           modules = [
             ./sys/configuration.nix
             home-manager.nixosModules.home-manager
@@ -61,6 +64,7 @@
             disko.nixosModules.disko
             blog-builder.nixosModules.default
             lumiere.nixosModules.default
+            vpn-confinement.nixosModules.default
           ];
         };
       };

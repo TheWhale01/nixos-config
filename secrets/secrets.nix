@@ -4,6 +4,14 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "spotiflac.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "proton-wg.age".publicKeys = [
+    erebos
+    hades
+  ];
   "soulseek.age".publicKeys = [
     erebos
     hades
@@ -61,6 +69,10 @@ in
     hades
   ];
   "homepage/nextcloud.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "homepage/immich.age".publicKeys = [
     erebos
     hades
   ];

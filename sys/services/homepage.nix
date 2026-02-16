@@ -23,6 +23,7 @@ in
       "${config.age.secrets.homepageProwlarr.path}"
       "${config.age.secrets.homepageTransmission.path}"
       "${config.age.secrets.homepageNextcloud.path}"
+      "${config.age.secrets.homepageImmich.path}"
     ];
   };
   services.homepage-dashboard = {
@@ -80,10 +81,16 @@ in
             };
           }
           {
-            Plex = {
-              icon = "plex.png";
-              href = "https://plex.${traefik-vars.domain}";
-              description = "Meet your TV concierge";
+            Immich = {
+              icon = "immich.png";
+              href = "https://immich.${traefik-vars.domain}";
+              description = "Self-hosted photo and video management solution";
+              widget = {
+                type = "immich";
+                url = "http://127.0.0.1:${toString config.services.immich.port}";
+                key = "{{HOMEPAGE_VAR_IMMICH_KEY}}";
+                version = 2;
+              };
             };
           }
         ];
@@ -156,7 +163,6 @@ in
           }
           {
             OpenBooks = {
-              # icon = "transmission.png";
               description = "Search and Download eBooks.";
               href = "https://openbooks.${traefik-vars.domain}";
             };

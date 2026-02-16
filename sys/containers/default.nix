@@ -11,5 +11,8 @@
     ./byparr.nix
     ./aurral.nix
     ./lidarr.nix
+    ./transmission.nix
+    ./protonvpn.nix
+    ./spotiflac.nix
   ];
 }

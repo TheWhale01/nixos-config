@@ -22,5 +22,10 @@
     wget
     podman-compose
     nodejs
+    id3v2
+    flac
+    file
+    gnome-keyring
+    irssi
   ];
 }

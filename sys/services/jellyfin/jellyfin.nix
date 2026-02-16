@@ -23,7 +23,7 @@ in
     };
   };
   services.lumiere = {
-    enable = true;
+    enable = false;
     environmentFile = "${config.age.secrets.lumiere.path}";
     user = "${config.services.jellyfin.user}";
     group = "${config.services.jellyfin.group}";
