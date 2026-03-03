@@ -15,18 +15,15 @@ let
       ensureDBOwnership = true;
     }
     {
-      name = "paperless";
+      name = "authentik";
       ensureDBOwnership = true;
-    }
-    {
-      name = "replicator";
     }
   ];
   databases = [
     "vaultwarden"
     "litellm"
     "nextcloud"
-    "paperless"
+    "authentik"
   ];
 in
 {
@@ -37,14 +34,7 @@ in
        			host  all all 127.0.0.1/32    trust
        			host  all all ::1/128         trust
        			local all all                 trust
-       			host replication replicator 192.168.1.153/32 md5
       		'';
-    settings = {
-      wal_level = "replica";
-      max_wal_senders = 5;
-      max_replication_slots = 5;
-      hot_standby = "off";
-    };
     ensureUsers = users;
     ensureDatabases = databases;
   };

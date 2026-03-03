@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  virtualisation.oci-containers.containers."minenix" = {
+  virtualisation.oci-containers.containers."nixcraft" = {
     image = "itzg/minecraft-server:latest";
     volumes = [
       "/var/lib/minenix:/data"

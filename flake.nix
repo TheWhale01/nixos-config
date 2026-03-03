@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
-    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,8 +19,12 @@
       url = "path:/home/hades/code/blog-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lumiere = {
-      url = "path:/home/hades/code/Lumiere";
+    cleanerr = {
+      url = "github:TheWhale01/cleanerr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    authentik = {
+      url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -33,8 +36,8 @@
       agenix,
       disko,
       blog-builder,
-      lumiere,
-      vpn-confinement,
+      cleanerr,
+      authentik,
       ...
     }@inputs:
     let
@@ -63,8 +66,8 @@
             agenix.nixosModules.default
             disko.nixosModules.disko
             blog-builder.nixosModules.default
-            lumiere.nixosModules.default
-            vpn-confinement.nixosModules.default
+            cleanerr.nixosModules.default
+            authentik.nixosModules.default
           ];
         };
       };

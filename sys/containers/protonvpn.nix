@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers."proton" = {
@@ -11,7 +11,7 @@
     ports = [
       "9091:9091"
     ];
-    environment = {};
+    environmentFiles = [ config.age.secrets.proton-wg.path ];
     volumes = [
       "/tmp/proton:/shared"
       "/var/lib/gluetun:/gluetun"

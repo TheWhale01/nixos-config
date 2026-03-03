@@ -17,7 +17,6 @@
     ./secrets.nix
     ./disko.nix
     ./packages.nix
-    # ./protonvpn.nix
   ];
 
   programs.zsh.enable = true;

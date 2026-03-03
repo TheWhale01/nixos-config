@@ -4,6 +4,14 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "authentik/ldap.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "authentik/authentik.age".publicKeys = [
+    erebos
+    hades
+  ];
   "spotiflac.age".publicKeys = [
     erebos
     hades
@@ -12,27 +20,11 @@ in
     erebos
     hades
   ];
-  "soulseek.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "aurral.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "lumiere.age".publicKeys = [
-    erebos
-    hades
-  ];
   "transmission.age".publicKeys = [
     erebos
     hades
   ];
   "nextcloud.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "litellm.age".publicKeys = [
     erebos
     hades
   ];
