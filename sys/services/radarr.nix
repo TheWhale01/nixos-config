@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   traefik-vars = (import ../vars.nix).traefik;
@@ -8,17 +8,40 @@ in
     enable = true;
     group = "media";
   };
+  systemd.services.radarr.preStart = lib.mkAfter ''
+    CONFIG_FILE="${config.services.radarr.dataDir}/config.xml"
+
+    if [ -f "$CONFIG_FILE" ]; then
+      ${pkgs.gnused}/bin/sed -i 's/<AuthenticationMethod>.*<\/AuthenticationMethod>/<AuthenticationMethod>External<\/AuthenticationMethod>/g' "$CONFIG_FILE"
+    fi
+  '';
   services.traefik.dynamicConfigOptions.http = {
-    services.radarr.loadBalancer.servers = [
-      {
-        url = "http://127.0.0.1:${toString config.services.radarr.settings.server.port}";
-      }
-    ];
-    routers.radarr = {
-      rule = "Host(`radarr.${traefik-vars.domain}`)";
-      tls = true;
-      service = "radarr";
-      entrypoints = "websecure";
+    services.radarr.loadBalancer.servers = [{
+      url = "http://127.0.0.1:${toString config.services.radarr.settings.server.port}";
+    }];
+    routers = {
+      radarr = {
+        rule = "Host(`radarr.${traefik-vars.domain}`)";
+        tls = true;
+        service = "radarr";
+        entrypoints = "websecure";
+        middlewares = [ "radarr-auth" ];
+        priority = 10;
+      };
+      radarr-auth = {
+        rule = "Host(`radarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        tls = true;
+        service = "authentik-proxy";
+        entrypoints = "websecure";
+        priority = 15;
+      };
+    };
+    middlewares.radarr-auth = {
+      forwardAuth = {
+        address = "http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io/auth/traefik";
+        trustForwardHeader = true;
+        authResponseHeaders = [ "X-authentik-username" "X-authentik-groups" "X-authentik-entitlements" "X-authentik-email" "X-authentik-name" "X-authentik-uid" "X-authentik-jwt" "X-authentik-meta-jwks" "X-authentik-meta-outpost" "X-authentik-meta-provider" "X-authentik-meta-app" "X-authentik-meta-version" "Authorization" ];
+      };
     };
   };
 }

@@ -19,6 +19,13 @@ in
     enable = true;
     environmentFile = config.age.secrets.authentik-ldap.path;
   };
+  services.authentik-proxy = {
+    enable = true;
+    listenMetrics = "127.0.0.1:9303";
+    listenHTTPS = "127.0.0.1:9004";
+    listenHTTP = "127.0.0.1:9005";
+    environmentFile = config.age.secrets.authentik-proxy.path;
+  };
   systemd.services.authentik-ldap = {
     serviceConfig = {
       AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ];

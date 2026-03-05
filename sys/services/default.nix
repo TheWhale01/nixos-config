@@ -18,7 +18,6 @@
     ./vaultwarden.nix
     ./blog.nix
     ./ollama.nix
-    ./translaitor.nix
     ./immich.nix
     ./cleanerr.nix
     ./authentik.nix

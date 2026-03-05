@@ -50,9 +50,11 @@ in
     dynamicConfigOptions = {
       http = {
         middlewares = {
-          traefik-auth = {
-            basicAuth = {
-              users = [ "whale:$apr1$TROUcwCk$tXXXbRj7rp6g.yRQiE7gR0" ];
+          traefik-authentik-auth = {
+            forwardAuth = {
+              address = "http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io/auth/traefik";
+              trustForwardHeader = true;
+              authResponseHeaders = [ "X-authentik-username" "X-authentik-groups" "X-authentik-entitlements" "X-authentik-email" "X-authentik-name" "X-authentik-uid" "X-authentik-jwt" "X-authentik-meta-jwks" "X-authentik-meta-outpost" "X-authentik-meta-provider" "X-authentik-meta-app" "X-authentik-meta-version" "Authorization" ];
             };
           };
         };
@@ -61,7 +63,8 @@ in
             rule = "Host(`traefik.${traefik-vars.domain}`)";
             service = "api@internal";
             entrypoints = [ "websecure" ];
-            middlewares = [ "traefik-auth" ];
+            middlewares = [ "traefik-authentik-auth" ];
+            priority = 10;
             tls = {
               certResolver = "${traefik-vars.dns_provider}";
               domains = [
@@ -72,11 +75,17 @@ in
               ];
             };
           };
+          traefik-auth = {
+            rule = "Host(`traefik.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+            tls = true;
+            service = "authentik-proxy";
+            entrypoints = [ "websecure" ];
+            priority = 15;
+          };
         };
       };
     };
   };
-  # Passing env variables to service
   systemd.services.traefik.serviceConfig = {
     EnvironmentFile = [ "${config.age.secrets.traefikCfDnsToken.path}" ];
   };

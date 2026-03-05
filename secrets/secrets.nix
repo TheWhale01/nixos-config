@@ -4,15 +4,23 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "homepage.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "vaultwarden.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "authentik/proxy.age".publicKeys = [
+    erebos
+    hades
+  ];
   "authentik/ldap.age".publicKeys = [
     erebos
     hades
   ];
   "authentik/authentik.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "spotiflac.age".publicKeys = [
     erebos
     hades
   ];
@@ -29,42 +37,6 @@ in
     hades
   ];
   "traefik/cf_dns_token.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/jellyfin.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/jellyseerr.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/radarr.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/sonarr.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/bazarr.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/prowlarr.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/transmission.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/nextcloud.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "homepage/immich.age".publicKeys = [
     erebos
     hades
   ];

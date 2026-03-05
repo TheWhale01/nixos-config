@@ -2,6 +2,7 @@
 
 let
   traefik-vars = (import ../vars.nix).traefik;
+  port = 9091;
 in
 {
   virtualisation.oci-containers.containers.transmission = {
@@ -22,16 +23,32 @@ in
     };
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.transmission.loadBalancer.servers = [
-      {
-        url = "http://127.0.0.1:9091";
-      }
-    ];
-    routers.transmission = {
-      rule = "Host(`transmission.${traefik-vars.domain}`)";
-      tls = true;
-      service = "transmission";
-      entrypoints = "websecure";
+    services.transmission.loadBalancer.servers = [{
+      url = "http://127.0.0.1:${toString port}";
+    }];
+    routers = {
+      transmission = {
+        rule = "Host(`transmission.${traefik-vars.domain}`)";
+        tls = true;
+        service = "transmission";
+        entrypoints = "websecure";
+        middlewares = [ "transmission-auth" ];
+        priority = 10;
+      };
+      transmission-auth = {
+        rule = "Host(`transmission.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        tls = true;
+        service = "authentik-proxy";
+        entrypoints = "websecure";
+        priority = 15;
+      };
+    };
+    middlewares.transmission-auth = {
+      forwardAuth = {
+        address = "http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io/auth/traefik";
+        trustForwardHeader = true;
+        authResponseHeaders = [ "X-authentik-username" "X-authentik-groups" "X-authentik-entitlements" "X-authentik-email" "X-authentik-name" "X-authentik-uid" "X-authentik-jwt" "X-authentik-meta-jwks" "X-authentik-meta-outpost" "X-authentik-meta-provider" "X-authentik-meta-app" "X-authentik-meta-version" "Authorization" ];
+      };
     };
   };
   systemd.services."podman-transmission" = {

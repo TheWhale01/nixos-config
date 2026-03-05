@@ -4,31 +4,10 @@ let
   traefik-vars = (import ../vars.nix).traefik;
 in
 {
-  system.activationScripts.homepageEnv = {
-    text = ''
-      			echo "Creating Homepage env file..."
-      			echo HOMEPAGE_ALLOWED_HOSTS="${traefik-vars.domain}" > /etc/homepage.env
-      			chmod 444 /etc/homepage.env
-      		'';
-    deps = [ ];
-  };
-  systemd.services.homepage-dashboard.serviceConfig = {
-    EnvironmentFile = [
-      "/etc/homepage.env"
-      "${config.age.secrets.homepageJellyfin.path}"
-      "${config.age.secrets.homepageJellyseerr.path}"
-      "${config.age.secrets.homepageRadarr.path}"
-      "${config.age.secrets.homepageSonarr.path}"
-      "${config.age.secrets.homepageBazarr.path}"
-      "${config.age.secrets.homepageProwlarr.path}"
-      "${config.age.secrets.homepageTransmission.path}"
-      "${config.age.secrets.homepageNextcloud.path}"
-      "${config.age.secrets.homepageImmich.path}"
-    ];
-  };
   services.homepage-dashboard = {
     enable = true;
-    environmentFile = "/etc/homepage.env";
+    environmentFile = config.age.secrets.homepage.path;
+    allowedHosts = "${traefik-vars.domain}";
     widgets = [
       {
         resources = {
@@ -183,25 +162,6 @@ in
               icon = "nextcloud.png";
               href = "https://nextcloud.${traefik-vars.domain}";
               description = "A safe home for all you data";
-              widget = {
-                type = "nextcloud";
-                url = "https://nextcloud.${traefik-vars.domain}";
-                key = "{{HOMEPAGE_VAR_NEXTCLOUD}}";
-              };
-            };
-          }
-          {
-            OpenWebUI = {
-              icon = "open-webui.png";
-              href = "https://ai.${traefik-vars.domain}";
-              description = "User-friendly IA Interface (Supports Ollama, OpenAI API, ...)";
-            };
-          }
-          {
-            "Papperless-ngx" = {
-              icon = "paperless-ngx.png";
-              href = "https://paperless.${traefik-vars.domain}";
-              description = "Scan, index and archive all your physical documents";
             };
           }
           {
@@ -209,13 +169,6 @@ in
               icon = "traefik.png";
               href = "https://traefik.${traefik-vars.domain}";
               description = "The Cloud Native Application Proxy";
-            };
-          }
-          {
-            "Jellyfin Account Manager" = {
-              icon = "https://jam.thewhale.fr/apple-touch-icon.png";
-              href = "https://jam.${traefik-vars.domain}";
-              description = "a better way to manage your Jellyfin users.";
             };
           }
         ];

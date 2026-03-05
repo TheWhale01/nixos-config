@@ -16,7 +16,7 @@ in
       SIGNUPS_ALLOWED = true;
     };
     dbBackend = "postgresql";
-    environmentFile = "/etc/vaultwarden.env";
+    environmentFile = config.age.secrets.vaultwarden.path;
   };
   services.traefik.dynamicConfigOptions.http = {
     services.vaultwarden.loadBalancer.servers = [
