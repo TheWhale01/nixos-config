@@ -3,6 +3,10 @@
 {
   age = {
     secrets = {
+      grafana = {
+        file = ../secrets/grafana.age;
+        owner = "grafana";
+      };
       homepage = {
         file = ../secrets/homepage.age;
       };

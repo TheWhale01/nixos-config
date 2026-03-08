@@ -21,5 +21,6 @@
     ./immich.nix
     ./cleanerr.nix
     ./authentik.nix
+    ./grafana.nix
   ];
 }
