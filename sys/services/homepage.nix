@@ -151,6 +151,13 @@ in
       {
         Useful = [
           {
+            Matrix = {
+              icon = "matrix.png";
+              href = "https://matrix.${traefik-vars.domain}";
+              description = "An open network for secure, decentralised communication";
+            };
+          }
+          {
             Vaultwarden = {
               icon = "bitwarden.png";
               href = "https://vaultwarden.${traefik-vars.domain}";

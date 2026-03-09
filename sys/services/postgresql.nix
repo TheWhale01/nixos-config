@@ -18,12 +18,22 @@ let
       name = "authentik";
       ensureDBOwnership = true;
     }
+    {
+      name = "matrix-synapse";
+      ensureDBOwnership = true;
+    }
+    {
+      name = "mas";
+      ensureDBOwnership = true;
+    }
   ];
   databases = [
     "vaultwarden"
     "litellm"
     "nextcloud"
     "authentik"
+    "matrix-synapse"
+    "mas"
   ];
 in
 {

@@ -4,6 +4,14 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "mas.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "matrix.age".publicKeys = [
+    erebos
+    hades
+  ];
   "grafana.age".publicKeys = [
     erebos
     hades

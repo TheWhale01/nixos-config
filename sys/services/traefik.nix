@@ -11,6 +11,13 @@ in
         level = "DEBUG";
       };
       api = { };
+      entryPoints.metrics.address = "127.0.0.1:8200";
+      metrics.prometheus = {
+        entryPoint = "metrics";
+        addEntryPointsLabels = true;
+        addRoutersLabels = true;
+        addServicesLabels = true;
+      };
       entryPoints = {
         web = {
           address = ":80";

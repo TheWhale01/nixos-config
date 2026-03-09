@@ -27,5 +27,6 @@
     file
     gnome-keyring
     irssi
+    openssl
   ];
 }

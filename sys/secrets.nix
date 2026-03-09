@@ -3,6 +3,18 @@
 {
   age = {
     secrets = {
+      mas = {
+        file = ../secrets/mas.age;
+        owner = "mas";
+        group = "mas";
+        mode = "0400";
+      };
+      matrix = {
+        file = ../secrets/matrix.age;
+        owner = "matrix-synapse";
+        group = "matrix-synapse";
+        mode = "0400";
+      };
       grafana = {
         file = ../secrets/grafana.age;
         owner = "grafana";

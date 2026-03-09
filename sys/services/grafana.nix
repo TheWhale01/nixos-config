@@ -21,6 +21,25 @@ in
   systemd.services.grafana.serviceConfig.EnvironmentFile = [
     config.age.secrets.grafana.path
   ];
+  services.prometheus = {
+    enable = true;
+    port = 9090;
+    listenAddress = "127.0.0.1";
+    scrapeConfigs = [
+      {
+        job_name = "prometheus";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString config.services.prometheus.port}" ];
+        }];
+      }
+    ];
+  };
+  services.prometheus.exporters.node = {
+    enable = true;
+    port = 9100;
+    listenAddress = "127.0.0.1";
+    enabledCollectors = [ "systemd" "tcpstat" ];
+  };
   services.traefik.dynamicConfigOptions.http = {
     services.grafana.loadBalancer.servers = [{
       url = "http://${config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
