@@ -21,9 +21,7 @@
     ./immich.nix
     ./cleanerr.nix
     ./authentik.nix
-    ./grafana.nix
-    ./loki.nix
-    ./promtail.nix
     ./matrix.nix
+    ./monitoring
   ];
 }

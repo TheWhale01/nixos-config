@@ -19,16 +19,6 @@ in
       tls = true;
       service = "immich";
       entrypoints = "websecure";
-      # middlewares = "immich-upload-size";
     };
-    # middlewares.immich-upload-size = {
-    #   buffering = {
-    #     maxRequestBodyBytes = 0;
-    #     maxResponseBodyBytes = 0;
-    #     memRequestBodyBytes = 20971520;
-    #     memResponseBodyBytes = 20971520;
-    #     retryExpression = "IsNetworkError() && Attempts() < 2";
-    #   };
-    # };
   };
 }

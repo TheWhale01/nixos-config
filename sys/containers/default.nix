@@ -8,5 +8,6 @@
     ./lidarr.nix
     ./transmission.nix
     ./protonvpn.nix
+    ./byparr.nix
   ];
 }
