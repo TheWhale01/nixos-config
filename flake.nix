@@ -27,9 +27,9 @@
       url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvim-config = {
-      url = "github:TheWhale01/nvim-config";
-      flake = false;
+    modules = {
+      url = "github:TheWhale01/nixos-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -42,7 +42,7 @@
       blog-builder,
       cleanerr,
       authentik,
-      nvim-config,
+      modules,
       ...
     }@inputs:
     let
@@ -67,7 +67,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.hades = import ./sys/home.nix;
               home-manager.backupFileExtension = "bkp";
-	      home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
             agenix.nixosModules.default
             disko.nixosModules.disko

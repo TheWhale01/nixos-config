@@ -1,11 +1,8 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   imports = [
-    ../../modules/neovim.nix
-    ../../modules/btop.nix
-    ../../modules/git.nix
-    ../../modules/zsh.nix
+    inputs.modules.nixosModules.default
     ./direnv.nix
   ];
 

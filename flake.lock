@@ -281,6 +281,27 @@
         "type": "github"
       }
     },
+    "modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvim-config": "nvim-config"
+      },
+      "locked": {
+        "lastModified": 1773685358,
+        "narHash": "sha256-PD0Pp9NkOU2onuPRiJaCSdEvC2f2l51bqrUi+sY8qAM=",
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "rev": "cc3baeac7e258170c045e423ee2d1a5cbb25e401",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "type": "github"
+      }
+    },
     "napalm": {
       "inputs": {
         "flake-utils": [
@@ -412,8 +433,8 @@
         "cleanerr": "cleanerr",
         "disko": "disko",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs",
-        "nvim-config": "nvim-config"
+        "modules": "modules",
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
