@@ -4,6 +4,10 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "music-grabber.age".publicKeys = [
+    erebos
+    hades
+  ];
   "mas.age".publicKeys = [
     erebos
     hades

@@ -9,5 +9,6 @@
     ./transmission.nix
     ./protonvpn.nix
     ./byparr.nix
+    ./musicgrabber.nix
   ];
 }

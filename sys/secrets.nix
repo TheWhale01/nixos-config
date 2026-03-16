@@ -3,6 +3,9 @@
 {
   age = {
     secrets = {
+      music-grabber = {
+        file = ../secrets/music-grabber.age;
+      };
       mas = {
         file = ../secrets/mas.age;
         owner = "mas";
