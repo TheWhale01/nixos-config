@@ -13,7 +13,6 @@
     ];
     environmentFiles = [ config.age.secrets.proton-wg.path ];
     volumes = [
-      "/tmp/proton:/shared"
       "/var/lib/gluetun:/gluetun"
     ];
   };

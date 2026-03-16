@@ -5,7 +5,7 @@
     enable = true;
     ports = [ 22 ];
     settings = {
-      PasswordAuthentication = true;
+      PasswordAuthentication = false;
       AllowUsers = [ "hades" ];
       UseDns = true;
       X11Forwarding = false;

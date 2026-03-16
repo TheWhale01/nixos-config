@@ -11,7 +11,6 @@ in
     volumes = [
       "/var/lib/transmission:/config"
       "/data:/data"
-      "/tmp/proton:/shared"
     ];
     environmentFiles = [ config.age.secrets.transmission.path ];
     environment = {

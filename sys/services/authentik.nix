@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   traefik-vars = (import ../vars.nix).traefik;

@@ -1,13 +1,9 @@
 { config, ... }:
 
 let
-  db_url = "DATABASE_URL=postgresql://vaultwarden:@127.0.0.1:${toString config.services.postgresql.settings.port}/vaultwarden";
   traefik-vars = (import ../vars.nix).traefik;
 in
 {
-  environment.etc."vaultwarden.env" = {
-    text = "${db_url}";
-  };
   services.vaultwarden = {
     enable = true;
     config = {

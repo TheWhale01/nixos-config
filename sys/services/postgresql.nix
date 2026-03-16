@@ -1,35 +1,15 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   users = [
-    {
-      name = "vaultwarden";
-      ensureDBOwnership = true;
-    }
-    {
-      name = "litellm";
-      ensureDBOwnership = true;
-    }
-    {
-      name = "nextcloud";
-      ensureDBOwnership = true;
-    }
-    {
-      name = "authentik";
-      ensureDBOwnership = true;
-    }
-    {
-      name = "matrix-synapse";
-      ensureDBOwnership = true;
-    }
-    {
-      name = "mas";
-      ensureDBOwnership = true;
-    }
+    { name = "vaultwarden"; ensureDBOwnership = true; }
+    { name = "nextcloud"; ensureDBOwnership = true; }
+    { name = "authentik"; ensureDBOwnership = true; }
+    { name = "matrix-synapse"; ensureDBOwnership = true; }
+    { name = "mas"; ensureDBOwnership = true; }
   ];
   databases = [
     "vaultwarden"
-    "litellm"
     "nextcloud"
     "authentik"
     "matrix-synapse"
@@ -40,11 +20,11 @@ in
   services.postgresql = {
     enable = true;
     enableTCPIP = true;
-    authentication = ''
-       			host  all all 127.0.0.1/32    trust
-       			host  all all ::1/128         trust
-       			local all all                 trust
-      		'';
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all                 peer
+ 			host  all all 127.0.0.1/32    scram-sha-256
+ 			host  all all ::1/128         scram-sha-256
+		'';
     ensureUsers = users;
     ensureDatabases = databases;
   };
