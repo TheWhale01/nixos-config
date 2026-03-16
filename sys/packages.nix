@@ -10,5 +10,6 @@
     wakeonlan
     fastfetch
     usbutils
+    gnumake
   ];
 }

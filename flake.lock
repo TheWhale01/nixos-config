@@ -21,6 +21,27 @@
         "type": "github"
       }
     },
+    "modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvim-config": "nvim-config"
+      },
+      "locked": {
+        "lastModified": 1773685358,
+        "narHash": "sha256-PD0Pp9NkOU2onuPRiJaCSdEvC2f2l51bqrUi+sY8qAM=",
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "rev": "cc3baeac7e258170c045e423ee2d1a5cbb25e401",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1767011190,
@@ -37,9 +58,26 @@
         "type": "github"
       }
     },
+    "nvim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773681976,
+        "narHash": "sha256-86B5RoZmWcsQUTYtP0IOhdKqokr/01NhpMoeWqJOT3s=",
+        "owner": "TheWhale01",
+        "repo": "nvim-config",
+        "rev": "005e599cda7b37a648bb6b581d10fdd55c82b791",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheWhale01",
+        "repo": "nvim-config",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "modules": "modules",
         "nixpkgs": "nixpkgs"
       }
     }

@@ -7,9 +7,13 @@
 			url = "github:nix-community/home-manager/release-25.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		modules = {
+		  url = "github:TheWhale01/nixos-modules";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
-	outputs = { nixpkgs, home-manager, ... }:
+	outputs = { nixpkgs, home-manager, modules, ... }@inputs:
 	let
 		lib = nixpkgs.lib;
 		pkgsFor = system: import nixpkgs {
@@ -29,6 +33,7 @@
 						home-manager.useUserPackages = true;
 						home-manager.users.athena = import ./sys/home.nix;
 						home-manager.backupFileExtension = "bkp";
+						home-manager.extraSpecialArgs = { inherit inputs; };
 					}
 				];
 			};
