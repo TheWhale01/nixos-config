@@ -13,7 +13,6 @@
     ./prowlarr.nix
     ./radarr.nix
     ./sonarr.nix
-    ./tailscale.nix
     ./traefik.nix
     ./vaultwarden.nix
     ./blog.nix

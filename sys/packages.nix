@@ -8,7 +8,6 @@
     basedpyright
     ruff
     typescript-language-server
-    tailscale
     fastfetch
     ripgrep
     tree

@@ -74,6 +74,7 @@
             blog-builder.nixosModules.default
             cleanerr.nixosModules.default
             authentik.nixosModules.default
+	    modules.nixosModules.system
           ];
         };
       };
