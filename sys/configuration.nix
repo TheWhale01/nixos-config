@@ -5,7 +5,6 @@
     ./hardware-configuration.nix
     ./services
     ./packages.nix
-    ../modules/tailscale.nix
   ];
 
   boot.loader.grub.enable = false;
@@ -39,7 +38,6 @@
     shell = pkgs.zsh;
   };
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBcOee301WJTTAQCgHuELLFoQ4mOzL2o6cx6DiQkOiJF poseidon@pontos"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9 hades@erebos"
   ];
 

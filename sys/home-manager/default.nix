@@ -2,7 +2,7 @@
 
 {
 	imports = [
-		inputs.modules.nixosModules.default
+		inputs.modules.nixosModules.homeManager
 	];
 
 	programs.home-manager.enable = true;

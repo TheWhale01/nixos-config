@@ -8,7 +8,7 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		modules = {
-		  url = "github:TheWhale01/nixos-modules";
+			url = "github:TheWhale01/nixos-modules";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
@@ -35,6 +35,7 @@
 						home-manager.backupFileExtension = "bkp";
 						home-manager.extraSpecialArgs = { inherit inputs; };
 					}
+					modules.nixosModules.system
 				];
 			};
 		};
