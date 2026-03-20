@@ -4,7 +4,11 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
-  "music-grabber.age".publicKeys = [
+  "aurral.age".publicKeys = [
+    erebos
+    hades
+  ];
+  "spotiflac.age".publicKeys = [
     erebos
     hades
   ];

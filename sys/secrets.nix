@@ -3,9 +3,9 @@
 {
   age = {
     secrets = {
-      music-grabber = {
-        file = ../secrets/music-grabber.age;
-      };
+      aurral.file = ../secrets/aurral.age;
+      spotiflac.file = ../secrets/spotiflac.age;
+      nextcloud.file = ../secrets/nextcloud.age;
       mas = {
         file = ../secrets/mas.age;
         owner = "mas";
@@ -46,7 +46,6 @@
         group = "${config.services.traefik.group}";
       };
       proton-wg.file = ../secrets/proton-wg.age;
-      nextcloudAdminPass.file = ../secrets/nextcloud.age;
     };
   };
 }

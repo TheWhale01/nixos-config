@@ -1,45 +1,46 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   traefik-vars = (import ../vars.nix).traefik;
-  port = 8686;
+  port = 3001;
 in
 {
-  virtualisation.oci-containers.containers."lidarr" = {
-    image = "lscr.io/linuxserver/lidarr:latest";
+  virtualisation.oci-containers.containers.aurral = {
+    image = "ghcr.io/lklynet/aurral:latest";
+    ports = [ "${toString port}:${toString port}" ];
     volumes = [
-      "/var/lib/lidarr:/config"
-      "/data:/data"
+      "/data/downloads/lidarr:/downloads"
+      "/var/lib/aurral:/app/backend/data"
     ];
     environment = {
-      PGID = "982";
+      DOWNLOAD_FOLDER = "/downloads";
       PUID = "1000";
-      UMASK = "002";
+      PGID = "982";
     };
-    extraOptions = [ "--network=host" ];
+    environmentFiles = [ config.age.secrets.aurral.path ];
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.lidarr.loadBalancer.servers = [{
+    services.aurral.loadBalancer.servers = [{
       url = "http://127.0.0.1:${toString port}";
     }];
     routers = {
-      lidarr = {
-        rule = "Host(`lidarr.${traefik-vars.domain}`)";
+      aurral = {
+        rule = "Host(`aurral.${traefik-vars.domain}`)";
         tls = true;
-        service = "lidarr";
+        service = "aurral";
         entrypoints = "websecure";
-        middlewares = [ "lidarr-auth" ];
+	middlewares = [ "aurral-auth" ];
         priority = 10;
       };
-      lidarr-auth = {
-        rule = "Host(`lidarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+      aurral-auth = {
+        rule = "Host(`aurral.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";
         priority = 15;
       };
     };
-    middlewares.lidarr-auth = {
+    middlewares.aurral-auth = {
       forwardAuth = {
         address = "http://${config.services.authentik-proxy.listenHTTP}/outpost.goauthentik.io/auth/traefik";
         trustForwardHeader = true;

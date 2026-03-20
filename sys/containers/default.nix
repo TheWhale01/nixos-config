@@ -9,6 +9,8 @@
     ./transmission.nix
     ./protonvpn.nix
     ./byparr.nix
-    ./musicgrabber.nix
+    ./aurral.nix
+    ./spotiflac.nix
+    ./nextcloud.nix
   ];
 }

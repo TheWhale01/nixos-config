@@ -6,7 +6,7 @@
     ./homepage.nix
     ./jellyfin/jellyfin.nix
     ./jellyseerr.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
     ./nginx.nix
     ./openssh.nix
     ./postgresql.nix

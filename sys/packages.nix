@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     vim
@@ -27,5 +27,6 @@
     gnome-keyring
     irssi
     openssl
+    inputs.kiln.packages.${system}.default
   ];
 }

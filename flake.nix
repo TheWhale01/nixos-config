@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     blog-builder = {
-      url = "path:/home/hades/code/blog-builder";
+      url = "github:TheWhale01/blog-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cleanerr = {
@@ -31,6 +31,10 @@
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kiln = {
+      url = "path:/home/hades/code/kiln";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -43,6 +47,7 @@
       cleanerr,
       authentik,
       modules,
+      kiln,
       ...
     }@inputs:
     let

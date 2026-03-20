@@ -123,7 +123,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /data/downloads	0775	${config.services.transmission.user}	${config.services.transmission.group} -"
+    # "d /data/downloads	0775	${config.services.transmission.user}	${config.services.transmission.group} -"
     "d /data/Series     0775	${config.services.sonarr.user}		    ${config.services.sonarr.group}       -"
     "d /data/Animes     0775 	${config.services.sonarr.user} 		    ${config.services.sonarr.group}       -"
     "d /data/Movies     0775 	${config.services.radarr.user} 		    ${config.services.radarr.group}       -"
