@@ -10,6 +10,7 @@
     ];
     ports = [
       "9091:9091"
+      "6890:6890"
     ];
     environmentFiles = [ config.age.secrets.proton-wg.path ];
     volumes = [

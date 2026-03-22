@@ -7,12 +7,16 @@ in
 {
   virtualisation.oci-containers.containers.spotiflac = {
     image = "ghcr.io/methammer/spotiflac:latest";
-    ports = [ "${toString port}:${toString port}" ];
     volumes = [
       "/data/Music:/home/nonroot/Music"
       "/var/lib/spotiflac:/home/nonroot/.SpotiFLAC"
     ];
     environmentFiles = [ config.age.secrets.spotiflac.path ];
+    extraOptions = [ "--network=container:proton" ];
+  };
+  systemd.services."podman-spotiflac" = {
+    after = [ "podman-proton.service" ];
+    requires = [ "podman-proton.service" ];
   };
   services.traefik.dynamicConfigOptions.http = {
     services.spotiflac.loadBalancer.servers = [{

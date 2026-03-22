@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     blog-builder = {
-      url = "github:TheWhale01/blog-builder";
+      url = "path:/home/hades/code/blog-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cleanerr = {
