@@ -9,7 +9,7 @@ in
     sites.blog-ideas = {
       nginx = {
         enable = true;
-        index = "content/posts/welcome.html";
+        index = "index.html";
         domain = "blog.${traefik-vars.domain}";
         port = 8883;
       };
@@ -22,18 +22,14 @@ in
     };
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.blog-builder.loadBalancer.servers = [
-      {
-        url = "http://127.0.0.1:8882";
-      }
-    ];
-    services.blog.loadbalancer.servers = [
-      {
-        url = "http://127.0.0.1:8883";
-      }
-    ];
+    services.blog-builder.loadBalancer.servers = [{
+      url = "http://127.0.0.1:${toString config.services.blog-builder.webhook.port}";
+    }];
+    services.blog.loadbalancer.servers = [{
+      url = "http://127.0.0.1:${toString config.services.blog-builder.sites.blog-ideas.nginx.port}";
+    }];
     routers.blog-builder = {
-      rule = "Host(`blog.${traefik-vars.domain}`) && Path(`/webhook`)";
+      rule = "Host(`blog.${traefik-vars.domain}`) && Path(`/webhook/blog-builder`)";
       tls = true;
       service = "blog-builder";
       entrypoints = "websecure";
