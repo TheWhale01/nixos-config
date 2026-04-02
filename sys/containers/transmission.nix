@@ -5,20 +5,40 @@ let
   port = 9091;
 in
 {
-  virtualisation.oci-containers.containers.transmission = {
-    image = "lscr.io/linuxserver/transmission:latest";
-    extraOptions = [ "--network=container:proton" ];
-    volumes = [
-      "/var/lib/transmission:/config"
-      "/data:/data"
-    ];
-    environmentFiles = [ config.age.secrets.transmission.path ];
-    environment = {
-      PUID = "1000";
-      PGID = "982";
-      TZ = "Europe/Paris";
-      LOG_LEVEL = "debug";
-      PEERPORT = "63913";
+  virtualisation.oci-containers.containers = {
+    transmission = {
+      image = "lscr.io/linuxserver/transmission:latest";
+      extraOptions = [ "--network=container:proton" ];
+      volumes = [
+        "/var/lib/transmission:/config"
+        "/data:/data"
+      ];
+      environmentFiles = [ config.age.secrets.transmission.path ];
+      environment = {
+        PUID = "1000";
+        PGID = "982";
+        TZ = "Europe/Paris";
+        LOG_LEVEL = "debug";
+      };
+    };
+    flood = {
+      hostname = "flood";
+      user = "1000:100";
+      image = "docker.io/jesec/flood:latest";
+      cmd = [ "--port" "3001" "--allowedpath" "/data" ];
+      environment = {
+        HOME = "/config";
+        FLOOD_OPTION_auth = "none";
+	FLOOD_OPTION_trurl = "http://transmission:9091/transmission/rpc";
+      };
+      environmentFiles = [
+        config.age.secrets.transmission.path
+      ];
+      volumes = [
+        "/var/lib/flood:/config"
+        "/data:/data"
+      ];
+      extraOptions = [ "--network=container:proton" ];
     };
   };
   services.traefik.dynamicConfigOptions.http = {

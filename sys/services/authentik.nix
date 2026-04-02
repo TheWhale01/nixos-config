@@ -13,6 +13,7 @@ in
       avatars = "initials";
       listen.ldap = "127.0.0.1:389";
       listen.ldaps = "127.0.0.1:636";
+      listen.metrics = "127.0.0.1:9300";
     };
   };
   services.authentik-ldap = {

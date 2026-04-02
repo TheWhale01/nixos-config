@@ -28,6 +28,21 @@
               target_label = "unit";
             }
           ];
+          pipeline_stages = [{
+            match = {
+              selector = "{unit=\"traefik.service\"}";
+              stages = [
+                { json.expressions.ip = "ClientHost"; }
+                {
+                  geoip = {
+                    source = "ip";
+                    db = "/var/lib/geoip/GeoLite2-City.mmdb";
+                    db_type = "city";
+                  };
+                }
+              ];
+            };
+          }];
         }
       ];
     };

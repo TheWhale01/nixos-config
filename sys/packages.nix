@@ -27,6 +27,5 @@
     gnome-keyring
     irssi
     openssl
-    inputs.kiln.packages.${system}.default
   ];
 }

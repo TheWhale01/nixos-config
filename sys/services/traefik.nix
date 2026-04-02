@@ -7,6 +7,7 @@ in
   services.traefik = {
     enable = true;
     staticConfigOptions = {
+      accessLog.format = "json";
       log = {
         level = "DEBUG";
       };

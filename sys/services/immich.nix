@@ -9,6 +9,9 @@ in
     group = "media";
     host = "0.0.0.0";
     mediaLocation = "/data/Immich";
+    settings = {
+      newVersionCheck.enabled = true;
+    };
   };
   services.traefik.dynamicConfigOptions.http = {
     services.immich.loadBalancer.servers = [{

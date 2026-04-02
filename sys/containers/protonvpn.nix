@@ -9,10 +9,18 @@
       "--device=/dev/net/tun:/dev/net/tun"
     ];
     ports = [
-      "9091:9091"
-      "6890:6890"
+      "3002:3001" # FLOOD
+      "6890:6890" # SPOTIFLAC
     ];
-    environmentFiles = [ config.age.secrets.proton-wg.path ];
+    environment = {
+      VPN_PORT_FORWARDING_UP_COMMAND = ''
+        /bin/sh -c 'command -v transmission-remote >/dev/null 2>&1 || (apk update && apk add transmission-remote); transmission-remote localhost:9091 -n "$USER:$PASS" -p {{PORT}}'
+      '';
+    };
+    environmentFiles = [
+      config.age.secrets.proton-wg.path
+      config.age.secrets.transmission.path
+    ];
     volumes = [
       "/var/lib/gluetun:/gluetun"
     ];

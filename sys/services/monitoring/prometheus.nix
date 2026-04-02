@@ -25,6 +25,18 @@
           targets = [ "${config.services.prometheus.exporters.nvidia-gpu.listenAddress}:${toString config.services.prometheus.exporters.nvidia-gpu.port}" ];
         }];
       }
+      {
+        job_name = "authentik";
+        static_configs = [{
+          targets = [ "${config.services.authentik.settings.listen.metrics}" ];
+        }];
+      }
+      {
+        job_name = "traefik";
+        static_configs = [{
+          targets = [ "${config.services.traefik.staticConfigOptions.entryPoints.metrics.address}" ];
+        }];
+      }
     ];
     exporters = {
       node = {

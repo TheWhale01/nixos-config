@@ -31,10 +31,6 @@
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kiln = {
-      url = "path:/home/hades/code/kiln";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -47,7 +43,6 @@
       cleanerr,
       authentik,
       modules,
-      kiln,
       ...
     }@inputs:
     let
@@ -79,7 +74,7 @@
             blog-builder.nixosModules.default
             cleanerr.nixosModules.default
             authentik.nixosModules.default
-	    modules.nixosModules.system
+            modules.nixosModules.system
           ];
         };
       };

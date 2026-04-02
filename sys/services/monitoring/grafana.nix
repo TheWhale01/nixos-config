@@ -2,7 +2,6 @@
 
 let
   traefik-vars = (import ../../vars.nix).traefik;
-  dashboards = (import ./dashboards { inherit pkgs; }).dashboards;
 in
 {
   services.grafana = {
@@ -27,11 +26,10 @@ in
           url = "http://127.0.0.1:${toString config.services.prometheus.port}";
           isDefault = true;
         }
-      ];
-      dashboards.settings.providers = [
         {
-          name = "NixOS Declarative dashboards";
-          options.path = dashboards;
+          name = "Loki";
+          type = "loki";
+          url = "http://${config.services.loki.configuration.common.instance_addr}:${toString config.services.loki.configuration.server.http_listen_port}";
         }
       ];
     };

@@ -16,8 +16,13 @@ in
       DOWNLOAD_FOLDER = "/downloads";
       PUID = "1000";
       PGID = "982";
+      TRUST_PROXY = "1";
+      AUTH_PROXY_ENABLED = "true";
+      AUTH_PROXY_HEADER = "X-authentik-username";
+      AUTH_PROXY_TRUSTED_IPS = "0.0.0.0/0";
+      AUTH_PROXY_ADMIN_USERS = "whale";
+      AUTH_PROXY_ROLE_HEADER = "X-authentik-groups";
     };
-    environmentFiles = [ config.age.secrets.aurral.path ];
   };
   services.traefik.dynamicConfigOptions.http = {
     services.aurral.loadBalancer.servers = [{

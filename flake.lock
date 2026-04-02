@@ -94,8 +94,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1774192361,
-        "narHash": "sha256-N5a51NhzmCvXQwFHNqp8Vpu3nifJzi0xq+hwBQeuzHk=",
+        "lastModified": 1774193170,
+        "narHash": "sha256-97LsRceEdRpGK/cs55PiCPve4h09VzM5Su5KCLAFlu8=",
         "path": "/home/hades/code/blog-builder",
         "type": "path"
       },
@@ -268,11 +268,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773963144,
-        "narHash": "sha256-WzBOBfSay3GYilUfKaUa1Mbf8/jtuAiJIedx7fWuIX4=",
+        "lastModified": 1775077333,
+        "narHash": "sha256-OXcxobt7lBkh1B8AjwreU+24myhtKpqeLfAeIyNLFY8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a91b3ea73a765614d90360580b689c48102d1d33",
+        "rev": "49ca96b2714c5931e17401eff87f3edd42d2b0f2",
         "type": "github"
       },
       "original": {
@@ -298,23 +298,6 @@
         "owner": "otaleghani",
         "repo": "kiln",
         "type": "github"
-      }
-    },
-    "kiln_2": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773761516,
-        "narHash": "sha256-NtvO6Id2SdFb20AjC2jBEkb0k2IWrM9PmG7vhLGTQ84=",
-        "path": "/home/hades/code/kiln",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/hades/code/kiln",
-        "type": "path"
       }
     },
     "modules": {
@@ -397,11 +380,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774181868,
-        "narHash": "sha256-vded3ciyB2hBRMGcpEz5u0Si2kpXf+N84RIWQUNousU=",
+        "lastModified": 1775086923,
+        "narHash": "sha256-kB+T4HAVaBg0BIUK+06/pSMohErRtWEVDwXX9kAUxpA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8be7be81ee2fedc981c070bee083aac569c62af0",
+        "rev": "286c9ea86f46f5d0ab503d9d2c57d4542e2b51f3",
         "type": "github"
       },
       "original": {
@@ -485,7 +468,6 @@
         "cleanerr": "cleanerr",
         "disko": "disko",
         "home-manager": "home-manager_2",
-        "kiln": "kiln_2",
         "modules": "modules",
         "nixpkgs": "nixpkgs_2"
       }
