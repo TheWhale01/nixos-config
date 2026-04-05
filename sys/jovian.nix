@@ -4,7 +4,6 @@
   jovian = {
     steam = {
       enable = true;
-      desktopSession = "Hyprland";
       user = "poseidon";
     };
     hardware.has.amd.gpu = true;

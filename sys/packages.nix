@@ -31,7 +31,6 @@
     spotify
     discord
     inputs.zen-browser.packages."${system}".default
-    nextcloud-client
     obsidian
     hyprlock
     filezilla
@@ -74,6 +73,15 @@
     bc
     arduino-ide
     podman-compose
-    picard
+    feishin
+    obs-studio
+    element-desktop
+    protonup-ng
+    heroic
+    pciutils
+    inputs.kiln.packages.${system}.default
+    cinny-desktop
+    audacity
+    seahorse
   ];
 }

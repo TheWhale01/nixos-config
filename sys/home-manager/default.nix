@@ -1,11 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 
 {
 	imports = [
-		../../modules/neovim.nix
-		../../modules/btop.nix
-		../../modules/git.nix
-		../../modules/zsh.nix
 		./hypr/hypridle.nix
 		./hypr/hyprlock
 		./hypr/hyprpaper
@@ -20,5 +16,8 @@
 		./gtk.nix
 		./zed.nix
 		./direnv.nix
+		./zen.nix
+		./nextcloud.nix
+		inputs.modules.nixosModules.homeManager
 	];
 }

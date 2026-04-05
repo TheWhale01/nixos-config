@@ -10,7 +10,7 @@
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
       "$menu" = "wofi --show drun";
-      "$browser" = "zen";
+      "$browser" = "zen-beta";
       "$code-editor" = "zeditor";
       "$screenshot" = "hyprshot";
       # EXEC ONCE
@@ -65,13 +65,16 @@
       };
       input = {
         kb_layout = "us";
-        follow_mouse = 0;
+        follow_mouse = 1;
         sensitivity = 0;
         mouse_refocus = 0;
         touchpad = {
           natural_scroll = true;
         };
       };
+      gesture = [
+        "3, horizontal, workspace"
+      ];
       # KEYBINDINGS
       bind = [
         "$mainMod, F, fullscreen"
@@ -134,20 +137,23 @@
         ", XF86AudioPause, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
         ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
         ", XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
-        ", switch:on:Lid Switch, exec, ${./scripts/lidcontrol.sh} c"
-        ", switch:off:Lid Switch, exec, ${./scripts/lidcontrol.sh} o"
+        ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
+        ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, preferred, auto, 1.5'"
       ];
       # MONITORS
       monitor = [
-        "eDP-1,preferred,0x0,1.5"
-       	# "DP-4,4096x2160,auto,1"
-        "DP-10,1920x1080@144,1920x0,1"
-        "DP-9,1920x1080@144,3840x0,1"
+        "desc:Iiyama North America PL2470H 0x00000AC0, 1920x1080@144, 0x0, 1"
+        "desc:Iiyama North America PL2470H 0x00000AC8, 1920x1080@144, 1920x0, 1"
+        "eDP-1,preferred,auto,1.5"
         ",preferred,auto,1"
       ];
-      windowrulev2 = [
-        "fullscreen,class:com.moonlight_stream.Moonlight"
-       	"fullscreen,title:Steam Big Picture Mode"
+      workspace = [
+        "1, monitor:desc:Iiyama North America PL2470H 0x00000AC0, default:true"
+        "2, monitor:desc:Iiyama North America PL2470H 0x00000AC8, default:true"
+      ];
+      windowrule = [
+        "match:class com.moonlight_stream.Moonlight, fullscreen on"
+       	"match:title Steam Big Picture Mode, fullscreen on"
       ];
       layerrule = [
         "blur on,match:namespace ^(waybar)$"

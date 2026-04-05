@@ -38,7 +38,7 @@
       # };
       ssh_connections = [
         {
-          host = "192.168.1.154";
+          host = "100.98.140.59";
           nickname = "erebos";
           username = "hades";
           projects = [

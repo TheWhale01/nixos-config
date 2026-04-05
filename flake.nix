@@ -19,6 +19,7 @@
 		zen-browser = {
 			url = "github:0xc000022070/zen-browser-flake";
 		  inputs.nixpkgs.follows = "nixpkgs";
+			inputs.home-manager.follows = "home-manager";
 		};
 		jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
@@ -28,20 +29,23 @@
       url = "path:/home/poseidon/code/eden";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hydenix = {
-      url = "github:richen604/hydenix";
+    modules = {
+      url = "github:TheWhale01/nixos-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    kiln = {
+      url = "github:otaleghani/kiln";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 	};
 
-	outputs = { nixpkgs, nixos-hardware, home-manager, disko, stylix, jovian, hydenix, ... }@inputs:
+	outputs = { nixpkgs, nixos-hardware, home-manager, disko, stylix, jovian, zen-browser, modules, kiln, ... }@inputs:
 	let
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
 		pkgs = import nixpkgs {
 			system = "${system}";
 			config.allowUnfree = true;
-			config.checkConfig = false;
 		};
 	in {
 		nixosConfigurations = {
@@ -56,6 +60,7 @@
 						home-manager.useUserPackages = true;
 						home-manager.users.poseidon = import ./sys/home.nix;
 						home-manager.backupFileExtension = "bkp";
+						home-manager.extraSpecialArgs = { inherit inputs; };
 					}
 					stylix.nixosModules.stylix
 					disko.nixosModules.disko
@@ -66,7 +71,7 @@
 					nixos-hardware.nixosModules.common-pc-ssd
 					nixos-hardware.nixosModules.framework-amd-ai-300-series
 					jovian.nixosModules.default
-					# hydenix.nixosModules.default
+					modules.nixosModules.system
 				];
 			};
 		};

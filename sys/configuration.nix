@@ -13,9 +13,7 @@
 		./disko.nix
 		./services
 		./programs
-		../modules/tailscale.nix
 		./jovian.nix
-		# ./hydenix.nix
 	];
 
 	nixpkgs.crossSystem = { config = "aarch64-linux"; };
@@ -56,6 +54,7 @@
 	boot.kernelParams = [ "amdgpu.sg_display=0" ];
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+	boot.kernelPackages = pkgs.linuxPackages_latest;
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
@@ -78,6 +77,7 @@
 			TERM="xterm-256color";
 			EDITOR="vim";
 			NIXOS_OZONE_WL = "1";
+			STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
 		};
 	};
 
