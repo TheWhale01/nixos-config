@@ -8,5 +8,7 @@
     ./blueman.nix
     ./print.nix
     ./keyring.nix
+    ./fprintd.nix
+    ./power-profiles.nix
   ];
 }

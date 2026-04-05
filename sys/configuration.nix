@@ -16,8 +16,6 @@
 		./jovian.nix
 	];
 
-	nixpkgs.crossSystem = { config = "aarch64-linux"; };
-
 	hardware.enableAllFirmware = true;
 	hardware.enableRedistributableFirmware = true;
 
