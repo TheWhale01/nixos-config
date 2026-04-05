@@ -12,5 +12,6 @@
     ./aurral.nix
     ./spotiflac.nix
     ./nextcloud.nix
+    ./maintainerr.nix
   ];
 }

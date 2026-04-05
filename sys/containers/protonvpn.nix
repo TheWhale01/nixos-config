@@ -10,6 +10,7 @@
     ];
     ports = [
       "3002:3001" # FLOOD
+      "9091:9091" # TRANSMISSION
       "6890:6890" # SPOTIFLAC
     ];
     environment = {

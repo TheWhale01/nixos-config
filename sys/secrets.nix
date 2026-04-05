@@ -21,6 +21,7 @@
       grafana = {
         file = ../secrets/grafana.age;
         owner = "grafana";
+        mode = "0400";
       };
       homepage = {
         file = ../secrets/homepage.age;

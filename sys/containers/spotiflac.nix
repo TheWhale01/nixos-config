@@ -17,6 +17,7 @@ in
   systemd.services."podman-spotiflac" = {
     after = [ "podman-proton.service" ];
     requires = [ "podman-proton.service" ];
+    bindsTo = [ "podman-proton.service" ];
   };
   services.traefik.dynamicConfigOptions.http = {
     services.spotiflac.loadBalancer.servers = [{

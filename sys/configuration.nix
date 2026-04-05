@@ -53,6 +53,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
   };
@@ -105,17 +106,10 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+    autoPrune.enable = true;
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.oci-containers.backend = "podman";
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-    };
-  };
 
   environment.sessionVariables = rec {
     TERM = "xterm-256color";
@@ -129,7 +123,11 @@
     "d /data/Movies     0775 	${config.services.radarr.user} 		    ${config.services.radarr.group}       -"
   ];
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = true;
+    dates = "Sun 04:00";
+    randomizedDelaySec = "30min";
+  };
   system.stateVersion = "24.11";
 }

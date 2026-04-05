@@ -7,7 +7,7 @@ in
 {
   virtualisation.oci-containers.containers.aurral = {
     image = "ghcr.io/lklynet/aurral:latest";
-    ports = [ "${toString port}:${toString port}" ];
+    ports = [ "127.0.0.1:${toString port}:${toString port}" ];
     volumes = [
       "/data/downloads/lidarr:/downloads"
       "/var/lib/aurral:/app/backend/data"

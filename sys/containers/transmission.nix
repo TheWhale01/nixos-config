@@ -2,7 +2,7 @@
 
 let
   traefik-vars = (import ../vars.nix).traefik;
-  port = 9091;
+  port =3002;
 in
 {
   virtualisation.oci-containers.containers = {
@@ -73,5 +73,11 @@ in
   systemd.services."podman-transmission" = {
     after = [ "podman-proton.service" ];
     requires = [ "podman-proton.service" ];
+    bindsTo = [ "podman-proton.service" ];
+  };
+  systemd.services."podman-flood" = {
+    after = [ "podman-proton.service" ];
+    requires = [ "podman-proton.service" ];
+    bindsTo = [ "podman-proton.service" ];
   };
 }
