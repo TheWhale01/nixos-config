@@ -6,7 +6,6 @@
     ./homepage.nix
     ./jellyfin/jellyfin.nix
     ./jellyseerr.nix
-    # ./nextcloud.nix
     ./nginx.nix
     ./openssh.nix
     ./postgresql.nix
@@ -22,5 +21,6 @@
     ./authentik.nix
     ./matrix.nix
     ./monitoring
+    ./gnome-keyring.nix
   ];
 }

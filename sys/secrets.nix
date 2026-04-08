@@ -3,6 +3,7 @@
 {
   age = {
     secrets = {
+      livekit.file = ../secrets/livekit.age;
       aurral.file = ../secrets/aurral.age;
       spotiflac.file = ../secrets/spotiflac.age;
       nextcloud.file = ../secrets/nextcloud.age;

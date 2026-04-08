@@ -103,6 +103,20 @@ in
             };
           }
           {
+            Lidarr = {
+              icon = "lidarr.png";
+              description = "Looks and smells like Sonarr but made for music";
+              href = "https://lidarr.${traefik-vars.domain}";
+            };
+          }
+          {
+            Aurral = {
+              icon = "aurral.png";
+              description = "Artist Discovery and Request Manager for Lidarr";
+              href = "https://aurral.${traefik-vars.domain}";
+            };
+          }
+          {
             Bazarr = {
               icon = "bazarr.png";
               description = "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements";
@@ -142,6 +156,7 @@ in
           }
           {
             OpenBooks = {
+              icon = "bookstack.png";
               description = "Search and Download eBooks.";
               href = "https://openbooks.${traefik-vars.domain}";
             };
@@ -176,6 +191,12 @@ in
               icon = "traefik.png";
               href = "https://traefik.${traefik-vars.domain}";
               description = "The Cloud Native Application Proxy";
+            };
+          }
+          {
+            Blog = {
+              href = "https://blog.${traefik-vars.domain}";
+              description = "My personal blog mainly about my server !";
             };
           }
         ];
@@ -216,6 +237,21 @@ in
             Tailscale = {
               icon = "tailscale.png";
               description = "Drop you VPN, not your standards";
+              href = "https://tailscale.com";
+            };
+          }
+          {
+            Grafana = {
+              icon = "grafana.png";
+              description = "The open and composable observability platform";
+              href = "https://grafana.${traefik-vars.domain}";
+            };
+          }
+          {
+            Maintainerr = {
+              icon = "maintainerr.png";
+              description = "The Perfect Media Janitor";
+              href = "https://maintainerr.${traefik-vars.domain}";
             };
           }
         ];

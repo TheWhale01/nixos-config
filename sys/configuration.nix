@@ -67,7 +67,7 @@
       allowedTCPPorts = [ 80 443 ];
       trustedInterfaces = [ "podman0" "tailscale0" ];
     };
-    enableIPv6 = false;
+    enableIPv6 = true;
     nameservers = [
       "9.9.9.9"
       "149.112.112.112"
