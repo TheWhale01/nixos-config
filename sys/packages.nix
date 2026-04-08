@@ -42,7 +42,7 @@
     unzip
     tor-browser
     nvtopPackages.full
-    protonvpn-gui
+    proton-vpn
     pulseaudio
     irssi
     usbutils
@@ -75,7 +75,9 @@
     podman-compose
     feishin
     obs-studio
-    element-desktop
+    (element-desktop.override {
+      commandLineArgs = "--password-store=gnome-libsecret";
+    })
     protonup-ng
     heroic
     pciutils
@@ -83,5 +85,6 @@
     cinny-desktop
     audacity
     seahorse
+    bruno
   ];
 }
