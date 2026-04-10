@@ -1,8 +1,7 @@
 { config, ... }:
 
 let
-  port = 6246;
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers = {
@@ -15,16 +14,16 @@ in
         TZ = "Europe/Paris";
       };
       user = "1000:100";
-      ports = [ "${toString port}:${toString port}" ];
+      ports = [ "${toString vars.maintainerr.port}:6246"];
     };
   };
   services.traefik.dynamicConfigOptions.http = {
     services.maintainerr.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.maintainerr.port}";
     }];
     routers = {
       maintainerr = {
-        rule = "Host(`maintainerr.${traefik-vars.domain}`)";
+        rule = "Host(`maintainerr.${vars.traefik.domain}`)";
         tls = true;
         service = "maintainerr";
         entrypoints = "websecure";
@@ -32,7 +31,7 @@ in
         priority = 10;
       };
       maintainerr-auth = {
-        rule = "Host(`maintainerr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`maintainerr.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

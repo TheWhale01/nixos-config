@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.bazarr = {
@@ -14,7 +14,7 @@ in
     }];
     routers = {
       bazarr = {
-        rule = "Host(`bazarr.${traefik-vars.domain}`)";
+        rule = "Host(`bazarr.${vars.traefik.domain}`)";
         tls = true;
         service = "bazarr";
         entrypoints = "websecure";
@@ -22,7 +22,7 @@ in
         priority = 10;
       };
       bazarr-auth = {
-        rule = "Host(`bazarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`bazarr.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

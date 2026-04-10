@@ -1,8 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port = 6890;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers.spotiflac = {
@@ -21,11 +20,11 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.spotiflac.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.spotiflac.port}";
     }];
     routers = {
       spotiflac = {
-        rule = "Host(`spotiflac.${traefik-vars.domain}`)";
+        rule = "Host(`spotiflac.${vars.traefik.domain}`)";
         tls = true;
         service = "spotiflac";
         entrypoints = "websecure";

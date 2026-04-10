@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port = 8686;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers."lidarr" = {
@@ -20,11 +19,11 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.lidarr.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.lidarr.port}";
     }];
     routers = {
       lidarr = {
-        rule = "Host(`lidarr.${traefik-vars.domain}`)";
+        rule = "Host(`lidarr.${vars.traefik.domain}`)";
         tls = true;
         service = "lidarr";
         entrypoints = "websecure";
@@ -32,7 +31,7 @@ in
         priority = 10;
       };
       lidarr-auth = {
-        rule = "Host(`lidarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`lidarr.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

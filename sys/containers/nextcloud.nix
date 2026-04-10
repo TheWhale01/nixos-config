@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers.nextcloud = {
@@ -9,7 +9,7 @@ in
     volumes = [
       "/data/nextcloud:/var/www/html"
     ];
-    ports = [ "8881:80" ];
+    ports = [ "${toString vars.nextcloud.port}:80" ];
     environmentFiles = [ config.age.secrets.nextcloud.path ];
   };
   virtualisation.oci-containers.containers."nextcloud-office" = {
@@ -17,27 +17,27 @@ in
     capabilities = {
       MKNOD = true;
     };
-    ports = [ "9980:9980" ];
+    ports = [ "${toString vars.nextcloud.office.port}:9980" ];
     environment = {
-      aliasgroup1 = "https://nextcloud.${traefik-vars.domain}:443";
+      aliasgroup1 = "https://nextcloud.${vars.traefik.domain}:443";
       extra_params = "--o:ssl.enable=false --o:ssl.termination=true";
     };
   };
   services.traefik.dynamicConfigOptions.http = {
     services.nextcloud.loadBalancer.servers = [{
-        url = "http://127.0.0.1:8881";
+        url = "http://127.0.0.1:${toString vars.nextcloud.port}";
     }];
     services.nextcloud-office.loadBalancer.servers = [{
-        url = "http://127.0.0.1:9980";
+        url = "http://127.0.0.1:${toString vars.nextcloud.office.port}";
     }];
     routers.nextcloud = {
-      rule = "Host(`nextcloud.${traefik-vars.domain}`)";
+      rule = "Host(`nextcloud.${vars.traefik.domain}`)";
       tls = true;
       service = "nextcloud";
       entrypoints = "websecure";
     };
     routers.nextcloud-office = {
-      rule = "Host(`nextcloud-office.${traefik-vars.domain}`)";
+      rule = "Host(`nextcloud-office.${vars.traefik.domain}`)";
       tls = true;
       service = "nextcloud-office";
       entrypoints = "websecure";

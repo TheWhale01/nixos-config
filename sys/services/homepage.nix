@@ -1,13 +1,13 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.homepage-dashboard = {
     enable = true;
     environmentFile = config.age.secrets.homepage.path;
-    allowedHosts = "${traefik-vars.domain}";
+    allowedHosts = "${vars.traefik.domain}";
     widgets = [
       {
         resources = {
@@ -33,11 +33,11 @@ in
           {
             Jellyfin = {
               icon = "jellyfin.png";
-              href = "https://jellyfin.${traefik-vars.domain}";
+              href = "https://jellyfin.${vars.traefik.domain}";
               description = "The Free Software Media System";
               widget = {
                 type = "jellyfin";
-                url = "http://127.0.0.1:8096";
+                url = "http://127.0.0.1:${toString vars.jellyfin.port}";
                 key = "{{HOMEPAGE_VAR_JELLYFIN_KEY}}";
                 enableBlocks = true;
                 enableNowPlaying = true;
@@ -50,7 +50,7 @@ in
           {
             Jellyseerr = {
               icon = "jellyseerr.png";
-              href = "https://jellyseerr.${traefik-vars.domain}";
+              href = "https://jellyseerr.${vars.traefik.domain}";
               description = "Open-source media request and discovery manager for Jellyfin, Plex, and Emby";
               widget = {
                 type = "jellyseerr";
@@ -62,7 +62,7 @@ in
           {
             Immich = {
               icon = "immich.png";
-              href = "https://immich.${traefik-vars.domain}";
+              href = "https://immich.${vars.traefik.domain}";
               description = "Self-hosted photo and video management solution";
               widget = {
                 type = "immich";
@@ -80,7 +80,7 @@ in
             Radarr = {
               icon = "radarr.png";
               description = "Movie organizer/manager for usenet and torrent users";
-              href = "https://radarr.${traefik-vars.domain}";
+              href = "https://radarr.${vars.traefik.domain}";
               widget = {
                 type = "radarr";
                 url = "http://127.0.0.1:${toString config.services.radarr.settings.server.port}";
@@ -93,7 +93,7 @@ in
             Sonarr = {
               icon = "sonarr.png";
               description = "Smart PVR for newsgroup and bittorrent users";
-              href = "https://radarr.${traefik-vars.domain}";
+              href = "https://sonarr.${vars.traefik.domain}";
               widget = {
                 type = "sonarr";
                 url = "http://127.0.0.1:${toString config.services.sonarr.settings.server.port}";
@@ -106,21 +106,21 @@ in
             Lidarr = {
               icon = "lidarr.png";
               description = "Looks and smells like Sonarr but made for music";
-              href = "https://lidarr.${traefik-vars.domain}";
+              href = "https://lidarr.${vars.traefik.domain}";
             };
           }
           {
             Aurral = {
               icon = "aurral.png";
               description = "Artist Discovery and Request Manager for Lidarr";
-              href = "https://aurral.${traefik-vars.domain}";
+              href = "https://aurral.${vars.traefik.domain}";
             };
           }
           {
             Bazarr = {
               icon = "bazarr.png";
               description = "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements";
-              href = "https://bazarr.${traefik-vars.domain}";
+              href = "https://bazarr.${vars.traefik.domain}";
               widget = {
                 type = "bazarr";
                 url = "http://127.0.0.1:${toString config.services.bazarr.listenPort}";
@@ -132,7 +132,7 @@ in
             Prowlarr = {
               icon = "prowlarr.png";
               description = "indexer manager/proxy built on the popular *arr stack";
-              href = "https://prowlarr.${traefik-vars.domain}";
+              href = "https://prowlarr.${vars.traefik.domain}";
               widget = {
                 type = "prowlarr";
                 url = "http://127.0.0.1:${toString config.services.prowlarr.settings.server.port}";
@@ -144,7 +144,7 @@ in
             Transmission = {
               icon = "transmission.png";
               description = "BitTorrent client";
-              href = "https://transmission.${traefik-vars.domain}";
+              href = "https://transmission.${vars.traefik.domain}";
               widget = {
                 type = "transmission";
                 url = "http://127.0.0.1:${toString config.services.transmission.settings.rpc-port}";
@@ -158,7 +158,7 @@ in
             OpenBooks = {
               icon = "bookstack.png";
               description = "Search and Download eBooks.";
-              href = "https://openbooks.${traefik-vars.domain}";
+              href = "https://openbooks.${vars.traefik.domain}";
             };
           }
         ];
@@ -168,34 +168,34 @@ in
           {
             Matrix = {
               icon = "matrix.png";
-              href = "https://matrix.${traefik-vars.domain}";
+              href = "https://matrix.${vars.traefik.domain}";
               description = "An open network for secure, decentralised communication";
             };
           }
           {
             Vaultwarden = {
               icon = "bitwarden.png";
-              href = "https://vaultwarden.${traefik-vars.domain}";
+              href = "https://vaultwarden.${vars.traefik.domain}";
               description = "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs";
             };
           }
           {
             Nextcloud = {
               icon = "nextcloud.png";
-              href = "https://nextcloud.${traefik-vars.domain}";
+              href = "https://nextcloud.${vars.traefik.domain}";
               description = "A safe home for all you data";
             };
           }
           {
             Traefik = {
               icon = "traefik.png";
-              href = "https://traefik.${traefik-vars.domain}";
+              href = "https://traefik.${vars.traefik.domain}";
               description = "The Cloud Native Application Proxy";
             };
           }
           {
             Blog = {
-              href = "https://blog.${traefik-vars.domain}";
+              href = "https://blog.${vars.traefik.domain}";
               description = "My personal blog mainly about my server !";
             };
           }
@@ -244,14 +244,14 @@ in
             Grafana = {
               icon = "grafana.png";
               description = "The open and composable observability platform";
-              href = "https://grafana.${traefik-vars.domain}";
+              href = "https://grafana.${vars.traefik.domain}";
             };
           }
           {
             Maintainerr = {
               icon = "maintainerr.png";
               description = "The Perfect Media Janitor";
-              href = "https://maintainerr.${traefik-vars.domain}";
+              href = "https://maintainerr.${vars.traefik.domain}";
             };
           }
         ];
@@ -314,7 +314,7 @@ in
       }
     ];
     routers.homepage = {
-      rule = "Host(`${traefik-vars.domain}`)";
+      rule = "Host(`${vars.traefik.domain}`)";
       tls = true;
       service = "homepage";
       entrypoints = "websecure";

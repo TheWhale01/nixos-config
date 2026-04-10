@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.immich = {
@@ -18,7 +18,7 @@ in
       url = "http://127.0.0.1:${toString config.services.immich.port}";
     }];
     routers.immich = {
-      rule = "Host(`immich.${traefik-vars.domain}`)";
+      rule = "Host(`immich.${vars.traefik.domain}`)";
       tls = true;
       service = "immich";
       entrypoints = "websecure";

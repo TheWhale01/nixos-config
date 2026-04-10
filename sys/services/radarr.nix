@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.radarr = {
@@ -21,7 +21,7 @@ in
     }];
     routers = {
       radarr = {
-        rule = "Host(`radarr.${traefik-vars.domain}`)";
+        rule = "Host(`radarr.${vars.traefik.domain}`)";
         tls = true;
         service = "radarr";
         entrypoints = "websecure";
@@ -29,7 +29,7 @@ in
         priority = 10;
       };
       radarr-auth = {
-        rule = "Host(`radarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`radarr.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

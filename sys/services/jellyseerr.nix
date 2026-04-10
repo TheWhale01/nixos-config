@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.jellyseerr = {
@@ -14,7 +14,7 @@ in
       }
     ];
     routers.jellyseerr = {
-      rule = "Host(`jellyseerr.${traefik-vars.domain}`)";
+      rule = "Host(`jellyseerr.${vars.traefik.domain}`)";
       tls = true;
       service = "jellyseerr";
       entrypoints = "websecure";

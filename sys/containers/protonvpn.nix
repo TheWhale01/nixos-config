@@ -1,5 +1,8 @@
 { config, ... }:
 
+let
+  vars = import ../vars.nix;
+in
 {
   virtualisation.oci-containers.containers."proton" = {
     image = "qmcgaw/gluetun:latest";
@@ -9,9 +12,9 @@
       "--device=/dev/net/tun:/dev/net/tun"
     ];
     ports = [
-      "3002:3001" # FLOOD
-      "9091:9091" # TRANSMISSION
-      "6890:6890" # SPOTIFLAC
+      "${toString vars.transmission.flood.port}:3001" # FLOOD
+      "${toString vars.transmission.port}:9091" # TRANSMISSION
+      "${toString vars.spotiflac.port}:6890" # SPOTIFLAC
     ];
     environment = {
       VPN_PORT_FORWARDING_UP_COMMAND = ''

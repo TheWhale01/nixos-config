@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.prowlarr = {
@@ -20,7 +20,7 @@ in
     }];
     routers = {
       prowlarr = {
-        rule = "Host(`prowlarr.${traefik-vars.domain}`)";
+        rule = "Host(`prowlarr.${vars.traefik.domain}`)";
         tls = true;
         service = "prowlarr";
         entrypoints = "websecure";
@@ -28,7 +28,7 @@ in
         priority = 10;
       };
       prowlarr-auth = {
-        rule = "Host(`prowlarr.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`prowlarr.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  traefik-vars = (import ../../vars.nix).traefik;
-  port = 8096;
+  vars = import ../../vars.nix;
 in
 {
   users.users.jellyfin.extraGroups = [ "media" ];
@@ -10,13 +9,11 @@ in
     enable = true;
   };
   services.traefik.dynamicConfigOptions.http = {
-    services.jellyfin.loadBalancer.servers = [
-      {
-        url = "http://127.0.0.1:${toString port}";
-      }
-    ];
+    services.jellyfin.loadBalancer.servers = [{
+      url = "http://127.0.0.1:${toString vars.jellyfin.port}";
+    }];
     routers.jellyfin = {
-      rule = "Host(`jellyfin.${traefik-vars.domain}`)";
+      rule = "Host(`jellyfin.${vars.traefik.domain}`)";
       tls = true;
       service = "jellyfin";
       entrypoints = "websecure";

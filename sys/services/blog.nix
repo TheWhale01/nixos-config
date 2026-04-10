@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.blog-builder = {
@@ -10,7 +10,7 @@ in
       nginx = {
         enable = true;
         index = "index.html";
-        domain = "blog.${traefik-vars.domain}";
+        domain = "blog.${vars.traefik.domain}";
         port = 8883;
       };
       githubRepo = "https://github.com/TheWhale01/blog-ideas";
@@ -29,13 +29,13 @@ in
       url = "http://127.0.0.1:${toString config.services.blog-builder.sites.blog-ideas.nginx.port}";
     }];
     routers.blog-builder = {
-      rule = "Host(`blog.${traefik-vars.domain}`) && Path(`/webhook/blog-builder`)";
+      rule = "Host(`blog.${vars.traefik.domain}`) && Path(`/webhook/blog-builder`)";
       tls = true;
       service = "blog-builder";
       entrypoints = "websecure";
     };
     routers.blog = {
-      rule = "Host(`blog.${traefik-vars.domain}`)";
+      rule = "Host(`blog.${vars.traefik.domain}`)";
       tls = true;
       service = "blog";
       entrypoints = "websecure";

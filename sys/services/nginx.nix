@@ -2,7 +2,7 @@
 
 let
   filename = "portfolio_anais.pdf";
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.nginx = {
@@ -11,7 +11,7 @@ in
       listen = [
         {
           addr = "127.0.0.1";
-          port = 8002;
+          port = vars.anaisbuche.port;
         }
       ];
       root = "/var/www/pdf";
@@ -26,11 +26,11 @@ in
   services.traefik.dynamicConfigOptions.http = {
     services.anaisbuche.loadBalancer.servers = [
       {
-        url = "http://127.0.0.1:8002";
+        url = "http://127.0.0.1:${toString vars.anaisbuche.port}";
       }
     ];
     routers.anaisbuche = {
-      rule = "Host(`anaisbuche.${traefik-vars.domain}`)";
+      rule = "Host(`anaisbuche.${vars.traefik.domain}`)";
       tls = true;
       service = "anaisbuche";
       entrypoints = "websecure";

@@ -1,14 +1,13 @@
 { config, pkgs, ... }:
 
 let
-  port = 8008;
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.lk-jwt-service = {
     enable = true;
     port = 8004;
-    livekitUrl = "wss://livekit.${traefik-vars.domain}";
+    livekitUrl = "wss://livekit.${vars.traefik.domain}";
     keyFile = config.age.secrets.livekit.path;
   };
   services.livekit = {
@@ -56,11 +55,11 @@ in
       config.age.secrets.matrix.path
     ];
     settings = {
-      server_name = "matrix.${traefik-vars.domain}";
+      server_name = "matrix.${vars.traefik.domain}";
       public_baseurl = "https://${config.services.matrix-synapse.settings.server_name}";
       serve_server_wellknown = true;
       listeners = [{
-        port = port;
+        port = vars.matrix.port;
         bind_addresses = [ "127.0.0.1" ];
         type = "http";
         tls = false;
@@ -73,7 +72,7 @@ in
       extra_well_known_client_content = {
         "org.matrix.msc4143.rtc_foci" = [{
           type = "livekit";
-          livekit_service_url = "https://livekit.${traefik-vars.domain}";
+          livekit_service_url = "https://livekit.${vars.traefik.domain}";
         }];
       };
       database = {
@@ -97,38 +96,38 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services = {
-      matrix.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString port}"; }];
+      matrix.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString vars.matrix.port}"; }];
       mas.loadBalancer.servers = [{ url = "http://127.0.0.1:8009"; }];
       livekit.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.livekit.settings.port}"; }];
       lk-jwt.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}"; }];
     };
     routers = {
       matrix = {
-        rule = "Host(`matrix.${traefik-vars.domain}`)";
+        rule = "Host(`matrix.${vars.traefik.domain}`)";
         tls = true;
         service = "matrix";
         entrypoints = "websecure";
       };
       mas = {
-        rule = "Host(`matrix-auth.${traefik-vars.domain}`)";
+        rule = "Host(`matrix-auth.${vars.traefik.domain}`)";
         tls = true;
         service = "mas";
         entrypoints = "websecure";
       };
       mas-compat = {
-        rule = "Host(`matrix.${traefik-vars.domain}`) && PathRegexp(`^/_matrix/client/(r0|v3|v1|unstable)/(login|logout|refresh)`)";
+        rule = "Host(`matrix.${vars.traefik.domain}`) && PathRegexp(`^/_matrix/client/(r0|v3|v1|unstable)/(login|logout|refresh)`)";
         tls = true;
         service = "mas";
         entrypoints = "websecure";
       };
       livekit = {
-        rule = "Host(`livekit.${traefik-vars.domain}`)";
+        rule = "Host(`livekit.${vars.traefik.domain}`)";
         tls = true;
         service = "livekit";
         entrypoints = "websecure";
       };
       lk-jwt = {
-        rule = "Host(`livekit.${traefik-vars.domain}`) && PathPrefix(`/sfu/`)";
+        rule = "Host(`livekit.${vars.traefik.domain}`) && PathPrefix(`/sfu/`)";
         tls = true;
         service = "lk-jwt";
         entrypoints = "websecure";

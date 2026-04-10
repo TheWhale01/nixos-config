@@ -1,14 +1,13 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port = 8081;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers."openbooks" = {
     image = "evanbuss/openbooks";
     volumes = [ "/data/Books/Books:/books" ];
-    ports = [ "${toString port}:80" ];
+    ports = [ "${toString vars.openbooks.port}:80" ];
     cmd = [
       "--persist"
       "--name=openbooks"
@@ -21,11 +20,11 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.openbooks.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.openbooks.port}";
     }];
     routers = {
       openbooks = {
-        rule = "Host(`openbooks.${traefik-vars.domain}`)";
+        rule = "Host(`openbooks.${vars.traefik.domain}`)";
         tls = true;
         service = "openbooks";
         entrypoints = "websecure";
@@ -33,7 +32,7 @@ in
         priority = 10;
       };
       openbooks-auth = {
-        rule = "Host(`openbooks.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`openbooks.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

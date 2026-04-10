@@ -1,8 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port = 9000;
+  vars = import ../vars.nix;
 in
 {
   services.authentik = {
@@ -35,10 +34,10 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.authentik.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.authentik.port}";
     }];
     routers.authentik = {
-      rule = "Host(`authentik.${traefik-vars.domain}`)";
+      rule = "Host(`authentik.${vars.traefik.domain}`)";
       tls = true;
       service = "authentik";
       entrypoints = "websecure";

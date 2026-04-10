@@ -1,13 +1,12 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port = 3001;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers.aurral = {
     image = "ghcr.io/lklynet/aurral:latest";
-    ports = [ "127.0.0.1:${toString port}:${toString port}" ];
+    ports = [ "127.0.0.1:${toString vars.aurral.port}:${toString vars.aurral.port}" ];
     volumes = [
       "/data/downloads/lidarr:/downloads"
       "/var/lib/aurral:/app/backend/data"
@@ -26,11 +25,11 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.aurral.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.aurral.port}";
     }];
     routers = {
       aurral = {
-        rule = "Host(`aurral.${traefik-vars.domain}`)";
+        rule = "Host(`aurral.${vars.traefik.domain}`)";
         tls = true;
         service = "aurral";
         entrypoints = "websecure";
@@ -38,7 +37,7 @@ in
         priority = 10;
       };
       aurral-auth = {
-        rule = "Host(`aurral.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`aurral.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

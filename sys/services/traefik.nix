@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.traefik = {
@@ -39,13 +39,13 @@ in
         };
       };
       certificatesResolvers = {
-        "${traefik-vars.dns_provider}" = {
+        "${vars.traefik.dns_provider}" = {
           acme = {
             email = "ard.rasp01@gmail.com";
             storage = "${config.services.traefik.dataDir}/acme.json";
             caserver = "https://acme-v02.api.letsencrypt.org/directory";
             dnsChallenge = {
-              provider = "${traefik-vars.dns_provider}";
+              provider = "${vars.traefik.dns_provider}";
               resolvers = [
                 "1.1.1.1:53"
                 "8.8.8.8:53"
@@ -68,23 +68,23 @@ in
         };
         routers = {
           traefik = {
-            rule = "Host(`traefik.${traefik-vars.domain}`)";
+            rule = "Host(`traefik.${vars.traefik.domain}`)";
             service = "api@internal";
             entrypoints = [ "websecure" ];
             middlewares = [ "traefik-authentik-auth" ];
             priority = 10;
             tls = {
-              certResolver = "${traefik-vars.dns_provider}";
+              certResolver = "${vars.traefik.dns_provider}";
               domains = [
                 {
-                  main = "${traefik-vars.domain}";
-                  sans = "*.${traefik-vars.domain}";
+                  main = "${vars.traefik.domain}";
+                  sans = "*.${vars.traefik.domain}";
                 }
               ];
             };
           };
           traefik-auth = {
-            rule = "Host(`traefik.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+            rule = "Host(`traefik.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
             tls = true;
             service = "authentik-proxy";
             entrypoints = [ "websecure" ];

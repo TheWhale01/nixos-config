@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  traefik-vars = (import ../../vars.nix).traefik;
+  vars = import ../../vars.nix;
 in
 {
   services.grafana = {
@@ -12,7 +12,7 @@ in
         http_port = 3000;
         enforce_domain = true;
         enable_gzip = true;
-        domain = "grafana.${traefik-vars.domain}";
+        domain = "grafana.${vars.traefik.domain}";
         root_url = "https://${config.services.grafana.settings.server.domain}";
       };
       analytics.reporting_enabled = false;
@@ -42,7 +42,7 @@ in
       url = "http://${config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
     }];
     routers.grafana = {
-      rule = "Host(`grafana.${traefik-vars.domain}`)";
+      rule = "Host(`grafana.${vars.traefik.domain}`)";
       tls = true;
       service = "grafana";
       entrypoints = "websecure";

@@ -1,8 +1,7 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
-  port =3002;
+  vars = import ../vars.nix;
 in
 {
   virtualisation.oci-containers.containers = {
@@ -29,7 +28,7 @@ in
       environment = {
         HOME = "/config";
         FLOOD_OPTION_auth = "none";
-	FLOOD_OPTION_trurl = "http://transmission:9091/transmission/rpc";
+	FLOOD_OPTION_trurl = "http://transmission:${toString vars.transmission.port}/transmission/rpc";
       };
       environmentFiles = [
         config.age.secrets.transmission.path
@@ -43,11 +42,11 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.transmission.loadBalancer.servers = [{
-      url = "http://127.0.0.1:${toString port}";
+      url = "http://127.0.0.1:${toString vars.transmission.flood.port}";
     }];
     routers = {
       transmission = {
-        rule = "Host(`transmission.${traefik-vars.domain}`)";
+        rule = "Host(`transmission.${vars.traefik.domain}`)";
         tls = true;
         service = "transmission";
         entrypoints = "websecure";
@@ -55,7 +54,7 @@ in
         priority = 10;
       };
       transmission-auth = {
-        rule = "Host(`transmission.${traefik-vars.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
+        rule = "Host(`transmission.${vars.traefik.domain}`) && PathPrefix(`/outpost.goauthentik.io/`)";
         tls = true;
         service = "authentik-proxy";
         entrypoints = "websecure";

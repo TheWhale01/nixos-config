@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  traefik-vars = (import ../vars.nix).traefik;
+  vars = import ../vars.nix;
 in
 {
   services.vaultwarden = {
@@ -20,7 +20,7 @@ in
       }
     ];
     routers.vaultwarden = {
-      rule = "Host(`vaultwarden.${traefik-vars.domain}`)";
+      rule = "Host(`vaultwarden.${vars.traefik.domain}`)";
       tls = true;
       service = "vaultwarden";
       entrypoints = "websecure";
