@@ -10,5 +10,7 @@
     ./keyring.nix
     ./fprintd.nix
     ./power-profiles.nix
+    ./ollama.nix
+    ./flatpak.nix
   ];
 }

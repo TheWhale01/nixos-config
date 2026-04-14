@@ -2,6 +2,8 @@
 
 {
 	imports = [
+	  inputs.modules.nixosModules.homeManager
+		inputs.nix-flatpak.homeManagerModules.nix-flatpak
 		./hypr/hypridle.nix
 		./hypr/hyprlock
 		./hypr/hyprpaper
@@ -18,6 +20,6 @@
 		./direnv.nix
 		./zen.nix
 		./nextcloud.nix
-		inputs.modules.nixosModules.homeManager
+		./flatpak.nix
 	];
 }

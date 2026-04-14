@@ -56,7 +56,7 @@
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
-	networking.firewall.enable = lib.mkDefault false;
+	networking.firewall.enable = true;
 
 	time.timeZone = "Europe/Paris";
 

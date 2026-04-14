@@ -37,9 +37,22 @@
       url = "github:otaleghani/kiln";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 	};
 
-	outputs = { nixpkgs, nixos-hardware, home-manager, disko, stylix, jovian, zen-browser, modules, kiln, ... }@inputs:
+	outputs = {
+	  nixpkgs,
+		nixos-hardware,
+		home-manager,
+		disko,
+		stylix,
+		jovian,
+		modules,
+		nix-flatpak,
+		zen-browser,
+		kiln,
+		...
+	}@inputs:
 	let
 		system = "x86_64-linux";
 		lib = nixpkgs.lib;
@@ -72,6 +85,7 @@
 					nixos-hardware.nixosModules.framework-amd-ai-300-series
 					jovian.nixosModules.default
 					modules.nixosModules.system
+					nix-flatpak.nixosModules.nix-flatpak
 				];
 			};
 		};

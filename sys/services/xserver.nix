@@ -5,5 +5,7 @@
     enable = true;
     videoDrivers = [ "amdgpu" ];
   };
-  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm = {
+    enable = true;
+  };
 }

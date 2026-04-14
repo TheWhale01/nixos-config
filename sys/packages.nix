@@ -8,7 +8,6 @@
     nil
     ruff
     basedpyright
-    fastfetch
     ripgrep
     nerd-fonts.caskaydia-cove
     ghostty
@@ -43,7 +42,6 @@
     tor-browser
     nvtopPackages.full
     proton-vpn
-    pulseaudio
     irssi
     usbutils
     mangohud
@@ -86,5 +84,10 @@
     audacity
     seahorse
     bruno
+    opencode
+    opencode-desktop
+    rustup
+    clang
+    nodejs
   ];
 }
