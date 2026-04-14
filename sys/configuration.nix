@@ -49,6 +49,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  hardware.nvidia-container-toolkit.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -102,14 +103,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEBVW6wKpMU7m35M8k6heZDmDGO1IYWA7r6iaGrlTldB hugo@L-5CD4024FCN"
     ];
   };
-
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    autoPrune.enable = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  virtualisation.oci-containers.backend = "podman";
 
   environment.sessionVariables = rec {
     TERM = "xterm-256color";

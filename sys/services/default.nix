@@ -21,6 +21,5 @@
     ./authentik.nix
     ./matrix.nix
     ./monitoring
-    ./gnome-keyring.nix
   ];
 }

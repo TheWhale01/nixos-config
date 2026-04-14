@@ -40,11 +40,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1774079362,
-        "narHash": "sha256-HkoEWTxU5gNigcnhIa3GXukHqC5xGmgVaLICGUKlpdo=",
+        "lastModified": 1776085803,
+        "narHash": "sha256-JvvWVbXJYSY8qOReMbAOD4lxcN2cjKV6lg/jLz8CEuY=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "1f279763d8b4a9138c01f1021f53e09bc2c54eb9",
+        "rev": "4370b561c8bafb59773ce3a518506bcf1161dbdb",
         "type": "github"
       },
       "original": {
@@ -72,16 +72,16 @@
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1772567399,
-        "narHash": "sha256-0Vpf1hj9C8r+rhrCgwoNazpQ+mwgjdjDhuoKCxYQFWw=",
+        "lastModified": 1775573258,
+        "narHash": "sha256-Xq7JGI/8ppIydIuWd9KRJKUrh7UpeniwvZ4NAtXbYJ4=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "0dccbd4193c45c581e9fb7cd89df0c1487510f1f",
+        "rev": "5249546862986202b901c2afd860992ec48c6ef6",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2026.2.1",
+        "ref": "version/2026.2.2",
         "repo": "authentik",
         "type": "github"
       }
@@ -94,14 +94,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1774193170,
-        "narHash": "sha256-97LsRceEdRpGK/cs55PiCPve4h09VzM5Su5KCLAFlu8=",
-        "path": "/home/hades/code/blog-builder",
-        "type": "path"
+        "lastModified": 1774193165,
+        "narHash": "sha256-4q5/D1LIKeNd1YbjDNmCMYv7jrBtRq8FQMgehOzowV8=",
+        "owner": "TheWhale01",
+        "repo": "blog-builder",
+        "rev": "e50a0878ddb3a5580c4a962575d8d626d0a8c2a2",
+        "type": "github"
       },
       "original": {
-        "path": "/home/hades/code/blog-builder",
-        "type": "path"
+        "owner": "TheWhale01",
+        "repo": "blog-builder",
+        "type": "github"
       }
     },
     "cleanerr": {
@@ -380,11 +383,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1775674720,
-        "narHash": "sha256-amXGOT3OlkWVVSzl9sfvqDewz5Zy4tzSzP/C6uYw42c=",
+        "lastModified": 1776155670,
+        "narHash": "sha256-g8Wc6vHPyueo3irXFdySrvxkOLoY8dhPyOJKVN5g9Gs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "eeb1f6bee781648e87eebc661ba7c6fa89e34cf9",
+        "rev": "80367ce049178be1683fd17a5a88f2762510d8fc",
         "type": "github"
       },
       "original": {
