@@ -6,7 +6,6 @@
     ./lidarr.nix
     ./transmission.nix
     ./protonvpn.nix
-    ./byparr.nix
     ./aurral.nix
     ./nextcloud.nix
     ./maintainerr.nix
@@ -52,9 +51,10 @@
       Type = "oneshot";
       ExecStart = lib.getExe (pkgs.writeShellScriptBin "update-containers" ''
         images=$(${pkgs.podman}/bin/podman ps -a --format="{{.Image}}" | sort -u)
-	for image in $images; do
-	  ${pkgs.podman}/bin/podman pull "$image"
-	done
+       	for image in $images; do
+          ${pkgs.podman}/bin/podman pull "$image"
+       	done
+       	${pkgs.podman}/bin/podman restart --all
       '');
     };
   };

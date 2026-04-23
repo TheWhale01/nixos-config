@@ -24,6 +24,12 @@
         owner = "grafana";
         mode = "0400";
       };
+      badgerr = {
+        file = ../secrets/badgerr.age;
+	owner = "${config.services.badgerr.user}";
+	group = "${config.services.badgerr.group}";
+	mode = "0400";
+      };
       homepage = {
         file = ../secrets/homepage.age;
       };

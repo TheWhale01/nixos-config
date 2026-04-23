@@ -28,7 +28,7 @@ in
       environment = {
         HOME = "/config";
         FLOOD_OPTION_auth = "none";
-	FLOOD_OPTION_trurl = "http://transmission:${toString vars.transmission.port}/transmission/rpc";
+        FLOOD_OPTION_trurl = "http://transmission:${toString vars.transmission.port}/transmission/rpc";
       };
       environmentFiles = [
         config.age.secrets.transmission.path
@@ -75,8 +75,8 @@ in
     bindsTo = [ "podman-proton.service" ];
   };
   systemd.services."podman-flood" = {
-    after = [ "podman-proton.service" ];
-    requires = [ "podman-proton.service" ];
-    bindsTo = [ "podman-proton.service" ];
+    after = [ "podman-transmission.service" ];
+    requires = [ "podman-transmission.service" ];
+    bindsTo = [ "podman-transmission.service" ];
   };
 }

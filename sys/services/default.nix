@@ -21,5 +21,6 @@
     ./authentik.nix
     ./matrix.nix
     ./monitoring
+    ./badgerr.nix
   ];
 }

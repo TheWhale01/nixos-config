@@ -31,6 +31,10 @@
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    badgerr = {
+      url = "github:TheWhale01/badgerr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -43,6 +47,7 @@
       cleanerr,
       authentik,
       modules,
+      badgerr,
       ...
     }@inputs:
     let
@@ -75,6 +80,7 @@
             cleanerr.nixosModules.default
             authentik.nixosModules.default
             modules.nixosModules.system
+            badgerr.nixosModules.default
           ];
         };
       };
