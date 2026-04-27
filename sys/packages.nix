@@ -27,5 +27,6 @@
     irssi
     openssl
     agenix-cli
+    bitwarden-cli
   ];
 }

@@ -25,23 +25,22 @@ in
       };
     };
   };
-  users.users.mas = {
+  users.users.${vars.mas.user} = {
     isSystemUser = true;
-    group = "mas";
+    group = "${vars.mas.group}";
     home = "/var/lib/mas";
     createHome = true;
   };
-  users.groups.mas = {};
+  users.groups.${vars.mas.group} = {};
   systemd.services.mas = {
     description = "Matrix Authentication Service";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "postgresql.service" ];
     requires = [ "postgresql.service" ];
-
     serviceConfig = {
       Type = "simple";
-      User = "mas";
-      Group = "mas";
+      User = "${vars.mas.user}";
+      Group = "${vars.mas.group}";
       WorkingDirectory = "${config.users.users.mas.home}";
       ExecStart = "${pkgs.matrix-authentication-service}/bin/mas-cli server --config ${config.age.secrets.mas.path}";
       Restart = "on-failure";
@@ -66,9 +65,12 @@ in
         x_forwarded = true;
         resources = [{
           names = [ "client" "federation" ];
-          compress = true;
+          compress = false;
         }];
       }];
+      app_service_config_files = [
+        config.age.secrets.matrix-appservice.path
+      ];
       extra_well_known_client_content = {
         "org.matrix.msc4143.rtc_foci" = [{
           type = "livekit";
@@ -79,7 +81,7 @@ in
         name = "psycopg2";
         allow_unsafe_locale = true;
         args = {
-          user = "matrix-synapse";
+          user = "${vars.matrix.user}";
           database = "matrix-synapse";
           host = "/run/postgresql";
         };

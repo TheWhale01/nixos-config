@@ -41,5 +41,11 @@
   };
   matrix = {
     port = 8008;
+    user = "matrix-synapse";
+    group = "matrix-synapse";
+  };
+  mas = {
+    user = "mas";
+    group = "mas";
   };
 }

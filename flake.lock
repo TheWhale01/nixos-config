@@ -96,11 +96,11 @@
         "uv2nix": "uv2nix_3"
       },
       "locked": {
-        "lastModified": 1776608498,
-        "narHash": "sha256-MwZT68cTo79o/IV0hP7HHumAwvPIMxbMzrNhnOy1kJQ=",
+        "lastModified": 1776788946,
+        "narHash": "sha256-Rg1XaC4+HEdMyZ48Bktwhl71Nr+j+N9S2HrQFG6HKCE=",
         "owner": "TheWhale01",
         "repo": "badgerr",
-        "rev": "134e69726be098ae40329f9a962d3d06dd45824a",
+        "rev": "9d5771e47674aa4ca35fecd9cbf7411c4b071d09",
         "type": "github"
       },
       "original": {
@@ -474,11 +474,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1776619351,
-        "narHash": "sha256-CPK4ZSsQQTBJeikjcV+qh7xTkpnGCdo5QoUPbx+3yNs=",
+        "lastModified": 1777229419,
+        "narHash": "sha256-8BfeDY5f2HGCjFcTtsy9J0CznX7CqFZbgor8AMTZQeg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f753191cd56518cadd2d5a02e82736beb716323d",
+        "rev": "6fc55f8474f537444546369d45d98414871df029",
         "type": "github"
       },
       "original": {

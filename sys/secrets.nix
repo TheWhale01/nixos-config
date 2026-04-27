@@ -1,22 +1,33 @@
 { config, ... }:
 
+let
+  vars = import ./vars.nix;
+in
 {
   age = {
     secrets = {
+      matrix-appservice = {
+        file = ../secrets/matrix-appservice.age;
+        owner = "${vars.matrix.user}";
+        group = "${vars.matrix.group}";
+        mode = "0400";
+      };
+      matrix-alertmanager-webhook.file = ../secrets/matrix-alertmanager-webhook.age;
+      erebot.file = ../secrets/erebot.age;
       livekit.file = ../secrets/livekit.age;
       aurral.file = ../secrets/aurral.age;
       spotiflac.file = ../secrets/spotiflac.age;
       nextcloud.file = ../secrets/nextcloud.age;
       mas = {
         file = ../secrets/mas.age;
-        owner = "mas";
-        group = "mas";
+        owner = "${vars.mas.user}";
+        group = "${vars.mas.group}";
         mode = "0400";
       };
       matrix = {
         file = ../secrets/matrix.age;
-        owner = "matrix-synapse";
-        group = "matrix-synapse";
+        owner = "${vars.matrix.user}";
+        group = "${vars.matrix.group}";
         mode = "0400";
       };
       grafana = {
