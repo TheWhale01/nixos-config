@@ -17,6 +17,9 @@ in
       "${toString vars.spotiflac.port}:6890" # SPOTIFLAC
     ];
     environment = {
+      DOT = "off";
+      DNS_ADDRESS = "1.1.1.1";
+      WIREGUARD_MTU = "1360";
       VPN_PORT_FORWARDING_UP_COMMAND = ''
         /bin/sh -c 'command -v transmission-remote >/dev/null 2>&1 || (apk update && apk add transmission-remote); transmission-remote localhost:9091 -n "$USER:$PASS" -p {{PORT}}'
       '';

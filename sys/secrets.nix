@@ -6,6 +6,12 @@ in
 {
   age = {
     secrets = {
+      immich = {
+        file = ../secrets/immich.age;
+        owner = "${config.services.immich.user}";
+        group = "${config.services.immich.group}";
+        mode = "0400";
+      };
       matrix-appservice = {
         file = ../secrets/matrix-appservice.age;
         owner = "${vars.matrix.user}";
