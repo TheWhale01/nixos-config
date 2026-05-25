@@ -3,6 +3,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     settings = {
       # VARIABLES
       "$&"="override";
@@ -85,7 +86,7 @@
         "$mainMod, W, togglefloating,"
         "$mainMod, A, exec, $menu"
         "$mainMod, P, pseudo, # dwindle"
-        "$mainMod, J, togglesplit, # dwindle"
+        "$mainMod, J, layoutmsg, togglesplit # dwindle"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, B, exec, $browser"
         "$mainMod, C, exec, $code-editor"

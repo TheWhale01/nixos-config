@@ -25,10 +25,10 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-		eden-emulator = {
-      url = "path:/home/poseidon/code/eden";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+# 		eden-emulator = {
+#       url = "path:/home/poseidon/code/eden";
+#       inputs.nixpkgs.follows = "nixpkgs";
+#     };
     modules = {
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -81,5 +81,5 @@
 
 	system.autoUpgrade.enable = true;
 	system.autoUpgrade.allowReboot = true;
-	system.stateVersion = "25.05";
+	system.stateVersion = "26.05";
 }
