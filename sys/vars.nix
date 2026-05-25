@@ -48,4 +48,10 @@
     user = "mas";
     group = "mas";
   };
+  actualbudget = {
+    port = 5006;
+  };
+  enableactual = {
+    port = 8003;
+  };
 }

@@ -9,6 +9,7 @@
     ./aurral.nix
     ./nextcloud.nix
     ./maintainerr.nix
+    ./actualbudget.nix
   ];
 
   virtualisation.containers = {
@@ -39,14 +40,8 @@
     fi
   '';
 
-  systemd.timers.update-containers = {
-    timerConfig = {
-      Unit = "update-containers.service";
-      OnCalendar = "Mon 02:00";
-    };
-    wantedBy = [ "timers.target" ];
-  };
   systemd.services.update-containers = {
+    startAt = "daily";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = lib.getExe (pkgs.writeShellScriptBin "update-containers" ''
@@ -54,7 +49,7 @@
        	for image in $images; do
           ${pkgs.podman}/bin/podman pull "$image"
        	done
-       	${pkgs.podman}/bin/podman restart --all
+        systemctl restart 'podman-*.service'
       '');
     };
   };

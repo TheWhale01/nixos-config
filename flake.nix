@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     authentik = {
-      url = "github:nix-community/authentik-nix";
+      url = "github:nix-community/authentik-nix?ref=version/2026.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     modules = {

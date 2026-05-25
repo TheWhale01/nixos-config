@@ -29,4 +29,10 @@ in
 			};
 		};
 	};
+	systemd.services.badgerr = {
+	  after = [ "jellyfin.service" ];
+    requires = [ "jellyfin.service" ];
+    bindsTo = [ "jellyfin.service" ];
+    partOf = [ "jellyfin.service" ];
+	};
 }

@@ -73,10 +73,12 @@ in
     after = [ "podman-proton.service" ];
     requires = [ "podman-proton.service" ];
     bindsTo = [ "podman-proton.service" ];
+    partOf = [ "podman-proton.service" ];
   };
   systemd.services."podman-flood" = {
     after = [ "podman-transmission.service" ];
     requires = [ "podman-transmission.service" ];
     bindsTo = [ "podman-transmission.service" ];
+    partOf = [ "podman-transmission.service" ];
   };
 }

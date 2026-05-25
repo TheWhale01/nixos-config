@@ -12,6 +12,7 @@ in
     group = "media";
     ignoredDirectories = [
       "readarr"
+      "to-keep"
     ];
   };
 }

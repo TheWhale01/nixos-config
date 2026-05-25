@@ -13,14 +13,14 @@ in
         mode = "0400";
       };
       matrix-appservice = {
-        file = ../secrets/matrix-appservice.age;
+        file = ../secrets/matrix/appservice.age;
         owner = "${vars.matrix.user}";
         group = "${vars.matrix.group}";
         mode = "0400";
       };
-      matrix-alertmanager-webhook.file = ../secrets/matrix-alertmanager-webhook.age;
-      erebot.file = ../secrets/erebot.age;
-      livekit.file = ../secrets/livekit.age;
+      matrix-alertmanager-webhook.file = ../secrets/matrix/alertmanager-webhook.age;
+      erebot.file = ../secrets/matrix/erebot.age;
+      livekit.file = ../secrets/matrix/livekit.age;
       aurral.file = ../secrets/aurral.age;
       spotiflac.file = ../secrets/spotiflac.age;
       nextcloud.file = ../secrets/nextcloud.age;
@@ -31,7 +31,7 @@ in
         mode = "0400";
       };
       matrix = {
-        file = ../secrets/matrix.age;
+        file = ../secrets/matrix/matrix.age;
         owner = "${vars.matrix.user}";
         group = "${vars.matrix.group}";
         mode = "0400";
@@ -43,9 +43,9 @@ in
       };
       badgerr = {
         file = ../secrets/badgerr.age;
-	owner = "${config.services.badgerr.user}";
-	group = "${config.services.badgerr.group}";
-	mode = "0400";
+       	owner = "${config.services.badgerr.user}";
+       	group = "${config.services.badgerr.group}";
+       	mode = "0400";
       };
       homepage = {
         file = ../secrets/homepage.age;
