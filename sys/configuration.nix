@@ -10,9 +10,12 @@
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
   boot.kernelModules = [ "r8712u" ];
+  boot.kernelParams = [ "ipv6.disable=1" ];
 
   networking.hostName = "strategos";
+  networking.enableIPv6 = false;
   networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
 
   time.timeZone = "Europe/Paris";
 
@@ -30,16 +33,18 @@
         "nix-command"
         "flakes"
       ];
+    trusted-users = [ "root" "athena" ];
   };
 
   users.users.athena = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0yVwbAbZyN1X7fP3wgElyQcSH8IU1D1frADHXY8Dvc poseidon@pontos"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9 hades@erebos"
+    ];
   };
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9 hades@erebos"
-  ];
 
   programs.zsh.enable = true;
 
