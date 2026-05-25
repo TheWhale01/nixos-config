@@ -25,10 +25,6 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-# 		eden-emulator = {
-#       url = "path:/home/poseidon/code/eden";
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
     modules = {
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,8 +34,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    hyprconf = {
+      # url = "github:TheWhale01/hyprconf";
+      url = "path:/home/poseidon/code/hyprconf";
+      flake = false;
+    };
 	};
-
 	outputs = {
 	  nixpkgs,
 		nixos-hardware,
@@ -49,8 +49,6 @@
 		jovian,
 		modules,
 		nix-flatpak,
-		zen-browser,
-		kiln,
 		...
 	}@inputs:
 	let
@@ -77,11 +75,7 @@
 					}
 					stylix.nixosModules.stylix
 					disko.nixosModules.disko
-					nixos-hardware.nixosModules.common-gpu-amd
-					nixos-hardware.nixosModules.common-cpu-amd
 					nixos-hardware.nixosModules.common-hidpi
-					nixos-hardware.nixosModules.common-pc-laptop
-					nixos-hardware.nixosModules.common-pc-ssd
 					nixos-hardware.nixosModules.framework-amd-ai-300-series
 					jovian.nixosModules.default
 					modules.nixosModules.system

@@ -66,7 +66,6 @@
     signal-desktop
     jellyfin-media-player
     moonlight-qt
-    # inputs.eden-emulator.packages.${pkgs.system}.default
     neocmakelsp
     bc
     arduino-ide
@@ -89,5 +88,6 @@
     rustup
     clang
     nodejs
+    nextcloud-client
   ];
 }

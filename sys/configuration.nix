@@ -24,6 +24,10 @@
 		powerOnBoot = true;
 		package = pkgs.bluez;
 		settings = {
+		  General = {
+				Experimental = true;
+				FastConnectable = true;
+			};
 			Policy.AutoEnable = "true";
 		};
 	};
@@ -52,7 +56,7 @@
 	boot.kernelParams = [ "amdgpu.sg_display=0" ];
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-	boot.kernelPackages = pkgs.linuxPackages_latest;
+	boot.kernelPackages = pkgs.linuxPackages_6_12;
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
