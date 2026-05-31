@@ -2,9 +2,10 @@
   description = "whale's NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/release-26.05";
+    nixpkgs-old.url = "github:nixos/nixpkgs/a0991c886dc83e6e9de01d5266e4842985b1850e";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -12,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
-      url = "github:nix-community/disko";
+      url = "github:nix-community/disko/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     blog-builder = {
@@ -24,15 +25,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     authentik = {
-      url = "github:nix-community/authentik-nix?ref=version/2026.2.2";
+      url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     modules = {
-      url = "github:TheWhale01/nixos-modules";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    badgerr = {
-      url = "github:TheWhale01/badgerr";
+      url = "path:/home/hades/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -47,7 +44,6 @@
       cleanerr,
       authentik,
       modules,
-      badgerr,
       ...
     }@inputs:
     let
@@ -75,12 +71,11 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
             agenix.nixosModules.default
-            disko.nixosModules.disko
+	    disko.nixosModules.disko
             blog-builder.nixosModules.default
             cleanerr.nixosModules.default
             authentik.nixosModules.default
             modules.nixosModules.system
-            badgerr.nixosModules.default
           ];
         };
       };

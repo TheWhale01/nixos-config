@@ -4,6 +4,10 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "grafana-secret.age".publicKeys = [
+    erebos
+    hades
+  ];
   "immich.age".publicKeys = [
     erebos
     hades
@@ -17,10 +21,6 @@ in
     hades
   ];
   "erebot.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "badgerr.age".publicKeys = [
     erebos
     hades
   ];

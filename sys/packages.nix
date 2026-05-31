@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     vim
@@ -26,7 +26,7 @@
     file
     irssi
     openssl
-    agenix-cli
     bitwarden-cli
+    inputs.agenix.packages.${system}.default
   ];
 }

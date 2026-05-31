@@ -16,6 +16,7 @@ in
         root_url = "https://${config.services.grafana.settings.server.domain}";
       };
       analytics.reporting_enabled = false;
+      security.secret_key = config.age.secrets.grafana-secret.path;
     };
     provision = {
       enable = true;

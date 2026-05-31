@@ -21,8 +21,6 @@ in
       matrix-alertmanager-webhook.file = ../secrets/matrix/alertmanager-webhook.age;
       erebot.file = ../secrets/matrix/erebot.age;
       livekit.file = ../secrets/matrix/livekit.age;
-      aurral.file = ../secrets/aurral.age;
-      spotiflac.file = ../secrets/spotiflac.age;
       nextcloud.file = ../secrets/nextcloud.age;
       mas = {
         file = ../secrets/mas.age;
@@ -41,11 +39,10 @@ in
         owner = "grafana";
         mode = "0400";
       };
-      badgerr = {
-        file = ../secrets/badgerr.age;
-       	owner = "${config.services.badgerr.user}";
-       	group = "${config.services.badgerr.group}";
-       	mode = "0400";
+      grafana-secret = {
+	file = ../secrets/grafana-secret.age;
+	owner = "grafana";
+	mode = "0400";
       };
       homepage = {
         file = ../secrets/homepage.age;

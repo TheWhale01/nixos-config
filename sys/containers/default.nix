@@ -6,7 +6,6 @@
     ./lidarr.nix
     ./transmission.nix
     ./protonvpn.nix
-    ./aurral.nix
     ./nextcloud.nix
     ./maintainerr.nix
     ./actualbudget.nix

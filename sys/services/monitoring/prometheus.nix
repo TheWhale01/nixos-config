@@ -80,7 +80,7 @@ in
         listenAddress = "127.0.0.1";
         enabledCollectors = [ "systemd" "tcpstat" ];
         extraFlags = [
-          "--collector.systemd.unit-include=(matrix-synapse|prometheus|grafana|loki|promtail|authentik|bazarr|nginx|homepage-dashboard|immich|jellyseerr|ollama|prowlarr|radarr|sonarr|traefik|vaultwarden|podman-.+).service"
+          "--collector.systemd.unit-include=(matrix-synapse|prometheus|grafana|loki|promtail|authentik|bazarr|nginx|homepage-dashboard|immich|seerr|ollama|prowlarr|radarr|sonarr|traefik|vaultwarden|podman-.+).service"
           "--collector.systemd.unit-exclude=^podman-prune\\.service$"
         ];
       };

@@ -53,6 +53,7 @@
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
   };
+  boot.initrd.systemd.enable = false;
 
   networking = {
     hostName = "erebos";

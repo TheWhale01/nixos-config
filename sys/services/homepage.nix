@@ -6,7 +6,9 @@ in
 {
   services.homepage-dashboard = {
     enable = true;
-    environmentFile = config.age.secrets.homepage.path;
+    environmentFiles = [
+      config.age.secrets.homepage.path
+    ];
     allowedHosts = "${vars.traefik.domain}";
     widgets = [
       {
@@ -48,14 +50,14 @@ in
             };
           }
           {
-            Jellyseerr = {
-              icon = "jellyseerr.png";
-              href = "https://jellyseerr.${vars.traefik.domain}";
+            Seerr = {
+              icon = "seerr.png";
+              href = "https://seerr.${vars.traefik.domain}";
               description = "Open-source media request and discovery manager for Jellyfin, Plex, and Emby";
               widget = {
-                type = "jellyseerr";
-                url = "http://127.0.0.1:${toString config.services.jellyseerr.port}";
-                key = "{{HOMEPAGE_VAR_JELLYSEERR_KEY}}";
+                type = "seerr";
+                url = "http://127.0.0.1:${toString config.services.seerr.port}";
+                key = "{{HOMEPAGE_VAR_SEERR_KEY}}";
               };
             };
           }

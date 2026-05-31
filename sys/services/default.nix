@@ -5,7 +5,7 @@
     ./bazarr.nix
     ./homepage.nix
     ./jellyfin/jellyfin.nix
-    ./jellyseerr.nix
+    ./seerr.nix
     ./nginx.nix
     ./openssh.nix
     ./postgresql.nix
@@ -21,6 +21,5 @@
     ./authentik.nix
     ./matrix.nix
     ./monitoring
-    ./badgerr.nix
   ];
 }
