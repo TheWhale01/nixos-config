@@ -1,5 +1,4 @@
 {
-  lib,
   config,
   pkgs,
   ...
@@ -17,22 +16,19 @@
   programs.zsh.enable = true;
 
   nix = {
+    optimise.automatic = true;
     gc = {
       automatic = true;
       dates = "daily";
     };
     settings = {
+      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
       ];
       download-buffer-size = 500000000; # 500 MB
     };
-  };
-
-  services.xserver = {
-    enable = true;
-    videoDrivers = lib.mkDefault [ "nvidia" ];
   };
 
   hardware.graphics.enable = true;
@@ -44,7 +40,8 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  hardware.nvidia-container-toolkit.enable = true;
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

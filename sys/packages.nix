@@ -27,6 +27,6 @@
     irssi
     openssl
     bitwarden-cli
-    inputs.agenix.packages.${system}.default
+    inputs.agenix.packages.${stdenv.hostPlatform.system}.default
   ];
 }

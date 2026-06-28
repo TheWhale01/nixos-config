@@ -1,17 +1,12 @@
-{ inputs, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   vars = import ../../vars.nix;
-  oldpkgs = import inputs.nixpkgs-old {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
-  };
 in
 {
   users.users.jellyfin.extraGroups = [ "media" ];
   services.jellyfin = {
     enable = true;
-    package = oldpkgs.jellyfin;
   };
   services.traefik.dynamicConfigOptions.http = {
     services.jellyfin.loadBalancer.servers = [{

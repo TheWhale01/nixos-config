@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-26.05";
-    nixpkgs-old.url = "github:nixos/nixpkgs/a0991c886dc83e6e9de01d5266e4842985b1850e";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,14 +49,13 @@
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
-        system = "${system}";
+        system = system;
         config.allowUnfree = true;
       };
     in
     {
       nixosConfigurations = {
         erebos = lib.nixosSystem {
-          inherit system;
           inherit pkgs;
           specialArgs = { inherit inputs; };
           modules = [
@@ -71,7 +69,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
             agenix.nixosModules.default
-	    disko.nixosModules.disko
+            disko.nixosModules.disko
             blog-builder.nixosModules.default
             cleanerr.nixosModules.default
             authentik.nixosModules.default
