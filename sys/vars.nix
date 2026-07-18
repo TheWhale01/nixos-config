@@ -54,4 +54,7 @@
   enableactual = {
     port = 8003;
   };
+  jwp = {
+    port = 3005;
+  };
 }

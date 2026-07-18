@@ -31,18 +31,6 @@
     };
   };
 
-  hardware.graphics.enable = true;
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
   boot.loader.systemd-boot.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.loader.efi.canTouchEfiVariables = true;
