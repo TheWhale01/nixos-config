@@ -57,4 +57,7 @@
   jwp = {
     port = 3005;
   };
+  prometheus = {
+    uid = "G0CojlhIuEI8Z0Rsyl5VGVP2qpzHW9Wy";
+  };
 }

@@ -10,8 +10,8 @@ in
     settings = {
       disable_startup_analytics = true;
       avatars = "initials";
-      listen.ldap = "127.0.0.1:389";
-      listen.ldaps = "127.0.0.1:636";
+      listen.ldap = "127.0.0.1:3389";
+      listen.ldaps = "127.0.0.1:6636";
       listen.metrics = "127.0.0.1:9300";
     };
   };

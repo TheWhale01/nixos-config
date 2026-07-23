@@ -26,6 +26,10 @@ in
       host  all all 10.88.0.0/16    scram-sha-256
       host  all all ::1/128         scram-sha-256
     '';
+    settings = {
+      min_wal_size = "80MB";
+      max_wal_size = "2GB";
+    };
     ensureUsers = users;
     ensureDatabases = databases;
   };

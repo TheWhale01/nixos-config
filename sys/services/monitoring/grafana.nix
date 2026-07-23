@@ -25,6 +25,7 @@ in
           name = "Prometheus";
           type = "prometheus";
           url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+          uid = "${vars.prometheus.uid}";
           isDefault = true;
         }
         {

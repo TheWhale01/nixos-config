@@ -75,6 +75,7 @@
       "render"
       "audio"
       "media"
+      "keys"
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
@@ -87,6 +88,10 @@
   environment.sessionVariables = rec {
     TERM = "xterm-256color";
     EDITOR = "vim";
+  };
+
+  systemd.services.nix-daemon.environment = {
+    TMPDIR = "/data/nix-build";
   };
 
   systemd.tmpfiles.rules = [

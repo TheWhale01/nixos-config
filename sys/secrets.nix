@@ -6,6 +6,18 @@ in
 {
   age = {
     secrets = {
+      jellyfin-terraform = {
+        file = ../secrets/terraform/jellyfin.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
+      grafana-terraform = {
+        file = ../secrets/terraform/grafana.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
       immich = {
         file = ../secrets/immich.age;
         owner = "${config.services.immich.user}";
