@@ -3,15 +3,6 @@
     domain = "thewhale.fr";
     dns_provider = "cloudflare";
   };
-  lidarr = {
-    port = 8686;
-  };
-  aurral = {
-    port = 3001;
-  };
-  spotiflac = {
-    port = 6890;
-  };
   nextcloud = {
     port = 8881;
     office = {
@@ -47,6 +38,8 @@
   mas = {
     user = "mas";
     group = "mas";
+    domain = "matrix-auth";
+    port = 8009;
   };
   actualbudget = {
     port = 5006;

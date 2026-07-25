@@ -3,7 +3,6 @@
 {
   imports = [
     ./openbooks.nix
-    ./lidarr.nix
     ./transmission.nix
     ./protonvpn.nix
     ./nextcloud.nix

@@ -4,6 +4,10 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "terraform/authentik.age".publicKeys = [
+    erebos
+    hades
+  ];
   "terraform/jellyfin.age".publicKeys = [
     erebos
     hades
@@ -20,11 +24,11 @@ in
     erebos
     hades
   ];
-  "matrix-appservice.age".publicKeys = [
+  "matrix/appservice.age".publicKeys = [
     erebos
     hades
   ];
-  "matrix-alertmanager-webhook.age".publicKeys = [
+  "matrix/alertmanager-webhook.age".publicKeys = [
     erebos
     hades
   ];
@@ -33,14 +37,6 @@ in
     hades
   ];
   "livekit.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "aurral.age".publicKeys = [
-    erebos
-    hades
-  ];
-  "spotiflac.age".publicKeys = [
     erebos
     hades
   ];

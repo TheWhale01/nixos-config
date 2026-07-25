@@ -14,7 +14,6 @@ in
     ports = [
       "${toString vars.transmission.flood.port}:3001" # FLOOD
       "${toString vars.transmission.port}:9091" # TRANSMISSION
-      "${toString vars.spotiflac.port}:6890" # SPOTIFLAC
     ];
     environment = {
       DOT = "off";

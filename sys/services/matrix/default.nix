@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  vars = import ../vars.nix;
+  vars = import ../../vars.nix;
+  mas-config = (import ./mas.nix { inherit config; }).config;
+  yaml-format = pkgs.formats.yaml {};
 in
 {
   services.lk-jwt-service = {
@@ -42,7 +44,7 @@ in
       User = "${vars.mas.user}";
       Group = "${vars.mas.group}";
       WorkingDirectory = "${config.users.users.mas.home}";
-      ExecStart = "${pkgs.matrix-authentication-service}/bin/mas-cli server --config ${config.age.secrets.mas.path}";
+      ExecStart = "${pkgs.matrix-authentication-service}/bin/mas-cli server --config ${config.age.secrets.mas.path} --config ${yaml-format.generate "mas-config.yaml" mas-config}";
       Restart = "on-failure";
       RestartSec = "5s";
     };
@@ -99,7 +101,7 @@ in
   services.traefik.dynamicConfigOptions.http = {
     services = {
       matrix.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString vars.matrix.port}"; }];
-      mas.loadBalancer.servers = [{ url = "http://127.0.0.1:8009"; }];
+      mas.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString vars.mas.port}"; }];
       livekit.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.livekit.settings.port}"; }];
       lk-jwt.loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}"; }];
     };

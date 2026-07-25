@@ -6,6 +6,12 @@ in
 {
   age = {
     secrets = {
+      authentik-terraform = {
+        file = ../secrets/terraform/authentik.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
       jellyfin-terraform = {
         file = ../secrets/terraform/jellyfin.age;
         owner = "hades";

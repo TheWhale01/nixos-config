@@ -80,7 +80,7 @@
       };
       terranixState =  terranix.lib.terranixConfiguration {
         inherit system;
-        modules = [ ./sys/terranix ];
+        modules = [ ./sys/terraform ];
         extraArgs = {
           erebos = erebosConfig;
         };

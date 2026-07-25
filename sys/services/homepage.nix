@@ -105,32 +105,6 @@ in
             };
           }
           {
-            Lidarr = {
-              icon = "lidarr.png";
-              description = "Looks and smells like Sonarr but made for music";
-              href = "https://lidarr.${vars.traefik.domain}";
-            };
-          }
-          {
-            Aurral = {
-              icon = "aurral.png";
-              description = "Artist Discovery and Request Manager for Lidarr";
-              href = "https://aurral.${vars.traefik.domain}";
-            };
-          }
-          {
-            Bazarr = {
-              icon = "bazarr.png";
-              description = "Bazarr is a companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements";
-              href = "https://bazarr.${vars.traefik.domain}";
-              widget = {
-                type = "bazarr";
-                url = "http://127.0.0.1:${toString config.services.bazarr.listenPort}";
-                key = "{{HOMEPAGE_VAR_BAZARR}}";
-              };
-            };
-          }
-          {
             Prowlarr = {
               icon = "prowlarr.png";
               description = "indexer manager/proxy built on the popular *arr stack";

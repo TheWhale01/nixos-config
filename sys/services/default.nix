@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./bazarr.nix
     ./homepage.nix
     ./jellyfin/jellyfin.nix
     ./seerr.nix
@@ -19,7 +18,7 @@
     ./immich.nix
     ./cleanerr.nix
     ./authentik.nix
-    ./matrix.nix
+    ./matrix
     ./monitoring
   ];
 }
