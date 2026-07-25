@@ -1,4 +1,7 @@
 {
+  terraform = {
+    parseEnv = path: "\${{ for line in compact(split(\"\\n\", file(\"${path}\"))) : split(\"=\", line)[0] => join(\"=\", slice(split(\"=\", line), 1, length(split(\"=\", line)))) }}";
+  };
   traefik = {
     domain = "thewhale.fr";
     dns_provider = "cloudflare";

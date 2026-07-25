@@ -6,6 +6,12 @@ in
 {
   age = {
     secrets = {
+      traefik-terraform = {
+        file = ../secrets/terraform/traefik.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
       authentik-terraform = {
         file = ../secrets/terraform/authentik.age;
         owner = "hades";
@@ -58,9 +64,9 @@ in
         mode = "0400";
       };
       grafana-secret = {
-	file = ../secrets/grafana-secret.age;
-	owner = "grafana";
-	mode = "0400";
+        file = ../secrets/grafana-secret.age;
+        owner = "grafana";
+        mode = "0400";
       };
       homepage = {
         file = ../secrets/homepage.age;
@@ -79,6 +85,9 @@ in
       };
       transmission = {
         file = ../secrets/transmission.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
       };
       traefikCfDnsToken = {
         file = ../secrets/traefik/cf_dns_token.age;
