@@ -36,7 +36,7 @@ in
     erebos
     hades
   ];
-  "erebot.age".publicKeys = [
+  "matrix/erebot.age".publicKeys = [
     erebos
     hades
   ];
@@ -44,7 +44,7 @@ in
     erebos
     hades
   ];
-  "mas.age".publicKeys = [
+  "matrix/mas.age".publicKeys = [
     erebos
     hades
   ];

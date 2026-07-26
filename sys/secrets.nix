@@ -47,7 +47,7 @@ in
       livekit.file = ../secrets/matrix/livekit.age;
       nextcloud.file = ../secrets/nextcloud.age;
       mas = {
-        file = ../secrets/mas.age;
+        file = ../secrets/matrix/mas.age;
         owner = "${vars.mas.user}";
         group = "${vars.mas.group}";
         mode = "0400";

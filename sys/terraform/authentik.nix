@@ -12,4 +12,11 @@ in
   data.authentik_flow.default_invalidation_flow.slug = "default-provider-invalidation-flow";
   data.authentik_user.whale.username = "whale";
   data.authentik_outpost.proxy_outpost.name = "proxy-outpost";
+  data.authentik_property_mapping_provider_scope.oidc_scopes = {
+    managed_list = [
+      "goauthentik.io/providers/oauth2/scope-openid"
+      "goauthentik.io/providers/oauth2/scope-profile"
+      "goauthentik.io/providers/oauth2/scope-email"
+    ];
+  };
 }
