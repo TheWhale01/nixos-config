@@ -7,9 +7,11 @@
 
   imports = [
     # ./jellyfin.nix
+    ./actualbudget.nix
     ./authentik.nix
     ./enableactual.nix
     ./grafana.nix
+    ./immich.nix
     ./maintainerr.nix
     ./matrix.nix
     ./nextcloud.nix
@@ -19,5 +21,6 @@
     ./sonarr.nix
     ./traefik.nix
     ./transmission.nix
+    ./vaultwarden.nix
   ];
 }

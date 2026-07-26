@@ -4,6 +4,10 @@ let
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
 in
 {
+  "actualbudget.age".publicKeys = [
+    erebos
+    hades
+  ];
   "terraform/traefik.age".publicKeys = [
     erebos
     hades

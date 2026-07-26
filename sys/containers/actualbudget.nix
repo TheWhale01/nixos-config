@@ -10,6 +10,7 @@ in
     volumes = [
       "/var/lib/actualbudget:/data"
     ];
+    environmentFiles = [ config.age.secrets.actualbudget.path ];
   };
   virtualisation.oci-containers.containers.enableactual = {
     image = "2manyvcos/enable-actual";

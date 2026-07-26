@@ -32,7 +32,6 @@ return {
         "refresh_token"
         "client_credentials"
         "password"
-        # "device-code"
       ];
       allowed_redirect_uris = [{
         matching_mode = "strict";

@@ -6,6 +6,12 @@ in
 {
   age = {
     secrets = {
+      actualbudget = {
+        file = ../secrets/actualbudget.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
       traefik-terraform = {
         file = ../secrets/terraform/traefik.age;
         owner = "hades";

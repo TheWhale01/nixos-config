@@ -9,7 +9,11 @@ in
       name = "Provider for Matrix";
       client_id = "cRxigyqzs0RjwvKpoEouTYrIcWo2Z7CUkiwAL6D5";
       client_type = "confidential";
-      property_mappings = "\${data.authentik_property_mapping_provider_scope.oidc_scopes.ids}";
+      property_mappings = [
+        "\${data.authentik_property_mapping_provider_scope.email.id}"
+        "\${data.authentik_property_mapping_provider_scope.profile.id}"
+        "\${data.authentik_property_mapping_provider_scope.openid.id}"
+      ];
       logout_uri = "https://matrix-auth.${vars.traefik.domain}/upstream/backchannel-logout/01KKA1N26ZPXXESCWRZEKV6DG0";
       grant_types = [
         "authorization_code"

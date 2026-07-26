@@ -25,7 +25,11 @@ in
         "authorization_code"
         "refresh_token"
       ];
-      property_mappings = "\${data.authentik_property_mapping_provider_scope.oidc_scopes.ids}";
+      property_mappings = [
+        "\${data.authentik_property_mapping_provider_scope.email.id}"
+        "\${data.authentik_property_mapping_provider_scope.profile.id}"
+        "\${data.authentik_property_mapping_provider_scope.openid.id}"
+      ];
       logout_uri = "https://grafana.${vars.traefik.domain}/logout";
       logout_method = "frontchannel";
       allowed_redirect_uris = [{
