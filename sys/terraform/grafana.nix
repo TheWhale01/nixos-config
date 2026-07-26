@@ -23,6 +23,7 @@ in
       client_type = "confidential";
       grant_types = [
         "authorization_code"
+        "refresh_token"
       ];
       property_mappings = "\${data.authentik_property_mapping_provider_scope.oidc_scopes.ids}";
       logout_uri = "https://grafana.${vars.traefik.domain}/logout";

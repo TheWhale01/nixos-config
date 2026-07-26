@@ -13,6 +13,7 @@ in
       logout_uri = "https://matrix-auth.${vars.traefik.domain}/upstream/backchannel-logout/01KKA1N26ZPXXESCWRZEKV6DG0";
       grant_types = [
         "authorization_code"
+        "refresh_token"
       ];
       allowed_redirect_uris = [{
         matching_mode = "strict";
