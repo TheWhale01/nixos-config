@@ -1,8 +1,5 @@
-{ erebos, ... }:
+{ erebos, vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   locals.transmission_env = vars.terraform.parseEnv "${erebos.config.age.secrets.transmission.path}";
   resource = {

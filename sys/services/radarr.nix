@@ -1,8 +1,5 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   services.radarr = {
     enable = true;

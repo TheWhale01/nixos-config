@@ -1,8 +1,5 @@
-{ config, ... }:
+{ config, vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   virtualisation.oci-containers.containers."openbooks" = {
     image = "evanbuss/openbooks";

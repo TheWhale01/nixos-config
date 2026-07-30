@@ -1,8 +1,5 @@
-{ ... }:
+{ vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   resource = {
     authentik_provider_proxy.prowlarr_provider = {

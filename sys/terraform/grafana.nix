@@ -1,8 +1,5 @@
-{ ... }:
+{ vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   provider.grafana = {
     url = "https://grafana.${vars.traefik.domain}";

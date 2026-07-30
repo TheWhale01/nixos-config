@@ -1,8 +1,7 @@
-{ ... }:
+{ vars, ... }:
 
 let
   filename = "portfolio_anais.pdf";
-  vars = import ../vars.nix;
 in
 {
   services.nginx = {

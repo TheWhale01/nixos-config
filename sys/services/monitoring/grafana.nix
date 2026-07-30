@@ -1,8 +1,5 @@
-{ config, pkgs, ... }:
+{ config, vars, ... }:
 
-let
-  vars = import ../../vars.nix;
-in
 {
   services.grafana = {
     enable = true;

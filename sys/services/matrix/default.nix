@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
 let
-  vars = import ../../vars.nix;
-  mas-config = (import ./mas.nix { inherit config; }).config;
+  mas-config = (import ./mas.nix { inherit config vars; }).config;
   yaml-format = pkgs.formats.yaml {};
 in
 {

@@ -1,8 +1,5 @@
-{ ... }:
+{ vars, ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   provider.authentik = {
     url = "http://127.0.0.1:${toString vars.authentik.port}";

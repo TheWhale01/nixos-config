@@ -1,10 +1,7 @@
-{ ... }:
+{ vars,  ... }:
 
 # !!! FOR NOW THIS PROVIDER IS NOT USEABLE !!!
 # !!! DO NOT USE !!!
-let
-  vars = import ../vars.nix;
-in
 {
   terraform.required_providers.jellyfin ={
     source = "registry.terraform.io/ThePhaseless/jellyfin";

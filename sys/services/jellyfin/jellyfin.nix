@@ -1,8 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  vars = import ../../vars.nix;
-in
 {
   users.users.jellyfin.extraGroups = [ "media" ];
   services.jellyfin = {

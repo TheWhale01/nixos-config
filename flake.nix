@@ -38,64 +38,80 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      agenix,
-      disko,
-      blog-builder,
-      cleanerr,
-      authentik,
-      modules,
-      terranix,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        system = system;
-        config.allowUnfree = true;
+  {
+    nixpkgs,
+    home-manager,
+    agenix,
+    disko,
+    blog-builder,
+    cleanerr,
+    authentik,
+    modules,
+    terranix,
+    ...
+  }@inputs:
+  let
+    system = "x86_64-linux";
+    lib = nixpkgs.lib;
+    pkgs = import nixpkgs {
+      system = system;
+      config.allowUnfree = true;
+    };
+    erebosConfig = { env }: lib.nixosSystem {
+      inherit pkgs;
+      specialArgs = {
+        inherit inputs env;
+        vars = import ./sys/vars.nix { inherit env; };
       };
-      erebosConfig = lib.nixosSystem {
-        inherit pkgs;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./sys/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hades = import ./sys/home.nix;
-            home-manager.backupFileExtension = "bkp";
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-          agenix.nixosModules.default
-          disko.nixosModules.disko
-          blog-builder.nixosModules.default
-          cleanerr.nixosModules.default
-          authentik.nixosModules.default
-          modules.nixosModules.system
-        ];
+      modules = [
+        ./sys/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.hades = import ./sys/home.nix;
+          home-manager.backupFileExtension = "bkp";
+          home-manager.extraSpecialArgs = { inherit inputs env; };
+        }
+        agenix.nixosModules.default
+        disko.nixosModules.disko
+        blog-builder.nixosModules.default
+        cleanerr.nixosModules.default
+        authentik.nixosModules.default
+        modules.nixosModules.system
+      ];
+    };
+    terranixState = { env }: terranix.lib.terranixConfiguration {
+      inherit system;
+      modules = [ ./sys/terraform ];
+      extraArgs = {
+        erebos = erebosConfig { env = env; };
+        vars = import ./sys/vars.nix { inherit env; };
       };
-      terranixState =  terranix.lib.terranixConfiguration {
-        inherit system;
-        modules = [ ./sys/terraform ];
-        extraArgs = {
-          erebos = erebosConfig;
-        };
-      };
-    in
-    {
-      nixosConfigurations.erebos = erebosConfig;
-      apps.${pkgs.stdenv.hostPlatform.system}.apply = {
+    };
+  in
+  {
+    nixosConfigurations.erebos = erebosConfig { env = "prod"; };
+    nixosConfigurations.erebos-stage = erebosConfig { env = "stage"; };
+    apps.${pkgs.stdenv.hostPlatform.system} = {
+      apply = {
         type = "app";
         program = toString (pkgs.writers.writeBash "apply" ''
           if [[ -e config.tf.json ]]; then rm -f config.tf.json; fi
-          cp ${terranixState} config.tf.json
+          cp ${terranixState { env = "prod"; }} config.tf.json
+          ${pkgs.opentofu}/bin/tofu init
+          ${pkgs.opentofu}/bin/tofu apply
+        '');
+      };
+      apply-stage = {
+        type = "app";
+        program = toString (pkgs.writers.writeBash "apply" ''
+          if [[ -e config.tf.json ]]; then rm -f config.tf.json; fi
+          cp ${terranixState { env = "stage"; }} config.tf.json
           ${pkgs.opentofu}/bin/tofu init
           ${pkgs.opentofu}/bin/tofu apply
         '');
       };
     };
+  };
 }

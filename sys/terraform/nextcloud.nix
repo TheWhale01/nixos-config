@@ -1,8 +1,5 @@
-{ ... }:
+{ vars,  ... }:
 
-let
-  vars = import ../vars.nix;
-in
 {
   resource = {
     authentik_property_mapping_provider_scope.nextcloud_profile= {

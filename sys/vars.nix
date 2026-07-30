@@ -1,9 +1,11 @@
+{ env, ... }:
+
 {
   terraform = {
     parseEnv = path: "\${{ for line in compact(split(\"\\n\", file(\"${path}\"))) : split(\"=\", line)[0] => join(\"=\", slice(split(\"=\", line), 1, length(split(\"=\", line)))) }}";
   };
   traefik = {
-    domain = "thewhale.fr";
+    domain = if env == "prod" then "thewhale.fr" else "thewhale-${env}";
     dns_provider = "cloudflare";
   };
   nextcloud = {
