@@ -86,6 +86,15 @@
     ];
   };
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
+
   environment.sessionVariables = rec {
     TERM = "xterm-256color";
     EDITOR = "vim";

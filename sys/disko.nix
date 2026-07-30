@@ -44,6 +44,6 @@
     };
   };
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    		"lvm vgchange -ay"
-    	'';
+		"lvm vgchange -ay"
+ 	'';
 }
