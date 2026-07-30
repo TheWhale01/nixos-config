@@ -14,6 +14,7 @@
   ];
 
   programs.zsh.enable = true;
+  programs.nix-ld.enable = true;
 
   nix = {
     optimise.automatic = true;

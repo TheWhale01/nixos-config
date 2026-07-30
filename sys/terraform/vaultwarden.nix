@@ -5,7 +5,7 @@ let
 in
 {
   resource = {
-    authentik_property_mapping_provider_scope.vaultwarden_profile= {
+    authentik_property_mapping_provider_scope.vaultwarden_profile = {
       name = "Vaultwarden Profile";
       scope_name = "vaultwarden";
       expression = "return {
