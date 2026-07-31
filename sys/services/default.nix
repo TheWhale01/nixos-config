@@ -20,5 +20,6 @@
     ./authentik.nix
     ./matrix
     ./monitoring
+    ./tailscale.nix
   ];
 }

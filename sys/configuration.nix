@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  env,
   ...
 }:
 {
@@ -9,7 +10,7 @@
     ./containers
     ./services
     ./secrets.nix
-    ./disko.nix
+    ./disko/${env}.nix
     ./packages.nix
   ];
 
@@ -103,12 +104,6 @@
   systemd.services.nix-daemon.environment = {
     TMPDIR = "/data/nix-build";
   };
-
-  systemd.tmpfiles.rules = [
-    "d /data/Series     0775	${config.services.sonarr.user}		    ${config.services.sonarr.group}       -"
-    "d /data/Animes     0775 	${config.services.sonarr.user} 		    ${config.services.sonarr.group}       -"
-    "d /data/Movies     0775 	${config.services.radarr.user} 		    ${config.services.radarr.group}       -"
-  ];
 
   system.autoUpgrade = {
     enable = true;
