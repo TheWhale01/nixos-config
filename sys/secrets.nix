@@ -3,6 +3,12 @@
 {
   age = {
     secrets = {
+      hades = {
+        file = ../secrets/hades.age;
+        owner = "hades";
+        group = "users";
+	mode = "0400";
+      };
       actualbudget = {
         file = ../secrets/actualbudget.age;
         owner = "hades";

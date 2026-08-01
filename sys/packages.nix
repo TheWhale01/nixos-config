@@ -28,5 +28,6 @@
     openssl
     bitwarden-cli
     inputs.agenix.packages.${stdenv.hostPlatform.system}.default
+    bridge-utils
   ];
 }
