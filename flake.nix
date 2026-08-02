@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     modules = {
-      url = "path:/home/hades/nixos-modules";
+      url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     terranix = {

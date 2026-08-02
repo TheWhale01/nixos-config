@@ -26,6 +26,7 @@
     "authentik": {
       "inputs": {
         "authentik-src": "authentik-src",
+        "client-ts-generator-src": "client-ts-generator-src",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
@@ -38,11 +39,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1785317240,
-        "narHash": "sha256-KEF/HXXmmP8e/AxFbw8Ptlhb+FVEPoASNcew2xk3TQ0=",
+        "lastModified": 1785518110,
+        "narHash": "sha256-xjYVeyu38koV1OwCYK/RY56EGprNcHAHBLh6/DDNtj0=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "28f0b3bc96b8e0f664aabb540a2ed61a352e8fc7",
+        "rev": "65952f8360754a8aa5507f8c345ed3d256212ccb",
         "type": "github"
       },
       "original": {
@@ -107,6 +108,22 @@
       "original": {
         "owner": "TheWhale01",
         "repo": "cleanerr",
+        "type": "github"
+      }
+    },
+    "client-ts-generator-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784638510,
+        "narHash": "sha256-NfwEWQ/SRjgeUz+F/7uoWAMwk7OqdF2+686krhvJn2M=",
+        "owner": "goauthentik",
+        "repo": "client-ts",
+        "rev": "5850af5867bef6fd4291731797d21b704c7f189d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "goauthentik",
+        "repo": "client-ts",
         "type": "github"
       }
     },
@@ -330,14 +347,17 @@
         "nvim-config": "nvim-config"
       },
       "locked": {
-        "lastModified": 1780485656,
-        "narHash": "sha256-7j+bVNq8NuxGz9B1D3cEcEN9g12aa8vsPpxJbKmlTeM=",
-        "path": "/home/hades/nixos-modules",
-        "type": "path"
+        "lastModified": 1776287258,
+        "narHash": "sha256-Hk6ke1WvD8L2pLqFq3Yvaa3XxhRsFSccA8Fnxymu4Pw=",
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "rev": "fe91a269e11a3ae0fc0f65baa2a5f8ee8329ecdb",
+        "type": "github"
       },
       "original": {
-        "path": "/home/hades/nixos-modules",
-        "type": "path"
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "type": "github"
       }
     },
     "nixpkgs": {
@@ -373,11 +393,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785353924,
-        "narHash": "sha256-7Jsb5wYapo0tsMxQGByGaslaXAOE+0J2kqkV9bq2ULg=",
+        "lastModified": 1785595688,
+        "narHash": "sha256-IEVvmiOgTdoS7tZtt1j1xBpVhRq3tia/deFeoYu+XcE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "612281d2ac1f88e0e5984e5a66381f883d235f2f",
+        "rev": "64c55752ca265afad74dc353a2499dae0e597d17",
         "type": "github"
       },
       "original": {
