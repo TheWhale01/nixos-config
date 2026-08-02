@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ vars, erebos, ... }:
 
 {
   provider.grafana = {
@@ -16,7 +16,7 @@
     };
     authentik_provider_oauth2.grafana_provider = {
       name = "Provider for Grafana";
-      client_id = "Hi2uiq5SViVynhibTRcaBuMGiqUNAt9sQQxZG8xq";
+      client_id = erebos.config.services.grafana.settings."auth.generic_oauth".client_id;
       client_type = "confidential";
       grant_types = [
         "authorization_code"

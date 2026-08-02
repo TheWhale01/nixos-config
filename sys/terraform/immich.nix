@@ -4,7 +4,7 @@
   resource = {
     authentik_provider_oauth2.immich_provider = {
       name = "Provider for Immich";
-      client_id = erebos.config.services.immich.settings.clientId;
+      client_id = erebos.config.services.immich.settings.oauth.clientId;
       client_type = "confidential";
       property_mappings = [
         "\${data.authentik_property_mapping_provider_scope.email.id}"

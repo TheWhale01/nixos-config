@@ -29,7 +29,7 @@
       order = 0;
     };
     authentik_outpost_provider_attachment.sonarr_attachment = {
-      outpost = "\${data.authentik_outpost.proxy_outpost.id}";
+      outpost = "\${authentik_outpost.proxy_outpost.id}";
       protocol_provider = "\${authentik_provider_proxy.sonarr_provider.id}";
     };
   };

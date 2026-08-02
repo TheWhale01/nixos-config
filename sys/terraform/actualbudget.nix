@@ -1,10 +1,10 @@
-{ vars, ... }:
+{ vars, erebos, ... }:
 
 {
   resource = {
     authentik_provider_oauth2.actualbudget_provider = {
       name = "Provider for Actual Budget";
-      client_id = "AL0ItGV1fDxcVQY2nRXC5xQZBbaTPKzs2LXX7IgJ";
+      client_id = erebos.config.virtualisation.oci-containers.containers.actualbudget.environment.ACTUAL_OPENID_CLIENT_ID;
       client_type = "confidential";
       property_mappings = [
         "\${data.authentik_property_mapping_provider_scope.email.id}"

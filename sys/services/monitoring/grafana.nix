@@ -14,6 +14,23 @@
       };
       analytics.reporting_enabled = false;
       security.secret_key = config.age.secrets.grafana-secret.path;
+      log = {
+        level = "debug";
+      };
+      auth = {
+        signout_redirect_url = "https://authentik.${vars.traefik.domain}/application/o/grafana/end-session/";
+        oauth_auto_login = true;
+      };
+      "auth.generic_oauth" = {
+        enabled = true;
+        name = "authentik";
+        client_id = "Hi2uiq5SViVynhibTRcaBuMGiqUNAt9sQQxZG8xq";
+        scopes = "openid profile email";
+        auth_url = "https://authentik.${vars.traefik.domain}/application/o/authorize/";
+        token_url = "https://authentik.${vars.traefik.domain}/application/o/token/";
+        api_url = "https://authentik.${vars.traefik.domain}/application/o/userinfo/";
+        role_attribute_path = "contains(groups[*], 'grafana-admins') && 'Admin' || contains(groups[*], 'grafana-editors') && 'Editor' || 'Viewer'";
+      };
     };
     provision = {
       enable = true;

@@ -7,6 +7,13 @@
     volumes = [
       "/var/lib/actualbudget:/data"
     ];
+    environment = {
+      ACTUAL_OPENID_DISCOVERY_URL = "https://authentik.${vars.traefik.domain}/application/o/actual-budget/";
+      ACTUAL_OPENID_CLIENT_ID = "AL0ItGV1fDxcVQY2nRXC5xQZBbaTPKzs2LXX7IgJ";
+      ACTUAL_OPENID_SERVER_HOSTNAME = "https://actualbudget.${vars.traefik.domain}";
+      ACTUAL_USER_CREATION_MODE = "login";
+      ACTUAL_OPENID_ENFORCE = "true";
+    };
     environmentFiles = [ config.age.secrets.actualbudget.path ];
   };
   virtualisation.oci-containers.containers.enableactual = {

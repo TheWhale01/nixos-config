@@ -11,9 +11,11 @@
       };
       traefik = {
         file = ../secrets/shared/traefik.age;
-        owner = "${config.services.traefik.group}";
+        owner = "hades";
         group = "${config.services.traefik.group}";
+        mode = "0440";
       };
+      gluetun.file = ../secrets/shared/gluetun.age;
       grafana-secret = {
         file = ../secrets/shared/grafana-secret.age;
         owner = "grafana";
@@ -34,7 +36,6 @@
         group = "users";
         mode = "0400";
       };
-      gluetun.file = ../secrets/${env}/gluetun.age;
       grafana = {
         file = ../secrets/${env}/grafana.age;
         owner = "grafana";

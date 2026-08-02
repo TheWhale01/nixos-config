@@ -17,7 +17,7 @@
       meta_launch_url = "https://openbooks.${vars.traefik.domain}";
     };
     authentik_outpost_provider_attachment.openbooks_attachment = {
-      outpost = "\${data.authentik_outpost.proxy_outpost.id}";
+      outpost = "\${authentik_outpost.proxy_outpost.id}";
       protocol_provider = "\${authentik_provider_proxy.openbooks_provider.id}";
     };
   };
