@@ -12,7 +12,7 @@ in
 {
   "shared/hades.age".publicKeys = shared;
   "shared/traefik.age".publicKeys = shared;
-  "shared/gluetun.age".publicKeys = prod;
+  "shared/gluetun.age".publicKeys = shared;
   "shared/grafana-secret.age".publicKeys = shared;
   "shared/transmission.age".publicKeys = shared;
   "shared/matrix/alertmanager-webhook.age".publicKeys = shared;
@@ -39,7 +39,7 @@ in
   "stage/grafana.age".publicKeys = stage;
   "stage/homepage.age".publicKeys = stage;
   "stage/immich.age".publicKeys = stage;
-  "stage/vaultwarden.age".publicKeys = prod;
+  "stage/vaultwarden.age".publicKeys = stage;
   "stage/nextcloud.age".publicKeys = stage;
   "stage/terraform/authentik.age".publicKeys = stage;
   "stage/terraform/grafana.age".publicKeys = stage;
