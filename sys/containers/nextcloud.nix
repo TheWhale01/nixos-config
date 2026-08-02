@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, vars, env, ... }:
 
 {
   virtualisation.oci-containers.containers.nextcloud = {
@@ -8,6 +8,12 @@
     ];
     ports = [ "${toString vars.nextcloud.port}:80" ];
     environmentFiles = [ config.age.secrets.nextcloud.path ];
+    environment = {
+      NEXTCLOUD_TRUSTED_DOMAINS = if env == "prod" then "erebos" else "erebos-${env}";
+      OVERWRITEHOST = "nextcloud.${vars.traefik.domain}";
+      OVERWRITECLIURL = "nextcloud.${vars.traefik.domain}";
+      OVERWRITEPROTOCOL = "https";
+    };
   };
   virtualisation.oci-containers.containers."nextcloud-office" = {
     image = "collabora/code";

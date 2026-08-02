@@ -1,109 +1,93 @@
-{ config, vars, ... }:
+{ config, vars, env, ... }:
 
 {
   age = {
     secrets = {
       hades = {
-        file = ../secrets/hades.age;
+        file = ../secrets/shared/hades.age;
         owner = "hades";
         group = "users";
-	mode = "0400";
+        mode = "0400";
       };
+      traefik = {
+        file = ../secrets/shared/traefik.age;
+        owner = "${config.services.traefik.group}";
+        group = "${config.services.traefik.group}";
+      };
+      grafana-secret = {
+        file = ../secrets/shared/grafana-secret.age;
+        owner = "grafana";
+        mode = "0400";
+      };
+      transmission = {
+        file = ../secrets/shared/transmission.age;
+        owner = "hades";
+        group = "users";
+        mode = "0400";
+      };
+      matrix-alertmanager-webhook.file = ../secrets/shared/matrix/alertmanager-webhook.age;
+      erebot.file = ../secrets/shared/matrix/erebot.age;
+      livekit.file = ../secrets/shared/matrix/livekit.age;
       actualbudget = {
-        file = ../secrets/actualbudget.age;
+        file = ../secrets/${env}/actualbudget.age;
         owner = "hades";
         group = "users";
         mode = "0400";
       };
-      traefik-terraform = {
-        file = ../secrets/terraform/traefik.age;
-        owner = "hades";
-        group = "users";
+      gluetun.file = ../secrets/${env}/gluetun.age;
+      grafana = {
+        file = ../secrets/${env}/grafana.age;
+        owner = "grafana";
         mode = "0400";
       };
+      homepage.file = ../secrets/${env}/homepage.age;
+      immich = {
+        file = ../secrets/${env}/immich.age;
+        owner = "${config.services.immich.user}";
+        group = "${config.services.immich.group}";
+        mode = "0400";
+      };
+      nextcloud.file = ../secrets/${env}/nextcloud.age;
+      vaultwarden.file = ../secrets/${env}/vaultwarden.age;
       authentik-terraform = {
-        file = ../secrets/terraform/authentik.age;
-        owner = "hades";
-        group = "users";
-        mode = "0400";
-      };
-      jellyfin-terraform = {
-        file = ../secrets/terraform/jellyfin.age;
+        file = ../secrets/${env}/terraform/authentik.age;
         owner = "hades";
         group = "users";
         mode = "0400";
       };
       grafana-terraform = {
-        file = ../secrets/terraform/grafana.age;
+        file = ../secrets/${env}/terraform/grafana.age;
         owner = "hades";
         group = "users";
         mode = "0400";
       };
-      immich = {
-        file = ../secrets/immich.age;
-        owner = "${config.services.immich.user}";
-        group = "${config.services.immich.group}";
+      jellyfin-terraform = {
+        file = ../secrets/${env}/terraform/jellyfin.age;
+        owner = "hades";
+        group = "users";
         mode = "0400";
       };
+      authentik.file = ../secrets/${env}/authentik/authentik.age;
+      authentik-ldap.file = ../secrets/${env}/authentik/ldap.age;
+      authentik-proxy.file = ../secrets/${env}/authentik/proxy.age;
       matrix-appservice = {
-        file = ../secrets/matrix/appservice.age;
+        file = ../secrets/${env}/matrix/appservice.age;
         owner = "${vars.matrix.user}";
         group = "${vars.matrix.group}";
         mode = "0400";
       };
-      matrix-alertmanager-webhook.file = ../secrets/matrix/alertmanager-webhook.age;
-      erebot.file = ../secrets/matrix/erebot.age;
-      livekit.file = ../secrets/matrix/livekit.age;
-      nextcloud.file = ../secrets/nextcloud.age;
       mas = {
-        file = ../secrets/matrix/mas.age;
+        file = ../secrets/${env}/matrix/mas.age;
         owner = "${vars.mas.user}";
         group = "${vars.mas.group}";
         mode = "0400";
       };
       matrix = {
-        file = ../secrets/matrix/matrix.age;
+        file = ../secrets/${env}/matrix/matrix.age;
         owner = "${vars.matrix.user}";
         group = "${vars.matrix.group}";
         mode = "0400";
       };
-      grafana = {
-        file = ../secrets/grafana.age;
-        owner = "grafana";
-        mode = "0400";
-      };
-      grafana-secret = {
-        file = ../secrets/grafana-secret.age;
-        owner = "grafana";
-        mode = "0400";
-      };
-      homepage = {
-        file = ../secrets/homepage.age;
-      };
-      vaultwarden = {
-        file = ../secrets/vaultwarden.age;
-      };
-      authentik-proxy = {
-        file = ../secrets/authentik/proxy.age;
-      };
-      authentik-ldap = {
-        file = ../secrets/authentik/ldap.age;
-      };
-      authentik = {
-        file = ../secrets/authentik/authentik.age;
-      };
-      transmission = {
-        file = ../secrets/transmission.age;
-        owner = "hades";
-        group = "users";
-        mode = "0400";
-      };
-      traefikCfDnsToken = {
-        file = ../secrets/traefik/cf_dns_token.age;
-        owner = "${config.services.traefik.group}";
-        group = "${config.services.traefik.group}";
-      };
-      proton-wg.file = ../secrets/proton-wg.age;
     };
   };
 }

@@ -52,12 +52,6 @@
         }];
       }
       {
-        job_name = "nvidia_gpu";
-        static_configs = [{
-          targets = [ "${config.services.prometheus.exporters.nvidia-gpu.listenAddress}:${toString config.services.prometheus.exporters.nvidia-gpu.port}" ];
-        }];
-      }
-      {
         job_name = "authentik";
         static_configs = [{
           targets = [ "${config.services.authentik.settings.listen.metrics}" ];
@@ -80,10 +74,6 @@
           "--collector.systemd.unit-include=(matrix-synapse|prometheus|grafana|loki|promtail|authentik|nginx|homepage-dashboard|immich|seerr|ollama|prowlarr|radarr|sonarr|traefik|vaultwarden|podman-.+).service"
           "--collector.systemd.unit-exclude=^podman-prune\\.service$"
         ];
-      };
-      nvidia-gpu = {
-        enable = true;
-        listenAddress = "127.0.0.1";
       };
     };
     alertmanager = {

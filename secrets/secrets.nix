@@ -4,150 +4,50 @@ let
   erebos-stage = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINh/imYjgxInWiS5uKlTuabmuG+0VL2HWEfQ43NczK1O";
   hades = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK9FADovUTXSn2694wMAViLnDJRn3TypRSzGHy3MNTo9";
   hades-stage = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM25SgGES1eclegLiVqRCNyhpK+k4GnFQJvw9p3o65Eb";
+
+  prod = [ erebos hades ];
+  stage = [ erebos-stage hades-stage ];
+  shared = [ erebos erebos-stage hades hades-stage ];
 in
 {
-  "hades.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "actualbudget.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "terraform/traefik.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "terraform/authentik.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "terraform/jellyfin.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "terraform/grafana.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "grafana-secret.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "immich.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/appservice.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/alertmanager-webhook.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/erebot.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/livekit.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/mas.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "matrix/matrix.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "grafana.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "homepage.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "vaultwarden.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "authentik/proxy.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "authentik/ldap.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "authentik/authentik.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "proton-wg.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "transmission.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "nextcloud.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
-  "traefik/cf_dns_token.age".publicKeys = [
-    erebos
-    erebos-stage
-    hades
-    hades-stage
-  ];
+  "shared/hades.age".publicKeys = shared;
+  "shared/traefik.age".publicKeys = shared;
+  "shared/grafana-secret.age".publicKeys = shared;
+  "shared/transmission.age".publicKeys = shared;
+  "shared/matrix/alertmanager-webhook.age".publicKeys = shared;
+  "shared/matrix/erebot.age".publicKeys = shared;
+  "shared/matrix/livekit.age".publicKeys = shared;
+
+  "prod/actualbudget.age".publicKeys = prod;
+  "prod/gluetun.age".publicKeys = prod;
+  "prod/grafana.age".publicKeys = prod;
+  "prod/homepage.age".publicKeys = prod;
+  "prod/immich.age".publicKeys = prod;
+  "prod/nextcloud.age".publicKeys = prod;
+  "prod/vaultwarden.age".publicKeys = prod;
+  "prod/terraform/authentik.age".publicKeys = prod;
+  "prod/terraform/grafana.age".publicKeys = prod;
+  "prod/terraform/jellyfin.age".publicKeys = prod;
+  "prod/authentik/authentik.age".publicKeys = prod;
+  "prod/authentik/ldap.age".publicKeys = prod;
+  "prod/authentik/proxy.age".publicKeys = prod;
+  "prod/matrix/appservice.age".publicKeys = prod;
+  "prod/matrix/mas.age".publicKeys = prod;
+  "prod/matrix/matrix.age".publicKeys = prod;
+
+  "stage/actualbudget.age".publicKeys = stage;
+  "stage/gluetun.age".publicKeys = stage;
+  "stage/grafana.age".publicKeys = stage;
+  "stage/homepage.age".publicKeys = stage;
+  "stage/immich.age".publicKeys = stage;
+  "stage/nextcloud.age".publicKeys = stage;
+  "stage/terraform/authentik.age".publicKeys = stage;
+  "stage/terraform/grafana.age".publicKeys = stage;
+  "stage/terraform/jellyfin.age".publicKeys = stage;
+  "stage/authentik/authentik.age".publicKeys = stage;
+  "stage/authentik/ldap.age".publicKeys = stage;
+  "stage/authentik/proxy.age".publicKeys = stage;
+  "stage/matrix/appservice.age".publicKeys = stage;
+  "stage/matrix/mas.age".publicKeys = stage;
+  "stage/matrix/matrix.age".publicKeys = stage;
 }

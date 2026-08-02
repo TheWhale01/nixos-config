@@ -92,6 +92,6 @@
     };
   };
   systemd.services.traefik.serviceConfig = {
-    EnvironmentFile = [ "${config.age.secrets.traefikCfDnsToken.path}" ];
+    EnvironmentFile = [ "${config.age.secrets.traefik.path}" ];
   };
 }

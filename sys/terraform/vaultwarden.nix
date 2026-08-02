@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ vars, erebos, ... }:
 
 {
   resource = {
@@ -12,7 +12,7 @@
     };
     authentik_provider_oauth2.vaultwarden_provider = {
       name = "Provider for Vaultwarden";
-      client_id = "wMiyW19hLA12AFBLR0bMKL16EFDA0pUahm6mDgW3";
+      client_id = erebos.config.services.vaultwarden.config.SSO_CLIENT_ID;
       client_type = "confidential";
       signing_key = "\${data.authentik_certificate_key_pair.default.id}";
       property_mappings = [

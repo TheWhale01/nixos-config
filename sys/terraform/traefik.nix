@@ -1,7 +1,7 @@
 { erebos, vars, ... }:
 
 {
-  locals.traefik_env = vars.terraform.parseEnv "${erebos.config.age.secrets.traefik-terraform.path}";
+  locals.traefik_env = vars.terraform.parseEnv "${erebos.config.age.secrets.traefik.path}";
   resource = {
     authentik_provider_proxy.traefik_provider = {
       name = "Provider for Traefik";

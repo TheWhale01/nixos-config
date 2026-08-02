@@ -4,7 +4,7 @@
   imports = [
     ./openbooks.nix
     ./transmission.nix
-    ./protonvpn.nix
+    ./gluetun.nix
     ./nextcloud.nix
     ./maintainerr.nix
     ./actualbudget.nix
