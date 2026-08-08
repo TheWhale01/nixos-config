@@ -29,6 +29,13 @@
     listenHTTP = "127.0.0.1:9005";
     environmentFile = config.age.secrets.authentik-proxy.path;
   };
+  systemd.services.authentik = {
+    serviceConfig = {
+      EnvironmentFile = [
+        config.age.secrets.authentik-smtp.path
+      ];
+    };
+  };
   systemd.services.authentik-worker = {
     serviceConfig = {
       EnvironmentFile = [
