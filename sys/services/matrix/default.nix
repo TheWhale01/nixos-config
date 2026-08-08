@@ -44,6 +44,13 @@ in
       Group = "${vars.mas.group}";
       WorkingDirectory = "${config.users.users.mas.home}";
       ExecStart = "${pkgs.matrix-authentication-service}/bin/mas-cli server --config ${config.age.secrets.mas.path} --config ${yaml-format.generate "mas-config.yaml" mas-config}";
+      ExecStartPre = pkgs.writeShellScriptBin "generate-mas-rsa-key" ''
+        if [ -f "${config.users.users.${vars.mas.user}.home}/keys/rsa.pem" ]; then
+            echo "RSA Key pair already exists."
+            exit 0
+        fi
+        ssh-keygen -t rsa -b 4096 -f "${config.users.users.${vars.mas.user}.home}/keys/rsa.pem" -N ""
+      '';
       Restart = "on-failure";
       RestartSec = "5s";
     };

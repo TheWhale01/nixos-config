@@ -5,7 +5,7 @@
     maintainerr = {
       image = "ghcr.io/maintainerr/maintainerr:latest";
       volumes = [
-        "/var/lib/maintainerr:/opt/data"
+        "maintainerr:/opt/data"
       ];
       environment = {
         TZ = "Europe/Paris";

@@ -4,9 +4,9 @@
   virtualisation.oci-containers.containers = {
     transmission = {
       image = "lscr.io/linuxserver/transmission:latest";
-      extraOptions = [ "--network=container:proton" ];
+      extraOptions = [ "--network=container:gluetun" ];
       volumes = [
-        "/var/lib/transmission:/config"
+        "transmission:/config"
         "/data:/data"
       ];
       environmentFiles = [ config.age.secrets.transmission.path ];
@@ -31,10 +31,10 @@
         config.age.secrets.transmission.path
       ];
       volumes = [
-        "/var/lib/flood:/config"
+        "flood:/config"
         "/data:/data"
       ];
-      extraOptions = [ "--network=container:proton" ];
+      extraOptions = [ "--network=container:gluetun" ];
     };
   };
   services.traefik.dynamicConfigOptions.http = {
@@ -67,10 +67,10 @@
     };
   };
   systemd.services."podman-transmission" = {
-    after = [ "podman-proton.service" ];
-    requires = [ "podman-proton.service" ];
-    bindsTo = [ "podman-proton.service" ];
-    partOf = [ "podman-proton.service" ];
+    after = [ "podman-gluetun.service" ];
+    requires = [ "podman-gluetun.service" ];
+    bindsTo = [ "podman-gluetun.service" ];
+    partOf = [ "podman-gluetun.service" ];
   };
   systemd.services."podman-flood" = {
     after = [ "podman-transmission.service" ];

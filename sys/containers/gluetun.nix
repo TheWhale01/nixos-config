@@ -33,7 +33,7 @@
       config.age.secrets.transmission.path
     ];
     volumes = [
-      "/var/lib/gluetun:/gluetun"
+      "gluetun:/gluetun"
     ];
   };
 }

@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cleanerr = {
-      url = "github:TheWhale01/cleanerr";
+      url = "github:TheWhale01/cleanerr?ref=test";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     authentik = {

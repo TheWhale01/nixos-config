@@ -39,11 +39,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1785518110,
-        "narHash": "sha256-xjYVeyu38koV1OwCYK/RY56EGprNcHAHBLh6/DDNtj0=",
+        "lastModified": 1785761909,
+        "narHash": "sha256-M8FNG0aca0/JsETvpYSJgwIrgJ4kpgxo9i7SDS0LfHs=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "65952f8360754a8aa5507f8c345ed3d256212ccb",
+        "rev": "db4a267f345338659a290a76e5b28da31e9923df",
         "type": "github"
       },
       "original": {
@@ -98,15 +98,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1776620522,
-        "narHash": "sha256-IeZrWfqVs6v3ThgOzt3vX2bb8GLRCwO9EixH2v1iCOU=",
+        "lastModified": 1785782168,
+        "narHash": "sha256-DlbrA6869GVw3OvR9MnqGcatOb0SuSU42NTEH8bZ4dY=",
         "owner": "TheWhale01",
         "repo": "cleanerr",
-        "rev": "a84fb21734d8899143285557af889026dd315ca6",
+        "rev": "996308da30cc90244304b6dc56b2f775d9bcaaee",
         "type": "github"
       },
       "original": {
         "owner": "TheWhale01",
+        "ref": "test",
         "repo": "cleanerr",
         "type": "github"
       }
@@ -393,11 +394,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785595688,
-        "narHash": "sha256-IEVvmiOgTdoS7tZtt1j1xBpVhRq3tia/deFeoYu+XcE=",
+        "lastModified": 1785781566,
+        "narHash": "sha256-BI6f4sX/ayDia07Vi9V2h6GreppDiMeuWAup+DNUdps=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "64c55752ca265afad74dc353a2499dae0e597d17",
+        "rev": "20ff1134918b280e60cc50900b154f07f55d8236",
         "type": "github"
       },
       "original": {
@@ -581,11 +582,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785147819,
-        "narHash": "sha256-udwe836AZe8BYU+YqVc51QLuOeWKoGEmPIMF0ImUfTQ=",
+        "lastModified": 1785277507,
+        "narHash": "sha256-9Tq3UDX2hD/aveW/HvkBlAmEwJTOlY5HQXJM+L5BGmE=",
         "owner": "pyproject-nix",
         "repo": "uv2nix",
-        "rev": "0983f54345137c2dd528ce2c28cb56c2cbdceb2a",
+        "rev": "5a836d395cbf5fc22670eb98dd4aa4fc4d406977",
         "type": "github"
       },
       "original": {

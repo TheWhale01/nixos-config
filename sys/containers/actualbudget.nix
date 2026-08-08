@@ -5,7 +5,7 @@
     image = "actualbudget/actual-server:latest";
     ports = [ "${toString vars.actualbudget.port}:5006" ];
     volumes = [
-      "/var/lib/actualbudget:/data"
+      "actualbudget:/data"
     ];
     environment = {
       ACTUAL_OPENID_DISCOVERY_URL = "https://authentik.${vars.traefik.domain}/application/o/actual-budget/";

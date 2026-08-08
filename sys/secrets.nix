@@ -69,6 +69,7 @@
         mode = "0400";
       };
       authentik.file = ../secrets/${env}/authentik/authentik.age;
+      authentik-smtp.file = ../secrets/shared/authentik/smtp.age;
       authentik-ldap.file = ../secrets/${env}/authentik/ldap.age;
       authentik-proxy.file = ../secrets/${env}/authentik/proxy.age;
       matrix-appservice = {

@@ -1,4 +1,4 @@
-{ config, vars, env, ... }:
+{ config, pkgs, lib, vars, env, ... }:
 
 {
   virtualisation.oci-containers.containers.nextcloud = {
@@ -14,6 +14,11 @@
       OVERWRITECLIURL = "nextcloud.${vars.traefik.domain}";
       OVERWRITEPROTOCOL = "https";
     };
+  };
+  systemd.services.podman-nextcloud = {
+    preStart = lib.getExe (pkgs.writeShellScriptBin "create-nextcloud-vol" ''
+        mkdir -p /data/nextcloud
+    '');
   };
   virtualisation.oci-containers.containers."nextcloud-office" = {
     image = "collabora/code";

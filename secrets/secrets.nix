@@ -18,6 +18,7 @@ in
   "shared/matrix/alertmanager-webhook.age".publicKeys = shared;
   "shared/matrix/erebot.age".publicKeys = shared;
   "shared/matrix/livekit.age".publicKeys = shared;
+  "shared/authentik/smtp.age".publicKeys = shared;
 
   "prod/actualbudget.age".publicKeys = prod;
   "prod/grafana.age".publicKeys = prod;
