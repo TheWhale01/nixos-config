@@ -3,7 +3,6 @@
 {
   services.immich = {
     enable = true;
-    group = "media";
     host = "0.0.0.0";
     mediaLocation = "/data/Immich";
     settings = {

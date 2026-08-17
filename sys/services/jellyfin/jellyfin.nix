@@ -1,7 +1,6 @@
 { config, pkgs, vars, ... }:
 
 {
-  users.users.jellyfin.extraGroups = [ "media" ];
   services.jellyfin = {
     enable = true;
   };

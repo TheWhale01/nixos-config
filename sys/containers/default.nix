@@ -8,6 +8,7 @@
     ./nextcloud.nix
     ./maintainerr.nix
     ./actualbudget.nix
+    ./satiserver.nix
   ];
 
   virtualisation.containers = {
@@ -28,7 +29,10 @@
       enable = true;
       flags = [ "--all" "--force" "--volumes" ];
     };
-    defaultNetwork.settings.dns_enabled = true;
+    defaultNetwork.settings = {
+      dns_enabled = true;
+      ipv6_enabled = true;
+    };
   };
   virtualisation.oci-containers.backend = "podman";
 

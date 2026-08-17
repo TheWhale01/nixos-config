@@ -3,7 +3,8 @@
 {
   services.radarr = {
     enable = true;
-    group = "media";
+    user = "hades";
+    group = "users";
   };
   systemd.services.radarr.preStart = lib.mkAfter ''
     CONFIG_FILE="${config.services.radarr.dataDir}/config.xml"

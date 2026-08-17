@@ -66,9 +66,6 @@
 
   time.timeZone = "Europe/Paris";
 
-  users.groups.media = {
-    gid = 982;
-  };
   users.users.hades = {
     isNormalUser = true;
     extraGroups = [
@@ -79,7 +76,6 @@
       "uinput"
       "render"
       "audio"
-      "media"
       "keys"
     ];
     shell = pkgs.zsh;

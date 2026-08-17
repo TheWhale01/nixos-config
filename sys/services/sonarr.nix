@@ -3,7 +3,8 @@
 {
   services.sonarr = {
     enable = true;
-    group = "media";
+    user = "hades";
+    group = "users";
   };
   services.traefik.dynamicConfigOptions.http = {
     services.sonarr.loadBalancer.servers = [{

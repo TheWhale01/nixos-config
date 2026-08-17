@@ -1,20 +1,27 @@
 { config, vars, ... }:
 
 {
-  virtualisation.oci-containers.containers."openbooks" = {
-    image = "evanbuss/openbooks";
-    volumes = [ "/data/Books/Books:/books" ];
-    ports = [ "${toString vars.openbooks.port}:80" ];
-    cmd = [
-      "--persist"
-      "--name=openbooks"
+  virtualisation.oci-containers.containers."satiserver" = {
+    image = "wolveix/satisfactory-server:latest";
+    volumes = [ "/var/lib/satiserver:/config" ];
+    ports = [
+      "[::]:7777:7777/tcp"
+      "[::]:7777:7777/udp"
+      "[::]:8888:8888/tcp"
     ];
     environment = {
-      PGID="100";
-      PUID="1000";
+      MAXPLAYERS = "4";
+      PGID = "100";
+      PUID = "1000";
+      STEAMBETA = "false";
     };
-    extraOptions = [ "--name=openbooks" ];
+    extraOptions = [
+      "--memory-reservation=4G"
+      "-m=8G"
+    ];
   };
+  networking.firewall.allowedTCPPorts = [ 7777 8888 ];
+  networking.firewall.allowedUDPPorts = [ 7777 ];
   services.traefik.dynamicConfigOptions.http = {
     services.openbooks.loadBalancer.servers = [{
       url = "http://127.0.0.1:${toString vars.openbooks.port}";

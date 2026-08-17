@@ -6,13 +6,13 @@
       image = "lscr.io/linuxserver/transmission:latest";
       extraOptions = [ "--network=container:gluetun" ];
       volumes = [
-        "transmission:/config"
+        "/var/lib/transmission:/config"
         "/data:/data"
       ];
       environmentFiles = [ config.age.secrets.transmission.path ];
       environment = {
-        PUID = "1000";
-        PGID = "982";
+	PUID = "1000";
+	PGID = "100";
         TZ = "Europe/Paris";
         LOG_LEVEL = "debug";
       };
@@ -31,7 +31,7 @@
         config.age.secrets.transmission.path
       ];
       volumes = [
-        "flood:/config"
+        "/var/lib/flood:/config"
         "/data:/data"
       ];
       extraOptions = [ "--network=container:gluetun" ];
