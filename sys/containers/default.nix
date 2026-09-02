@@ -8,7 +8,6 @@
     ./nextcloud.nix
     ./maintainerr.nix
     ./actualbudget.nix
-    ./satiserver.nix
   ];
 
   virtualisation.containers = {
