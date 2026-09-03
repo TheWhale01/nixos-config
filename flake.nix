@@ -21,10 +21,6 @@
 		  inputs.nixpkgs.follows = "nixpkgs";
 			inputs.home-manager.follows = "home-manager";
 		};
-		jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     modules = {
       url = "github:TheWhale01/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +35,10 @@
       url = "path:/home/poseidon/code/hyprconf";
       flake = false;
     };
+    quickconf = {
+      url = "path:/home/poseidon/code/quickconf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 	};
 	outputs = {
 	  nixpkgs,
@@ -46,9 +46,9 @@
 		home-manager,
 		disko,
 		stylix,
-		jovian,
 		modules,
 		nix-flatpak,
+		quickconf,
 		...
 	}@inputs:
 	let
@@ -57,6 +57,9 @@
 		pkgs = import nixpkgs {
 			system = "${system}";
 			config.allowUnfree = true;
+			config.permittedInsecurePackages = [
+				"electron-39.8.10"
+			];
 		};
 	in {
 		nixosConfigurations = {
@@ -77,9 +80,9 @@
 					disko.nixosModules.disko
 					nixos-hardware.nixosModules.common-hidpi
 					nixos-hardware.nixosModules.framework-amd-ai-300-series
-					jovian.nixosModules.default
 					modules.nixosModules.system
 					nix-flatpak.nixosModules.nix-flatpak
+					quickconf.nixosModules.default
 				];
 			};
 		};

@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 	imports =
@@ -13,7 +9,6 @@
 		./disko.nix
 		./services
 		./programs
-		./jovian.nix
 	];
 
 	hardware.enableAllFirmware = true;
@@ -56,17 +51,19 @@
 	boot.kernelParams = [ "amdgpu.sg_display=0" ];
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-	boot.kernelPackages = pkgs.linuxPackages_6_12;
+	boot.kernelPackages = pkgs.linuxPackages_latest;
 
 	networking.hostName = "pontos";
 	networking.networkmanager.enable = true;
 	networking.firewall.enable = true;
+	networking.firewall.checkReversePath = "loose";
+	networking.enableIPv6 = true;
 
 	time.timeZone = "Europe/Paris";
 
 	users.users.poseidon = {
 		isNormalUser = true;
-		extraGroups = [ "wheel" "libvirtd" "podman" "networkmanager" "video" "render" "dialout" ];
+		extraGroups = [ "wheel" "libvirtd" "podman" "network" "video" "render" "dialout" "networkmanager" ];
 		shell = pkgs.zsh;
 	};
 
@@ -79,9 +76,15 @@
 			TERM="xterm-256color";
 			EDITOR="vim";
 			NIXOS_OZONE_WL = "1";
-			STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
 		};
 	};
+
+	services.udev.extraRules = ''
+  		ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0e8d", ATTR{idProduct}=="0717", RUN+="${pkgs.runtimeShell} -c 'echo 0e8d 0717 > /sys/bus/usb/drivers/btusb/new_id'"
+	'';
+
+	security.polkit.enable = true;
+	security.rtkit.enable = true;
 
 	system.autoUpgrade.enable = true;
 	system.autoUpgrade.allowReboot = true;

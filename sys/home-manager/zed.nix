@@ -10,8 +10,8 @@
       {
         context = "Workspace";
         bindings = {
-          alt-i = "workspace::ToggleBottomDock";
-          ctrl-b = null;
+          "alt-i" = "workspace::ToggleBottomDock";
+          "ctrl-b" = null;
         };
       }
       {
@@ -24,32 +24,33 @@
       }
     ];
     userSettings = {
-      loadDirenv = true;
-      shell = "system";
-      detect_env = {
-        on = {
-          directories = [ ".env" "env" ".venv" "venv" ];
-          activate_script = "default";
-        };
-      };
-      # node = {
-      #   path = lib.getExe pkgs.nodejs;
-      #   npm_path = lib.getExe' pkgs.nodejs "npm";
-      # };
       ssh_connections = [
         {
-          host = "100.98.140.59";
+          host = "thewhale.fr";
           nickname = "erebos";
           username = "hades";
           projects = [
        	    { paths = ["~/nix"]; }
-            { paths = ["~/code/blog-builder"]; }
-            { paths = ["~/code/Lumiere"]; }
-            { paths = ["~/code/translaitor"]; }
-            { paths = ["~/code/jellyfin-plugin-spotify"]; }
+          ];
+        }
+        {
+          host = "100.115.94.1";
+          nickname = "erebos";
+          username = "hades";
+          projects = [
+       	    { paths = ["~/nix"]; }
+          ];
+        }
+        {
+          host = "100.82.205.106";
+          nickname = "erebos-stage";
+          username = "hades";
+          projects = [
+       	    { paths = ["~/nix"]; }
           ];
         }
       ];
+      lsp_document_colors = "background";
       ui_font_size = lib.mkForce 18;
       buffer_font_size = lib.mkForce 18;
       wrap_guides = [ 80 ];
@@ -60,25 +61,13 @@
         diagnostics = false;
       };
       vim_mode = true;
+      use_podman = true;
       relative_line_numbers = "enabled";
       languages = {
         Markdown = {
-          soft_wrap = "preferred_line_length";
+          soft_wrap = "bounded";
           preferred_line_length = 80;
         };
-        CSharp = {
-          language_servers = [ "omnisharp" ];
-        };
-      };
-      lsp = {
-        omnisharp = {
-          binary = {
-            path_lookup = true;
-          };
-        };
-      };
-      file_types = {
-        CSharp = [ "cs" "csproj" ];
       };
       theme = lib.mkForce {
         mode = "dark";
@@ -90,15 +79,8 @@
       "nix"
       "material-icon-theme"
       "catppuccin"
-      "php"
-      "zed-laravel-blade"
-      "vue"
-      "svelte"
       "zed-env"
-      "zed-asm"
-      "zed-make"
       "git_firefly"
-      "ruby"
     ];
   };
 }

@@ -14,5 +14,8 @@
     systemd-user = {
       enableGnomeKeyring = true;
     };
+    sddm = {
+      enableGnomeKeyring = true;
+    };
   };
 }

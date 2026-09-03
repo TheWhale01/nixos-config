@@ -3,14 +3,14 @@
 {
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-rocm;
+    package = pkgs.ollama-vulkan;
   };
   services.searx = {
     enable = true;
     package = pkgs.searxng;
     settings = {
       server = {
-        port = 8080;
+        port = 8082;
         bind_address = "127.0.0.1";
         secret_key = "f7ed3977978c46ade8afa2eb837c95e58f398c74c49f50c57bb9c02be643a50d";
       };

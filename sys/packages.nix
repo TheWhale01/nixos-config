@@ -2,6 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
+    waybar
+    hyprpaper
+    hypridle
+    hyprsunset
+    blueman
     vim
     git
     nixd
@@ -29,12 +34,11 @@
     fastfetch
     spotify
     discord
-    inputs.zen-browser.packages."${system}".default
+    inputs.zen-browser.packages."${pkgs.system}".default
     obsidian
     hyprlock
     filezilla
     lshw
-    vlc
     eog
     unrar
     tmux
@@ -72,22 +76,38 @@
     podman-compose
     feishin
     obs-studio
+    qt6.qtwayland
     (element-desktop.override {
       commandLineArgs = "--password-store=gnome-libsecret";
     })
     protonup-ng
     heroic
     pciutils
-    inputs.kiln.packages.${system}.default
+    inputs.kiln.packages.${pkgs.system}.default
     cinny-desktop
     audacity
     seahorse
     bruno
-    opencode
-    opencode-desktop
     rustup
     clang
     nodejs
     nextcloud-client
+    playerctl
+    wofi
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      accent = "mauve";
+    })
+    dex
+    linux-firmware
+    mpv
+    inputs.quickconf.packages.${pkgs.system}.default
+    gns3-server
+    gns3-gui
+    lmstudio
+    podman-desktop
+    wireshark
+    flowblade
+    ghidra
   ];
 }
