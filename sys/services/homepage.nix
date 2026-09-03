@@ -139,6 +139,19 @@
       {
         Useful = [
           {
+            Authentik = {
+              icon = "authentik.png";
+              href = "https://authentik.${vars.traefik.domain}";
+              description = "Take control of your identity needs with a secure, flexible solution.";
+              widget = {
+                type = "authentik";
+                url = "http://127.0.0.1:${toString vars.authentik.port}";
+                key = "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}";
+                version = "2";
+              };
+            };
+          }
+          {
             Matrix = {
               icon = "matrix.png";
               href = "https://matrix.${vars.traefik.domain}";
@@ -157,13 +170,6 @@
               icon = "nextcloud.png";
               href = "https://nextcloud.${vars.traefik.domain}";
               description = "A safe home for all you data";
-            };
-          }
-          {
-            Traefik = {
-              icon = "traefik.png";
-              href = "https://traefik.${vars.traefik.domain}";
-              description = "The Cloud Native Application Proxy";
             };
           }
           {
@@ -218,6 +224,13 @@
               icon = "grafana.png";
               description = "The open and composable observability platform";
               href = "https://grafana.${vars.traefik.domain}";
+            };
+          }
+          {
+            Traefik = {
+              icon = "traefik.png";
+              href = "https://traefik.${vars.traefik.domain}";
+              description = "The Cloud Native Application Proxy";
             };
           }
           {
