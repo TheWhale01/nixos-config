@@ -13,7 +13,7 @@ return {
   'name': request.user.name,
   'groups': groups,
   'quota': user.group_attributes().get('nextcloud_quota', None),
-  'user_id': user.attributes.get('nextcloud_user_id', str(user.uuid)),
+  'user_id': user.attributes.get('nextcloud_user_id', request.user.username),
 }";
     };
     authentik_provider_oauth2.nextcloud_provider = {
@@ -22,6 +22,7 @@ return {
       client_type = "confidential";
       property_mappings = [ "\${authentik_property_mapping_provider_scope.nextcloud_profile.id}" ];
       logout_uri = "https://nextcloud.${vars.traefik.domain}/index.php/apps/user_oidc/backchannel-logout/authentik";
+      signing_key = "\${data.authentik_certificate_key_pair.default.id}";
       grant_types = [
         "authorization_code"
         "implicit"

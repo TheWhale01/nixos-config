@@ -45,7 +45,7 @@
   };
   systemd.services.authentik-ldap = {
     environment = {
-      AUTHENTIK_HOST = "http://127.0.0.1:9000";
+      AUTHENTIK_HOST = "http://127.0.0.1:${toString vars.authentik.port}";
       AUTHENTIK_INSECURE = "true";
     };
     serviceConfig = {
@@ -55,7 +55,7 @@
   };
   systemd.services.authentik-proxy = {
     environment = {
-      AUTHENTIK_HOST = "http://127.0.0.1:9000";
+      AUTHENTIK_HOST = "http://127.0.0.1:${toString vars.authentik.port}";
       AUTHENTIK_INSECURE = "true";
       AUTHENTIK_HOST_BROWSER = "https://authentik.${vars.traefik.domain}";
     };

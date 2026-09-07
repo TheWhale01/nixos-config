@@ -4,7 +4,7 @@
   resource = {
     authentik_property_mapping_provider_scope.vaultwarden_profile = {
       name = "Vaultwarden Profile";
-      scope_name = "vaultwarden";
+      scope_name = "email";
       expression = "return {
   'email': request.user.email,
   'email_verified': True
@@ -15,12 +15,12 @@
       client_id = erebos.config.services.vaultwarden.config.SSO_CLIENT_ID;
       client_type = "confidential";
       signing_key = "\${data.authentik_certificate_key_pair.default.id}";
+      sub_mode = "user_email";
       property_mappings = [
         "\${authentik_property_mapping_provider_scope.vaultwarden_profile.id}"
         "\${data.authentik_property_mapping_provider_scope.offline_access.id}"
         "\${data.authentik_property_mapping_provider_scope.profile.id}"
         "\${data.authentik_property_mapping_provider_scope.openid.id}"
-        "\${data.authentik_property_mapping_provider_scope.email.id}"
       ];
       grant_types = [
         "authorization_code"
@@ -35,6 +35,7 @@
         redirect_uri_type = "authorization";
         url = "https://vaultwarden.${vars.traefik.domain}/identity/connect/oidc-signin";
       }];
+
       authorization_flow = "\${data.authentik_flow.default_authorization_flow.id}";
       invalidation_flow = "\${data.authentik_flow.default_invalidation_flow.id}";
     };

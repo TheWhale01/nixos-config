@@ -56,6 +56,9 @@
     pkgs = import nixpkgs {
       system = system;
       config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+      	"immich-2.7.5"
+      ];
     };
     erebosConfig = { env }: lib.nixosSystem {
       inherit pkgs;

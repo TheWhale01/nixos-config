@@ -6,6 +6,8 @@
       name = "Provider for Matrix";
       client_id = "cRxigyqzs0RjwvKpoEouTYrIcWo2Z7CUkiwAL6D5";
       client_type = "confidential";
+      signing_key = "\${data.authentik_certificate_key_pair.default.id}";
+      sub_mode = "user_username";
       property_mappings = [
         "\${data.authentik_property_mapping_provider_scope.email.id}"
         "\${data.authentik_property_mapping_provider_scope.profile.id}"

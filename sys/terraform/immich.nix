@@ -6,6 +6,7 @@
       name = "Provider for Immich";
       client_id = erebos.config.services.immich.settings.oauth.clientId;
       client_type = "confidential";
+      sub_mode = "user_email";
       property_mappings = [
         "\${data.authentik_property_mapping_provider_scope.email.id}"
         "\${data.authentik_property_mapping_provider_scope.profile.id}"
