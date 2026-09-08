@@ -9,7 +9,7 @@
       avatars = "initials";
       listen.ldap = "127.0.0.1:3389";
       listen.ldaps = "127.0.0.1:6636";
-      listen.metrics = "127.0.0.1:9300";
+      listen.metrics = [ "127.0.0.1:9300" ];
       postgresql = {
         host = "/run/postgresql";
         port = 5432;

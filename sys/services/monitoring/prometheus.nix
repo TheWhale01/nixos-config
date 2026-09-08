@@ -54,7 +54,7 @@
       {
         job_name = "authentik";
         static_configs = [{
-          targets = [ "${config.services.authentik.settings.listen.metrics}" ];
+          targets = [ "${config.services.authentik.worker.listenMetrics}" ];
         }];
       }
       {
