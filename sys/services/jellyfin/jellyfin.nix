@@ -1,8 +1,9 @@
-{ config, pkgs, vars, ... }:
+{ config, pkgs, vars, pkgs-unstable, ... }:
 
 {
   services.jellyfin = {
     enable = true;
+    package = pkgs-unstable.jellyfin;
   };
   services.traefik.dynamicConfigOptions.http = {
     services.jellyfin.loadBalancer.servers = [{

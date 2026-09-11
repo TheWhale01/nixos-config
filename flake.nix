@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +41,7 @@
   outputs =
   {
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     agenix,
     disko,
@@ -65,6 +67,10 @@
       specialArgs = {
         inherit inputs env;
         vars = import ./sys/vars.nix { inherit env; };
+        pkgs-unstable = import nixpkgs-unstable {
+          system = "${system}";
+          config.allowUnfree = true;
+        };
       };
       modules = [
         ./sys/configuration.nix
