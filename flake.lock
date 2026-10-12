@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779506708,
+        "narHash": "sha256-QOD/CNm196nCJRheux/URi4/HE66fthdOMqCJoPP1Y0=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-25.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nvim-config": "nvim-config"
+      },
+      "locked": {
+        "lastModified": 1776287258,
+        "narHash": "sha256-Hk6ke1WvD8L2pLqFq3Yvaa3XxhRsFSccA8Fnxymu4Pw=",
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "rev": "fe91a269e11a3ae0fc0f65baa2a5f8ee8329ecdb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheWhale01",
+        "repo": "nixos-modules",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1782651437,
+        "narHash": "sha256-10srBgrJz7JOWzS1KG5BhrwHCUPTcPqZgwNKo5N9YE4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0a47451dbe2082a660b88a79a83efdc8d85de445",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nvim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773681976,
+        "narHash": "sha256-86B5RoZmWcsQUTYtP0IOhdKqokr/01NhpMoeWqJOT3s=",
+        "owner": "TheWhale01",
+        "repo": "nvim-config",
+        "rev": "005e599cda7b37a648bb6b581d10fdd55c82b791",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheWhale01",
+        "repo": "nvim-config",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "modules": "modules",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
